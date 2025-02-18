@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../imagens/image.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    width: 420px;
+    background-color: transparent;
+    border: 2px, solid, gray;
+    border-radius: 10px;
+    color: white;
+    padding: 30px 40px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    backdrop-filter: blur(3px);
+}
+
+.container h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.input_cadastro{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input_cadastro input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    padding: 20px 45px 20px 20px;
+    color: white;
+}
+
+.input_cadastro input::placeholder{
+    color: white;
+}
+
+.input_cadastro i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    font-size: 20px;
+}
+
+.cadastro_button{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.cadastro_button:hover{
+    background-color: wheat;
+    border: 2px, solid, black;
+    color: black;
+}
+
+.login_conta{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.login_conta a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.login_conta a:hover{
+    text-decoration: underline;
+}
