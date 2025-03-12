@@ -14,7 +14,7 @@ a{
 
 .titulo{
     color: white;
-    font-size: 24px;
+    font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 4px;
 }
@@ -58,10 +58,10 @@ main{
     width: 25px;
 }
 
-form{
+.form_categorias{
     display: flex;
     justify-content: center;
-    background-color: rgb(56, 56, 56);
+    background-color: blue;
     color: white;
 }
 
@@ -80,4 +80,32 @@ form{
 .nav_categorias li{
     letter-spacing: 1px;
     margin: 10px;
+}
+
+.img_rep1{
+    width: 350px;
+    height: 300px;
+}
+
+.reportagens{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.rep_maior{
+    border: solid black 2px;
+    border-radius: 5px;
+    width: 700px;
+    height: 700px;
+    align-items: center;
+}
+
+.rep_maior img{
+    width: 700px;
+    height: 500px;
+}
+
+.rep_maior h2{
+    text-align: center;
 }
