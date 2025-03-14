@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-}
-
-body{
-    overflow-x: hidden;
+    overflow: hidden
 }
 
 a{
@@ -80,6 +79,13 @@ main{
 .nav_categorias li{
     letter-spacing: 1px;
     margin: 10px;
+    cursor: pointer;
+}
+
+.nav_categorias li:hover{
+    text-decoration: underline;
+    color: #afffff;
+    transition: 1s;
 }
 
 .img_rep1{
@@ -90,22 +96,90 @@ main{
 .reportagens{
     display: flex;
     flex-direction: row;
-
 }
 
 .rep_maior{
     border: solid black 2px;
     border-radius: 5px;
-    width: 700px;
-    height: 700px;
+    width: 55%;
+    height: 100%;
     align-items: center;
+    display: inline-block;
+    margin-left: 2px;
+    margin-top: 2px;
+    cursor: pointer;
+    color: red;
 }
 
 .rep_maior img{
-    width: 700px;
+    width: 100%;
     height: 500px;
 }
 
 .rep_maior h2{
     text-align: center;
+    font-family: "Big Shoulders", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.rep_menores{
+    position: relative;
+    width: 43%;
+    display: inline-block;
+    height: 100%;
+    border: solid black 2px;
+    border-radius: 5px;
+    padding: 2px;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.rep_menor1 img{
+    width: 100%;
+    height: 316px;
+}
+
+.rep_menor2 img{
+    width: 100%;
+    height: 316px;
+}
+
+.rep_menor1{
+    position: relative;
+    height: 316px;
+    width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.rep_menor2 {
+    position: relative;
+    height: 316px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.rep_menor1 h2{
+    position: absolute;
+    left: 3%;
+    top: 80%;
+    color: white;
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    font-family: "Big Shoulders", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.rep_menor2 h2{
+    position: absolute;
+    left: 3%;
+    top: 80%;
+    color: white;
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+    font-family: "Big Shoulders", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
 }
