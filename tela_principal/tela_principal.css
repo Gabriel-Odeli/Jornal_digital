@@ -99,7 +99,6 @@ main{
 }
 
 .rep_maior{
-    border: solid black 2px;
     border-radius: 5px;
     width: 55%;
     height: 100%;
@@ -128,7 +127,6 @@ main{
     width: 43%;
     display: inline-block;
     height: 100%;
-    border: solid black 2px;
     border-radius: 5px;
     padding: 2px;
     margin-top: 2px;
