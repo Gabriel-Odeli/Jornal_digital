@@ -93,7 +93,7 @@ main{
     height: 300px;
 }
 
-.reportagens{
+.Reportagens{
     display: flex;
     flex-direction: row;
 }
