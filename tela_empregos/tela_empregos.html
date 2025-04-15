@@ -3,42 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empregos</title>
+    <title>Site de Vagas</title>
     <link rel="stylesheet" href="tela_empregos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="parte_cima">
-            <h1 class="titulo">Jornal Digital</h1>
-            <a class="login" href="../login/login.html">Login <i class="bx bxs-user"></i></a>
-            <ul class="nav_list">
-                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
-            </ul>
-        </nav>
-        <form action="" class="form_categorias">
-            <div class="categorias">
-                <ul class="nav_categorias">
-                    <li><a href="../tela_principal/tela_principal.html">Inicio</a></li>
-                    <li><a href="#">Empregos</a></li>
-                </ul>
-            </div>
-        </form>
+
+    <header class="top-header">
+        <div class="social-icons">
+            <a href="#"><img src="../imagens/instagram.png" alt="Instagram"></a>
+            <a href="#"><img src="../imagens/facebook.png" alt="Facebook"></a>
+        </div>
+        <h1 class="company-name">Jornal Digital</h1>
+        <a href="../login/login.html" class="login-btn"><i class="fas fa-user"></i> Login</a>
     </header>
 
-    <header>
-        <img src="../imagens/emprego.png" alt="imagem do local">
-        <div style="display: flex; flex-direction: column; align-items: center; font-family: Arial; margin-top: 20px;">
-            <div style="font-weight: bold; font-size: 24px;">Nome do lugar</div>
-            <div style="font-size: 20px; margin-top: 5px;">Vaga necessária</div>
-          
-            <div style="display: flex; justify-content: center; gap: 50px; margin-top: 20px; font-size: 16px;">
-              <div>Localização</div>
-              <div>Contato</div>
-              <div>Salário</div>
+    <nav class="nav-bar">
+        <a href="../tela_principal/tela_principal.html">Início</a>
+        <a href="#">Empregos</a>
+    </nav>
+
+    <main class="job-section">
+        <div class="job-card">
+            <img src="../imagens/emprego.png" alt="Local">
+            <h2>Supermercado Real</h2>
+            <p>Repositor de Mercadorias</p>
+            <div class="job-info">
+                <span><i class="fas fa-dollar-sign"></i> R$ 1.800</span>
+                <span><i class="fas fa-map-marker-alt"></i> Centro</span>
+                <span><i class="fas fa-phone-alt"></i> (11) 9999-9999</span>
             </div>
-          </div>
-    </header>
-    <main></main>
+            <button class="btn-candidatar">Candidatar-se</button>
+        </div>
+
+        <div class="job-card">
+            <img src="../imagens/emprego.png" alt="Local">
+            <h2>Farmácia Vida</h2>
+            <p>Atendente de Balcão</p>
+            <div class="job-info">
+                <span><i class="fas fa-dollar-sign"></i> R$ 1.500</span>
+                <span><i class="fas fa-map-marker-alt"></i> Bairro Norte</span>
+                <span><i class="fas fa-phone-alt"></i> (11) 98888-8888</span>
+            </div>
+            <button class="btn-candidatar">Candidatar-se</button>
+        </div>
+
+        <div class="job-card">
+            <img src="../imagens/emprego.png" alt="Local">
+            <h2>Loja Tech</h2>
+            <p>Caixa</p>
+            <div class="job-info">
+                <span><i class="fas fa-dollar-sign"></i> R$ 1.700</span>
+                <span><i class="fas fa-map-marker-alt"></i> Shopping Azul</span>
+                <span><i class="fas fa-phone-alt"></i> (11) 97777-7777</span>
+            </div>
+            <button class="btn-candidatar">Candidatar-se</button>
+        </div>
+
+        <div class="job-card">
+            <img src="../imagens/emprego.png" alt="Local">
+            <h2>Supermercado Real</h2>
+            <p>Repositor de Mercadorias</p>
+            <div class="job-info">
+                <span><i class="fas fa-dollar-sign"></i> R$ 1.800</span>
+                <span><i class="fas fa-map-marker-alt"></i> Centro</span>
+                <span><i class="fas fa-phone-alt"></i> (11) 9999-9999</span>
+            </div>
+            <button class="btn-candidatar">Candidatar-se</button>
+        </div>
+    </main>
+
 </body>
 </html>
