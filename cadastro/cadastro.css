@@ -1,101 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
+body {
+    background-color: #f2f9ff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: url('../imagens/image.png');
-    background-size: cover;
-    background-position: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-.container{
-    width: 420px;
-    background-color: transparent;
-    border: 2px, solid, gray;
+.container {
+    background-color: #ffffff;
+    padding: 40px;
     border-radius: 10px;
-    color: white;
-    padding: 30px 40px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    backdrop-filter: blur(3px);
+    box-shadow: 0px 0px 10px rgba(0, 102, 204, 0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
-.container h1{
-    font-size: 36px;
+.cadastro_titulo {
     text-align: center;
+    margin-bottom: 25px;
+    color: #1a75ff;
 }
 
-.input_cadastro{
+.input_cadastro {
     position: relative;
+    margin-bottom: 20px;
+}
+
+.input_cadastro input {
     width: 100%;
-    height: 50px;
-    margin: 30px 0;
-}
-
-.input_cadastro input{
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 40px;
-    outline: none;
-    font-size: 16px;
-    padding: 20px 45px 20px 20px;
-    color: white;
-}
-
-.input_cadastro input::placeholder{
-    color: white;
-}
-
-.input_cadastro i{
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 20px;
-    font-size: 20px;
-}
-
-.cadastro_button{
-    width: 100%;
-    height: 50px;
-    background-color: white;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 16px;
-    color: black;
-    font-weight: 600;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.cadastro_button:hover{
-    background-color: wheat;
-    border: 2px, solid, black;
-    color: black;
-}
-
-.login_conta{
+    padding: 12px 40px 12px 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background-color: #f9f9f9;
     font-size: 14px;
-    text-align: center;
-    margin: 20px 0 15px;
+    color: #333;
 }
 
-.login_conta a{
-    text-decoration: none;
+.input_cadastro input:focus {
+    outline: none;
+    border-color: #4da6ff;
+    background-color: #fff;
+}
+
+.input_cadastro i {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    color: #4da6ff;
+    font-size: 18px;
+}
+
+.cadastro_button {
+    width: 100%;
+    background-color: #4da6ff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
     color: white;
-    font-weight: 600;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.login_conta a:hover{
+.cadastro_button:hover {
+    background-color: #1a75ff;
+}
+
+.login_conta {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login_conta a {
+    color: #1a75ff;
+    text-decoration: none;
+}
+
+.login_conta a:hover {
     text-decoration: underline;
 }
