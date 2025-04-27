@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Vagas</title>
     <link rel="stylesheet" href="tela_empregos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
+
 <body>
-
-    <header class="top-header">
-        <div class="social-icons">
-            <a href="#"><img src="../imagens/instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="../imagens/facebook.png" alt="Facebook"></a>
-        </div>
-        <h1 class="company-name">Jornal Digital</h1>
-        <a href="../login/login.html" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    <header>
+        <nav class="parte_cima">
+            <a class="login" href="../login/login.html">Login <i class="bx bxs-user"></i></a>
+            <h1 class="titulo">Jornal Digital</h1>
+            <ul class="nav_list">
+                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
+                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+            </ul>
+        </nav>
+        <form action="" class="form_categorias">
+            <div class="categorias">
+                <ul class="nav_categorias">
+                    <li><a href="../tela_principal/tela_principal.html">Inicio</a></li>
+                    <li><a href="#">Empregos</a></li>
+                </ul>
+            </div>
+        </form>
     </header>
-
-    <nav class="nav-bar">
-        <a href="../tela_principal/tela_principal.html">Início</a>
-        <a href="#">Empregos</a>
-    </nav>
 
     <main class="job-section">
         <div class="job-card">
@@ -71,7 +78,28 @@
             </div>
             <button class="btn-candidatar">Candidatar-se</button>
         </div>
-    </main>
 
+        <!-- Formulário escondido inicialmente -->
+        <div id="form-candidatura" style="display: none;">
+            <div class="form-container">
+                <h2 id="vagaTitulo"></h2> <!-- NOVO: onde mostra o título da vaga -->
+                <form id="curriculoForm">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="curriculo">Currículo (PDF):</label>
+                    <input type="file" id="curriculo" name="curriculo" accept=".pdf" required>
+
+                    <button type="submit">Enviar</button>
+                    <button type="button" id="fecharFormulario">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="tela_emprego.js" defer></script>
 </body>
+
 </html>

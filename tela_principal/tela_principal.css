@@ -82,6 +82,7 @@ body {
 }
 
 .rep_maior {
+    cursor: pointer;
     flex: 2;
     position: relative;
     height: 500px;
@@ -99,6 +100,7 @@ body {
 }
 
 .rep_menor1, .rep_menor2 {
+    cursor: pointer;
     position: relative;
     height: calc(250px - 2.5px); /* Ajuste para compensar o gap */
     background-color: #ffffff;
