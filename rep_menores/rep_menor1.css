@@ -1,0 +1,193 @@
+/* Reset e fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f2f9ff;
+    padding: 10px; /* Adiciona 5px de padding em todo o body */
+}
+
+/* Header styles */
+.parte_cima {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #e6f2ff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espaço entre header e reportagens */
+}
+
+.titulo {
+    color: #0066cc;
+    font-size: 24px;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: 500;
+}
+
+.nav_list {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav_list img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Categorias */
+.form_categorias {
+    background-color: #d9e9ff;
+    padding: 10px 20px;
+    margin-bottom: 5px; /* Espaço entre categorias e reportagens */
+}
+
+.nav_categorias {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav_categorias a {
+    text-decoration: none;
+    color: #004080;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav_categorias a:hover {
+    background-color: #b3d1ff;
+}
+
+
+/* Conteúdo da reportagem */
+.reportagem {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.titulo-reportagem {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Data e jornalista */
+.info-reportagem {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.info-reportagem i {
+    margin-right: 5px;
+}
+
+/* Imagem com efeito de zoom */
+.imagem-reportagem {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.imagem-reportagem:hover {
+    transform: scale(1.05);
+}
+
+/* Texto */
+.texto-reportagem {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #005fa3;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .parte_cima {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .categorias .nav_categorias {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Barra de Progresso de Leitura */
+#barra-progresso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #0077cc;
+    z-index: 10000;
+}
+
+/* Botão compartilhar */
+.btn-compartilhar {
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-compartilhar:hover {
+    background-color: #218838;
+}
+
+.btn-compartilhar i {
+    margin-right: 8px;
+}

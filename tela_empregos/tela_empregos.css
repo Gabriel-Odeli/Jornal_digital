@@ -1,14 +1,14 @@
-/* Reset e base */
+/* Reset e fonte */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    color: #003366;
+    background-color: #f2f9ff;
+    padding: 10px; /* Adiciona 5px de padding em todo o body */
 }
 
 /* HEADER SUPERIOR */
@@ -211,4 +211,55 @@ body {
 #fecharFormulario {
     background-color: #ccc;
     color: #333;
+}
+
+/* Mensagem de erro */
+
+.mensagem-erro {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    z-index: 1000;
+}
+
+/* Animação */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+    position: fixed;
+    top: 70px; /* Um pouco mais embaixo para não colidir com a de erro */
+    right: 20px;
+    background-color: #4CAF50; /* Verde bonito */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    z-index: 1000;
 }
