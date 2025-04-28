@@ -35,7 +35,6 @@
 
     <main class="reportagem">
         <h2 class="titulo-reportagem">Pinguins loucos deixam 3 pessoas feridas</h2>
-        <h3 class="subtitulo-reportagem">Entenda o que levou os pinguins a esse comportamento inusitado</h3>
 
         <div class="info-reportagem">
             <span><i class="fas fa-calendar-alt"></i> Publicado em: 27 de Abril de 2025</span>
@@ -43,16 +42,12 @@
         </div>
 
         <img class="imagem-reportagem" src="../imagens/pinguins.png" alt="Pinguins causando confusão">
-        
+
         <p class="texto-reportagem">
             Em um evento que surpreendeu turistas e moradores locais, um grupo de pinguins causou confusão em
             uma praia no litoral sul na tarde de ontem. Segundo testemunhas, cerca de dez pinguins saíram do mar
             correndo e começaram a esbarrar em banhistas, derrubando cadeiras de praia e até mesmo assustando crianças.
         </p>
-
-        <blockquote class="citacao-reportagem">
-            "Foi uma cena engraçada e assustadora ao mesmo tempo", relatou João, frequentador da praia.
-        </blockquote>        
 
         <p class="texto-reportagem">
             Especialistas afirmam que o comportamento dos animais pode estar relacionado ao aumento das
@@ -76,9 +71,23 @@
         <button id="botao-compartilhar" class="btn-compartilhar">
             <i class="fas fa-share-alt"></i> Compartilhar Reportagem
         </button>
-        
+
         <a href="../tela_principal/tela_principal.html" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
-    
+
+        <section class="forum">
+            <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
+        
+            <form id="form-mensagem" class="form-mensagem">
+                <input type="text" id="nome-usuario" placeholder="Seu nome" required>
+                <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
+                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+            </form>
+        
+            <div id="lista-mensagens" class="lista-mensagens">
+                <!-- Mensagens aparecerão aqui -->
+            </div>
+        </section>
+        
     </main>
     <script src="rep_maior.js" defer></script>
 </body>
