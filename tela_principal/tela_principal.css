@@ -165,3 +165,102 @@ body {
         height: calc(150px - 2.5px); /* Ajuste para mobile */
     }
 }
+
+
+/* Estilo para o botão de dark mode */
+.botao-darkmode {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-darkmode {
+    width: 24px;
+    height: 24px;
+}
+
+/* Exemplo para imagens pequenas: você pode deixar sem filtro ou ajustar caso queira */
+
+.nav_list {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre os ícones */
+    list-style: none;
+}
+
+/* Corpo no modo escuro */
+body.dark-mode {
+    background-color: #272727; /* Mais escuro */
+    color: #ffffff; /* Letras brancas */
+}
+
+/* Header, nav e parte superior */
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode .parte_cima {
+    background-color: #141414; /* Um tom acima do fundo */
+}
+
+/* Categorias */
+body.dark-mode .form_categorias {
+    background-color: #1c1c1c;
+}
+
+/* Links */
+body.dark-mode a {
+    color: #ffffff; /* Letras brancas */
+}
+
+body.dark-mode a:hover {
+    color: #ffd700; /* Amarelo claro para contraste */
+}
+
+/* Reportagens */
+body.dark-mode .rep_maior,
+body.dark-mode .rep_menor1,
+body.dark-mode .rep_menor2 {
+    background-color: #313131;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+/* Títulos nas categorias */
+body.dark-mode .nav_categorias a {
+    color: #ffffff;
+}
+
+body.dark-mode .nav_categorias a:hover {
+    background-color: #313131;
+    color: #ffd700;
+}
+
+/* Parágrafo dentro da reportagem */
+body.dark-mode .rep_maior-p {
+    background-color: rgba(20, 20, 20, 0.95);
+    color: #ffffff;
+}
+
+/* Modal (se usado) */
+body.dark-mode #modalReportagem .modal-conteudo {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.tema-selector {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+body.dark-mode .tema-selector {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+
