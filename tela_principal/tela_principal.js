@@ -1,20 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const temaSelector = document.getElementById("temaSelector");
+    const botaoTema = document.getElementById("toggleTema");
+    const iconeTema = document.getElementById("iconeTema");
 
-    // Aplicar tema salvo se houver
+    // Verifica tema salvo
     const temaSalvo = localStorage.getItem("tema");
+
     if (temaSalvo === "escuro") {
         document.body.classList.add("dark-mode");
-        temaSelector.value = "escuro";
+        iconeTema.className = "bx bx-moon";
+    } else {
+        iconeTema.className = "bx bx-sun";
     }
 
-    // Alterar tema ao selecionar
-    temaSelector.addEventListener("change", function () {
-        if (this.value === "escuro") {
-            document.body.classList.add("dark-mode");
+    botaoTema.addEventListener("click", function () {
+        const isDark = document.body.classList.toggle("dark-mode");
+
+        if (isDark) {
+            iconeTema.className = "bx bx-moon";
             localStorage.setItem("tema", "escuro");
         } else {
-            document.body.classList.remove("dark-mode");
+            iconeTema.className = "bx bx-sun";
             localStorage.setItem("tema", "claro");
         }
     });

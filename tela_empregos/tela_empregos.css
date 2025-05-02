@@ -273,6 +273,11 @@ body {
     margin: 0;
 }
 
+.botao-darkmode i {
+    font-size: 24px;
+    color: inherit;
+}
+
 .icon-darkmode {
     width: 24px;
     height: 24px;

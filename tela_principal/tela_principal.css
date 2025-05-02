@@ -172,8 +172,15 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    margin: 0;
+    font-size: 24px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-darkmode:hover {
+    opacity: 0.8;
 }
 
 .icon-darkmode {
@@ -192,8 +199,8 @@ body {
 
 /* Corpo no modo escuro */
 body.dark-mode {
-    background-color: #272727; /* Mais escuro */
-    color: #ffffff; /* Letras brancas */
+    background-color: #121212;  /* Fundo escuro */
+    color: #ffffff;  /* Texto claro */
 }
 
 /* Header, nav e parte superior */
