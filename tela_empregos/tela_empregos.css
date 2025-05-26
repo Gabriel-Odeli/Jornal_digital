@@ -293,10 +293,31 @@ body {
 }
 
 
+
+.botao-darkmode {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-darkmode:hover {
+    opacity: 0.8;
+}
+
+.icon-darkmode {
+    width: 24px;
+    height: 24px;
+}
+
 /* Modo Escuro - ajustes adicionais */
 body.dark-mode {
     background-color: #121212;
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 /* Header, nav e categorias */
@@ -319,7 +340,7 @@ body.dark-mode .form-container label {
 /* Links */
 body.dark-mode a,
 body.dark-mode .nav_categorias a {
-    color: #bb86fc;
+    color: #ffffff;
 }
 body.dark-mode .nav_categorias a:hover {
     background-color: #333333;

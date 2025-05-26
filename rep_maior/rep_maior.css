@@ -359,6 +359,26 @@ body {
 }
 
 
+.botao-darkmode {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-darkmode:hover {
+    opacity: 0.8;
+}
+
+.icon-darkmode {
+    width: 24px;
+    height: 24px;
+}
+
 
 /* Modo Escuro */
 body.dark-mode {
@@ -377,12 +397,12 @@ body.dark-mode .titulo {
 
 body.dark-mode .nav_categorias a:hover {
     background-color: #313131;
-    color: #ffd700;
+    color: #ffffff;
 }
 
 
 body.dark-mode a:hover {
-    color: #ffd700; /* Amarelo claro para contraste */
+    color: #ffffff; /* Amarelo claro para contraste */
 }
 
 body.dark-mode a{
@@ -403,7 +423,7 @@ body.dark-mode .texto-reportagem{
 
 /* Navegação */
 body.dark-mode .nav_list a {
-    color: #ffd700;  /* Links com cor roxa */
+    color: #ffffff;  /* Links com cor roxa */
 }
 
 /* Texto da reportagem */
@@ -536,11 +556,6 @@ body.dark-mode .botao-darkmode img {
 body.dark-mode .nav_list img {
     width: 32px;  /* Ícones maiores para se alinhar com os ícones do sol e lua */
     height: 32px;
-}
-
-/* Ajuste do título ConectaNews, que permanece sem alterações */
-body.dark-mode .titulo-conecta-news {
-    color: #bb86fc;  /* Cor do título ConectaNews */
 }
 
 /* Modo escuro para a área do fórum */

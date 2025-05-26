@@ -150,25 +150,28 @@ function criarResposta(respostasContainer, texto) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const botaoDarkMode = document.getElementById("botao-darkmode");
+    const botaoTema = document.getElementById("toggleTema");
+    const iconeTema = document.getElementById("iconeTema");
 
-    // Verificar tema salvo
+    // Verifica tema salvo
     const temaSalvo = localStorage.getItem("tema");
+
     if (temaSalvo === "escuro") {
         document.body.classList.add("dark-mode");
-        botaoDarkMode.querySelector("i").classList.replace("bx-sun", "bx-moon");
+        iconeTema.className = "bx bx-moon";
+    } else {
+        iconeTema.className = "bx bx-sun";
     }
 
-    // Alternar tema ao clicar no botão
-    botaoDarkMode.addEventListener("click", function () {
-        if (document.body.classList.contains("dark-mode")) {
-            document.body.classList.remove("dark-mode");
-            localStorage.setItem("tema", "claro");
-            botaoDarkMode.querySelector("i").classList.replace("bx-moon", "bx-sun");
-        } else {
-            document.body.classList.add("dark-mode");
+    botaoTema.addEventListener("click", function () {
+        const isDark = document.body.classList.toggle("dark-mode");
+
+        if (isDark) {
+            iconeTema.className = "bx bx-moon";
             localStorage.setItem("tema", "escuro");
-            botaoDarkMode.querySelector("i").classList.replace("bx-sun", "bx-moon");
+        } else {
+            iconeTema.className = "bx bx-sun";
+            localStorage.setItem("tema", "claro");
         }
     });
 });

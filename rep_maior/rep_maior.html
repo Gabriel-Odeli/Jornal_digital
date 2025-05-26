@@ -21,8 +21,8 @@
                 <li><a href="#"><img src="../imagens/instagram.png" alt="Instagram"></a></li>
                 <li><a href="#"><img src="../imagens/facebook.png" alt="Facebook"></a></li>
                 <li>
-                    <button class="botao-darkmode" id="botao-darkmode">
-                        <i class="bx bx-sun"></i> 
+                    <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
+                        <i id="iconeTema" class='bx bx-sun'></i>
                     </button>
                 </li>
             </ul>
@@ -81,18 +81,18 @@
 
         <section class="forum">
             <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
-        
+
             <form id="form-mensagem" class="form-mensagem">
                 <input type="text" id="nome-usuario" placeholder="Seu nome" required>
                 <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
                 <button type="submit" class="btn-enviar">Enviar Mensagem</button>
             </form>
-        
+
             <div id="lista-mensagens" class="lista-mensagens">
                 <!-- Mensagens aparecerão aqui -->
             </div>
         </section>
-        
+
     </main>
     <script src="rep_maior.js" defer></script>
 </body>

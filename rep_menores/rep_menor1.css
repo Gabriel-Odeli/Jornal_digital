@@ -8,7 +8,8 @@
 
 body {
     background-color: #f2f9ff;
-    padding: 10px; /* Adiciona 5px de padding em todo o body */
+    padding: 10px;
+    /* Adiciona 5px de padding em todo o body */
 }
 
 /* Header styles */
@@ -19,7 +20,8 @@ body {
     padding: 15px 20px;
     background-color: #e6f2ff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px; /* Espaço entre header e reportagens */
+    margin-bottom: 10px;
+    /* Espaço entre header e reportagens */
 }
 
 .titulo {
@@ -51,7 +53,8 @@ body {
 .form_categorias {
     background-color: #d9e9ff;
     padding: 10px 20px;
-    margin-bottom: 5px; /* Espaço entre categorias e reportagens */
+    margin-bottom: 5px;
+    /* Espaço entre categorias e reportagens */
 }
 
 .nav_categorias {
@@ -81,7 +84,7 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .titulo-reportagem {
@@ -358,75 +361,109 @@ body {
 }
 
 
+.botao-darkmode {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-darkmode:hover {
+    opacity: 0.8;
+}
+
+.icon-darkmode {
+    width: 24px;
+    height: 24px;
+}
+
+
 /* Modo Escuro */
 body.dark-mode {
-    background-color: #121212;  /* Fundo escuro */
-    color: white;  /* Texto claro */
+    background-color: #121212;
+    /* Fundo escuro */
+    color: white;
+    /* Texto claro */
 }
 
 /* Cabeçalho */
 body.dark-mode .parte_cima {
-    background-color: #1e1e1e;  /* Fundo do cabeçalho */
+    background-color: #1e1e1e;
+    /* Fundo do cabeçalho */
 }
 
 body.dark-mode .titulo {
-    color: #0066cc;  /* Cor do título */
+    color: #0066cc;
+    /* Cor do título */
 }
 
 body.dark-mode .nav_categorias a:hover {
     background-color: #313131;
-    color: #ffd700;
+    color: #ffffff;
 }
 
 
 body.dark-mode a:hover {
-    color: #ffd700; /* Amarelo claro para contraste */
+    color: #ffffff;
+    /* Amarelo claro para contraste */
 }
 
-body.dark-mode a{
+body.dark-mode a {
     color: white;
 }
 
-body.dark-mode .info-reportagem{
+body.dark-mode .info-reportagem {
     color: white;
 }
 
-body.dark-mode .titulo-reportagem{
+body.dark-mode .titulo-reportagem {
     color: white;
 }
 
-body.dark-mode .texto-reportagem{
+body.dark-mode .texto-reportagem {
     color: white;
 }
 
 /* Navegação */
 body.dark-mode .nav_list a {
-    color: #ffd700;  /* Links com cor roxa */
+    color: #001aff;
+    /* Links com cor roxa */
 }
 
 /* Texto da reportagem */
 body.dark-mode .reportagem {
-    background-color: #181818;  /* Fundo das seções */
-    color: white;  /* Texto claro */
+    background-color: #181818;
+    /* Fundo das seções */
+    color: white;
+    /* Texto claro */
     padding: 20px;
 }
 
 /* Fórum */
 body.dark-mode .forum {
-    background-color: black;  /* Fundo preto para o fórum */
-    color: white;  /* Texto branco */
+    background-color: black;
+    /* Fundo preto para o fórum */
+    color: white;
+    /* Texto branco */
     padding: 20px;
 }
 
 body.dark-mode .forum-titulo {
-    color: white;  /* Cor do título do fórum */
+    color: white;
+    /* Cor do título do fórum */
 }
 
 /* Botões */
 body.dark-mode .btn-compartilhar,
 body.dark-mode .btn-voltar {
-    background-color: #444;  /* Fundo dos botões */
-    color: #ffffff;  /* Texto dos botões */
+    background-color: #444;
+    /* Fundo dos botões */
+    color: #ffffff;
+    /* Texto dos botões */
     border: none;
     padding: 10px;
     cursor: pointer;
@@ -434,34 +471,42 @@ body.dark-mode .btn-voltar {
 
 body.dark-mode .btn-compartilhar:hover,
 body.dark-mode .btn-voltar:hover {
-    background-color: #666;  /* Cor de fundo ao passar o mouse */
+    background-color: #666;
+    /* Cor de fundo ao passar o mouse */
 }
 
 /* Formulários */
 body.dark-mode .form-mensagem input,
 body.dark-mode .form-mensagem textarea {
-    background-color: #333;  /* Fundo escuro nos campos de input */
-    color: #ffffff;  /* Texto claro nos campos de input */
-    border: 1px solid #444;  /* Borda do input */
+    background-color: #333;
+    /* Fundo escuro nos campos de input */
+    color: #ffffff;
+    /* Texto claro nos campos de input */
+    border: 1px solid #444;
+    /* Borda do input */
     padding: 10px;
     width: 100%;
 }
 
 body.dark-mode .form-mensagem button {
-    background-color: #444;  /* Fundo do botão */
-    color: #ffffff;  /* Texto do botão */
+    background-color: #444;
+    /* Fundo do botão */
+    color: #ffffff;
+    /* Texto do botão */
     padding: 10px;
     border: none;
     cursor: pointer;
 }
 
 body.dark-mode .form-mensagem button:hover {
-    background-color: #666;  /* Cor de fundo ao passar o mouse no botão */
+    background-color: #666;
+    /* Cor de fundo ao passar o mouse no botão */
 }
 
 /* Ícones do modo escuro */
 body.dark-mode .botao-darkmode i {
-    color: #ffffff;  /* Cor do ícone de alternância de tema */
+    color: #ffffff;
+    /* Cor do ícone de alternância de tema */
 }
 
 /* Ícone de alternância de tema */
@@ -474,9 +519,11 @@ body.dark-mode .botao-darkmode {
 }
 
 body.dark-mode .botao-darkmode img {
-    width: 32px;  /* Tamanho aumentado para os ícones */
+    width: 32px;
+    /* Tamanho aumentado para os ícones */
     height: 32px;
-    filter: invert(1);  /* Inverte a cor do ícone para se adaptar ao modo escuro */
+    filter: invert(1);
+    /* Inverte a cor do ícone para se adaptar ao modo escuro */
 }
 
 .icon-darkmode {
@@ -486,25 +533,30 @@ body.dark-mode .botao-darkmode img {
 
 /* Ajuste para os botões no modo escuro */
 body.dark-mode .btn-enviar {
-    background-color: #444;  /* Fundo do botão de enviar */
-    color: #ffffff;  /* Texto do botão */
+    background-color: #444;
+    /* Fundo do botão de enviar */
+    color: #ffffff;
+    /* Texto do botão */
     padding: 10px;
     border: none;
     cursor: pointer;
 }
 
 body.dark-mode .btn-enviar:hover {
-    background-color: #666;  /* Cor de fundo ao passar o mouse no botão */
+    background-color: #666;
+    /* Cor de fundo ao passar o mouse no botão */
 }
 
 /* Ajuste para a barra de progresso */
 body.dark-mode #barra-progresso {
-    background-color: #616161;  /* Barra de progresso escura */
+    background-color: #616161;
+    /* Barra de progresso escura */
 }
 
 /* Ajuste para o fundo das imagens */
 body.dark-mode .imagem-reportagem {
-    filter: brightness(80%);  /* Escurece as imagens */
+    filter: brightness(80%);
+    /* Escurece as imagens */
 }
 
 /* Mensagens de erro e sucesso no modo escuro */
@@ -518,32 +570,38 @@ body.dark-mode .mensagem-sucesso {
 
 /* Seção de categorias */
 body.dark-mode .form_categorias {
-    background-color: #2a2a2a;  /* Fundo escuro para a seção de categorias */
+    background-color: #2a2a2a;
+    /* Fundo escuro para a seção de categorias */
 }
 
 body.dark-mode .nav_categorias a {
-    color: #ffffff;  /* Links brancos */
+    color: #ffffff;
+    /* Links brancos */
 }
 
 body.dark-mode .nav_categorias a:hover {
-    background-color: #333333;  /* Hover efeito para links */
+    background-color: #333333;
+    /* Hover efeito para links */
 }
 
 /* Estilo para o botão de alternância de modo escuro */
 body.dark-mode .botao-darkmode img {
-    width: 32px;  /* Tamanho proporcional aos outros ícones */
+    width: 32px;
+    /* Tamanho proporcional aos outros ícones */
     height: 32px;
 }
 
 /* Ajustes para os ícones do Instagram e Facebook */
 body.dark-mode .nav_list img {
-    width: 32px;  /* Ícones maiores para se alinhar com os ícones do sol e lua */
+    width: 32px;
+    /* Ícones maiores para se alinhar com os ícones do sol e lua */
     height: 32px;
 }
 
 /* Ajuste do título ConectaNews, que permanece sem alterações */
 body.dark-mode .titulo-conecta-news {
-    color: #bb86fc;  /* Cor do título ConectaNews */
+    color: #0066cc;
+    /* Cor do título */
 }
 
 /* Modo escuro para a área do fórum */
