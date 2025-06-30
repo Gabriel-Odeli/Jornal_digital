@@ -8,13 +8,13 @@ include('../../conect_pgsql/conn.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de cadastro</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="cadastro/cadastro.css">
-    <script src="cadastro/cadastro.js" defer></script>
+    <link rel="stylesheet" href="cadastro.css">
+
 </head>
 <body>
     <main class="container">
         <h1 class="cadastro_titulo"> <strong>Cadastro</strong> </h1>
-        <form action="../../actions/create_user.php" method="get">
+        <form action="../../actions/create_user.php" method="post">
             <div class="input_cadastro">
                 <input class="email" placeholder="Email" type="email" name = "email" required>
                 <i class="bx bxs-envelope"></i>
