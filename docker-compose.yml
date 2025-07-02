@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    image: php:8.2-apache
+    container_name: php_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - app-network
+    # Instalando extensão do PDO para PostgreSQL
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:  betoven2008-1
+      POSTGRES_DB: ConectaNews
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

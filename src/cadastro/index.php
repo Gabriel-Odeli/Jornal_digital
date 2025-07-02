@@ -1,5 +1,5 @@
 <?php
-include('../../conect_pgsql/conn.php');
+include __DIR__ . '/../conect_pgsql/conn.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +14,7 @@ include('../../conect_pgsql/conn.php');
 <body>
     <main class="container">
         <h1 class="cadastro_titulo"> <strong>Cadastro</strong> </h1>
-        <form action="../../actions/create_user.php" method="post">
+        <form action="../actions/create_user.php" method="post">
             <div class="input_cadastro">
                 <input class="email" placeholder="Email" type="email" name = "email" required>
                 <i class="bx bxs-envelope"></i>
@@ -35,11 +35,6 @@ include('../../conect_pgsql/conn.php');
         <div class="login_conta">
             <p>Já tem uma conta? <a href="../login/login.html">Login</a></p>
         </div>
-        
     </main>
-
-
-            
-        
 </body>
 </html>
