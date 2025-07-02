@@ -1,7 +1,5 @@
 <?php
 include __DIR__ . '/../conect_pgsql/conn.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] = 'POST') {
     try {
@@ -27,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         $stmt->bindParam(':tipo', $tipo);
 
         $stmt->execute();
-        header("Location: ../../login/login.html");
+        header("Location: ../../login/login.php");
     } catch (PDOException $e) {
         die("Erro no banco de dados: " . $e->getMessage());
     } catch (Exception $e) {
@@ -35,6 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
     }
 }else {
     // Se não for POST, redireciona
-    header("Location: ../../cadastro/index.php?error=invalid_request");
+    header("Location: ../../cadastro/cadastro.php?error=invalid_request");
     exit();
 }
