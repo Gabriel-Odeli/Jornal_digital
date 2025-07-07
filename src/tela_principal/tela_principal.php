@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,18 +15,26 @@
 <body>
     <header>
         <nav class="parte_cima">
-            <a class="login" href="../login/login.php">Login <i class="bx bxs-user"></i></a>
-<h1 class="titulo">ConectaNews</h1>
+            <?php
+                if (!isset($_SESSION['id_usuario'])) {
+                    echo '<a class="login" href="../login/login.php">Login'; 
+                    echo '<i class="bx bxs-user"></i></a>';
+                }else{
+                    echo '<a class="login">' . $_SESSION['nome'];
+                    echo '<i class="bx bxs-user"></i></a>';
+                }
+            ?>
+            <h1 class="titulo">ConectaNews</h1>
 
-<ul class="nav_list">
-    <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-    <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
-    <li>
-        <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
-            <i id="iconeTema" class='bx bx-sun'></i>
-        </button>          
-    </li>        
-</ul>
+        <ul class="nav_list">
+            <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
+            <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+            <li>
+                <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
+                <i id="iconeTema" class='bx bx-sun'></i>
+                </button>          
+            </li>        
+        </ul>
 
         </nav>
         <form action="" class="form_categorias">
