@@ -8,7 +8,8 @@
 
 body {
     background-color: #f2f9ff;
-    padding: 10px; /* Adiciona 5px de padding em todo o body */
+    padding: 10px;
+    /* Adiciona 5px de padding em todo o body */
 }
 
 /* Header styles */
@@ -19,7 +20,8 @@ body {
     padding: 15px 20px;
     background-color: #e6f2ff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px; /* Espaço entre header e reportagens */
+    margin-bottom: 10px;
+    /* Espaço entre header e reportagens */
 }
 
 .titulo {
@@ -51,7 +53,8 @@ body {
 .form_categorias {
     background-color: #d9e9ff;
     padding: 10px 20px;
-    margin-bottom: 5px; /* Espaço entre categorias e reportagens */
+    margin-bottom: 5px;
+    /* Espaço entre categorias e reportagens */
 }
 
 .nav_categorias {
@@ -76,7 +79,8 @@ body {
 /* Layout das reportagens */
 .Reportagens {
     display: flex;
-    gap: 15px; /* Reduzido de 20px para 5px */
+    gap: 15px;
+    /* Reduzido de 20px para 5px */
     padding: 0;
     width: 100%;
 }
@@ -95,12 +99,15 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Reduzido de 20px para 5px */
+    gap: 5px;
+    /* Reduzido de 20px para 5px */
 }
 
-.rep_menor1, .rep_menor2 {
+.rep_menor1,
+.rep_menor2 {
     position: relative;
-    height: calc(250px - 2.5px); /* Ajuste para compensar o gap */
+    height: calc(250px - 2.5px);
+    /* Ajuste para compensar o gap */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
@@ -108,7 +115,9 @@ body {
 }
 
 /* Estilos das imagens */
-.rep_maior-img, .rep_menor1-img, .rep_menor2-img {
+.rep_maior-img,
+.rep_menor1-img,
+.rep_menor2-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -122,7 +131,9 @@ body {
 }
 
 /* Estilos dos títulos */
-.rep_maior-h2, .rep_menor1-h2, .rep_menor2-h2 {
+.rep_maior-h2,
+.rep_menor1-h2,
+.rep_menor2-h2 {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -131,21 +142,10 @@ body {
     color: white;
     background: linear-gradient(to top, rgba(0, 51, 102, 0.8), transparent);
     margin: 0;
-    font-size: clamp(14px, 2vw, 24px); /* Título responsivo */
+    font-size: clamp(14px, 2vw, 24px);
+    /* Título responsivo */
 }
 
-.rep_maior-p {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    background-color: rgba(0, 51, 102, 0.9);
-    color: white;
-    transition: bottom 0.3s ease;
-    margin: 0;
-    font-size: 14px;
-}
 
 .rep_maior:hover .rep_maior-p {
     bottom: 0;
@@ -156,13 +156,17 @@ body {
     .Reportagens {
         flex-direction: column;
     }
-    
-    .rep_maior, .rep_menor1, .rep_menor2 {
+
+    .rep_maior,
+    .rep_menor1,
+    .rep_menor2 {
         height: 300px;
     }
-    
-    .rep_menor1, .rep_menor2 {
-        height: calc(150px - 2.5px); /* Ajuste para mobile */
+
+    .rep_menor1,
+    .rep_menor2 {
+        height: calc(150px - 2.5px);
+        /* Ajuste para mobile */
     }
 }
 
@@ -193,21 +197,25 @@ body {
 .nav_list {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre os ícones */
+    gap: 10px;
+    /* Espaço entre os ícones */
     list-style: none;
 }
 
 /* Corpo no modo escuro */
 body.dark-mode {
-    background-color: #121212;  /* Fundo escuro */
-    color: #ffffff;  /* Texto claro */
+    background-color: #121212;
+    /* Fundo escuro */
+    color: #ffffff;
+    /* Texto claro */
 }
 
 /* Header, nav e parte superior */
 body.dark-mode header,
 body.dark-mode nav,
 body.dark-mode .parte_cima {
-    background-color: #141414; /* Um tom acima do fundo */
+    background-color: #141414;
+    /* Um tom acima do fundo */
 }
 
 /* Categorias */
@@ -217,7 +225,8 @@ body.dark-mode .form_categorias {
 
 /* Links */
 body.dark-mode a {
-    color: #ffffff; /* Letras brancas */
+    color: #ffffff;
+    /* Letras brancas */
 }
 
 
@@ -266,5 +275,147 @@ body.dark-mode .tema-selector {
     color: #ffffff;
     border: 1px solid #555555;
 }
+
+
+
+
+/* Botão com nome do usuário */
+.user-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #004080;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.user-btn:hover {
+    background-color: #cce5ff;
+}
+
+/* Modal de fundo */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0px 0px 15px rgba(0, 102, 204, 0.2);
+    position: relative;
+}
+
+/* Botão fechar (X) */
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Título centralizado */
+.modal-content h2 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Informações do perfil */
+.modal-content p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Formulário de senha */
+.modal-content form {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+    flex-wrap: wrap;
+}
+
+.modal-content input[type="password"] {
+    padding: 10px;
+    width: auto;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Botões */
+.modal-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de sair da conta */
+.logout-btn {
+    background-color: #dc3545;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background-color: #a71d2a;
+}
+
+.erro {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.editar-btn {
+    display: inline-block;
+    text-align: center;
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.editar-btn:hover {
+    background-color: #11707e;
+}
+
 
 

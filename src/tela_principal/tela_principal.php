@@ -20,8 +20,7 @@ session_start();
                     echo '<a class="login" href="../login/login.php">Login'; 
                     echo '<i class="bx bxs-user"></i></a>';
                 }else{
-                    echo '<a class="login">' . $_SESSION['nome'];
-                    echo '<i class="bx bxs-user"></i></a>';
+                    echo '<button class="user-btn" onclick="abrirModal()">' . htmlspecialchars($_SESSION['nome']) . '</button>';
                 }
             ?>
             <h1 class="titulo">ConectaNews</h1>
@@ -50,20 +49,6 @@ session_start();
                 <div>
                     <img class="rep_maior-img" src="../imagens/pinguins.png" alt="imagem da reportagem">
                     <h2 class="rep_maior-h2">Pinguins loucos deixam 3 pessoas feridas</h2>
-                    <p class="rep_maior-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor
-                        sem
-                        eu sodales rutrum. Pellentesque ut augue tempus, cursus turpis et, congue est. Sed quis est
-                        metus.
-                        Suspendisse iaculis tellus augue, convallis facilisis quam efficitur blandit. Donec dignissim
-                        est
-                        hendrerit, lobortis purus ac, imperdiet magna. Curabitur sit amet lorem in elit efficitur
-                        auctor.
-                        Donec venenatis diam nisl, quis sollicitudin justo dapibus sed. Donec in posuere lorem, vitae
-                        blandit orci. Quisque pulvinar, ex quis efficitur mollis, sem lacus ullamcorper elit, id
-                        volutpat
-                        nibh erat nec odio. Aenean facilisis felis eu felis condimentum volutpat. Proin at mauris
-                        egestas,
-                        vestibulum velit interdum, sollicitudin augue.</p>
                 </div>
             </a>
             <div class="rep_menores">
@@ -93,9 +78,40 @@ session_start();
                 <p id="modalTexto"></p>
             </div>
         </div>
-
     </header>
     <main></main>
+
+    <?php if (isset($_SESSION['id_usuario'])): ?>
+    <!-- Modal do Perfil -->
+    <div id="perfilModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+            <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+            <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+            <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+
+            <form method="post" class="form_modal_perfil">
+                <input type="password" name="senha_verificacao" placeholder="Digite sua senha" required>
+                <button type="submit" name="ver_senha">Ver Senha</button>
+            </form>
+
+            <?php
+            if (isset($_POST['ver_senha'])) {
+                if ($_POST['senha_verificacao'] === $_SESSION['senha']) {
+                    echo "<p><strong>Senha:</strong> " . htmlspecialchars($_SESSION['senha']) . "</p>";
+                } else {
+                    echo "<p class='erro'>Senha incorreta!</p>";
+                }
+            }
+            ?>
+
+            <form action="../actions/logout.php" method="post">
+                <button class="logout-btn">Sair da Conta</button>
+            </form>
+        </div>
+    </div>
+    <?php endif; ?>
     <script src="tela_principal.js"></script>
 </body>
 

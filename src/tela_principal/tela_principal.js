@@ -24,3 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+// modal perfil
+
+function abrirModal() {
+            document.getElementById("perfilModal").style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById("perfilModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById("perfilModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("perfilModal").style.display = "block";
+        });
