@@ -1,5 +1,6 @@
 <?php 
 include __DIR__ . '/../conect_pgsql/conn.php';
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] = 'POST'){
     try{
@@ -10,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             throw new Exception("Todos os campos são obrigatórios!");
         }
 
-        $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha' ";
+        $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha' ";
 
         $stmt = $conn->prepare($sql);
 
