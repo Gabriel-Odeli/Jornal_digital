@@ -80,39 +80,89 @@ session_start();
         </div>
     </header>
     <main></main>
-
-    <?php if (isset($_SESSION['id_usuario'])): ?>
-    <!-- Modal do Perfil -->
+<?php if (isset($_SESSION['id_usuario'])): ?>
+    <!-- Modal de Visualização de Perfil -->
     <div id="perfilModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
             <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+
             <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
             <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
             <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-            <form method="post" class="form_modal_perfil">
-                <input type="password" name="senha_verificacao" placeholder="Digite sua senha" required>
-                <button type="submit" name="ver_senha">Ver Senha</button>
-            </form>
+            <div class="senha-wrapper">
+                <input type="password" id="senhaUsuario" placeholder="Digite sua senha">
+                <span id="toggleSenha" class="olho">&#128065;</span>
+            </div>
 
-            <?php
-            if (isset($_POST['ver_senha'])) {
-                if ($_POST['senha_verificacao'] === $_SESSION['senha']) {
-                    echo "<p><strong>Senha:</strong> " . htmlspecialchars($_SESSION['senha']) . "</p>";
-                } else {
-                    echo "<p class='erro'>Senha incorreta!</p>";
-                }
-            }
-            ?>
+            <div class="botoes-acoes">
+                <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
+                <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edição de Perfil -->
+    <div id="editarPerfilModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharEditarModal()">&times;</span>
+            <h2>Editar Perfil</h2>
+
+            <form id="form-editar" class="form-editar">
+    <div class="form-group">
+        <label for="novo_nome">Nome de Usuário:</label>
+        <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="novo_email">Email:</label>
+        <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="nova_senha">Nova Senha:</label>
+        <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+    </div>
+
+    <div class="mensagem-sucesso" id="mensagemSucesso">Salvo com sucesso ✅</div>
+
+    <div class="botoes-acoes">
+        <button type="submit" class="btn-salvar">Salvar</button>
+        <button type="button" class="btn-cancelar" onclick="limparCampos()">Cancelar</button>
+    </div>
+</form>
+
+
+        </div>
+    </div>
+<?php endif; ?>
+
+
+
 
             <form action="../actions/logout.php" method="post">
                 <button class="logout-btn">Sair da Conta</button>
             </form>
         </div>
     </div>
-    <?php endif; ?>
+    
     <script src="tela_principal.js"></script>
+
+    <div id="modalExclusao">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalExclusao()">&times;</span>
+    <h3>Confirmação de Exclusão</h3>
+    <p>Todos os seus dados de navegação e de usuário serão excluídos. Tem certeza que deseja fazer a exclusão permanente?</p>
+    <div class="botoes-confirmacao">
+      <button class="btn-confirmar-exclusao" onclick="confirmarExclusao()">Sim</button>
+      <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>

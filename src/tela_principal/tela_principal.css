@@ -1,421 +1,625 @@
-/* Reset e fonte */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+    /* Reset e fonte */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-body {
-    background-color: #f2f9ff;
-    padding: 10px;
-    /* Adiciona 5px de padding em todo o body */
-}
+    body {
+        background-color: #f2f9ff;
+        padding: 10px;
+        /* Adiciona 5px de padding em todo o body */
+    }
 
-/* Header styles */
-.parte_cima {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #e6f2ff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    /* Espaço entre header e reportagens */
-}
+    /* Header styles */
+    .parte_cima {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: #e6f2ff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        /* Espaço entre header e reportagens */
+    }
 
-.titulo {
-    color: #0066cc;
-    font-size: 24px;
-}
+    .titulo {
+        color: #0066cc;
+        font-size: 24px;
+    }
 
-.login {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
-    color: #0066cc;
-    font-weight: 500;
-}
+    .login {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        color: #0066cc;
+        font-weight: 500;
+    }
 
-.nav_list {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-}
+    .nav_list {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+    }
 
-.nav_list img {
-    width: 24px;
-    height: 24px;
-}
+    .nav_list img {
+        width: 24px;
+        height: 24px;
+    }
 
-/* Categorias */
-.form_categorias {
-    background-color: #d9e9ff;
-    padding: 10px 20px;
-    margin-bottom: 5px;
-    /* Espaço entre categorias e reportagens */
-}
+    /* Categorias */
+    .form_categorias {
+        background-color: #d9e9ff;
+        padding: 10px 20px;
+        margin-bottom: 5px;
+        /* Espaço entre categorias e reportagens */
+    }
 
-.nav_categorias {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
+    .nav_categorias {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
 
-.nav_categorias a {
-    text-decoration: none;
-    color: #004080;
-    font-weight: 500;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+    .nav_categorias a {
+        text-decoration: none;
+        color: #004080;
+        font-weight: 500;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
 
-.nav_categorias a:hover {
-    background-color: #b3d1ff;
-}
+    .nav_categorias a:hover {
+        background-color: #b3d1ff;
+    }
 
-/* Layout das reportagens */
-.Reportagens {
-    display: flex;
-    gap: 15px;
-    /* Reduzido de 20px para 5px */
-    padding: 0;
-    width: 100%;
-}
+    /* Layout das reportagens */
+    .Reportagens {
+        display: flex;
+        gap: 15px;
+        /* Reduzido de 20px para 5px */
+        padding: 0;
+        width: 100%;
+    }
 
-.rep_maior {
-    flex: 2;
-    position: relative;
-    height: 500px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
-    overflow: hidden;
-}
+    .rep_maior {
+        flex: 2;
+        position: relative;
+        height: 500px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
+        overflow: hidden;
+    }
 
-.rep_menores {
-    flex: 1;
+    .rep_menores {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        /* Reduzido de 20px para 5px */
+    }
+
+    .rep_menor1,
+    .rep_menor2 {
+        position: relative;
+        height: calc(250px - 2.5px);
+        /* Ajuste para compensar o gap */
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
+        overflow: hidden;
+    }
+
+    /* Estilos das imagens */
+    .rep_maior-img,
+    .rep_menor1-img,
+    .rep_menor2-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .rep_maior:hover .rep_maior-img,
+    .rep_menor1:hover .rep_menor1-img,
+    .rep_menor2:hover .rep_menor2-img {
+        transform: scale(1.05);
+    }
+
+    /* Estilos dos títulos */
+    .rep_maior-h2,
+    .rep_menor1-h2,
+    .rep_menor2-h2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px;
+        color: white;
+        background: linear-gradient(to top, rgba(0, 51, 102, 0.8), transparent);
+        margin: 0;
+        font-size: clamp(14px, 2vw, 24px);
+        /* Título responsivo */
+    }
+
+
+    .rep_maior:hover .rep_maior-p {
+        bottom: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .Reportagens {
+            flex-direction: column;
+        }
+
+        .rep_maior,
+        .rep_menor1,
+        .rep_menor2 {
+            height: 300px;
+        }
+
+        .rep_menor1,
+        .rep_menor2 {
+            height: calc(150px - 2.5px);
+            /* Ajuste para mobile */
+        }
+    }
+
+
+    /* Estilo para o botão de dark mode */
+    .botao-darkmode {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botao-darkmode:hover {
+        opacity: 0.8;
+    }
+
+    .icon-darkmode {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Exemplo para imagens pequenas: você pode deixar sem filtro ou ajustar caso queira */
+
+    .nav_list {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Espaço entre os ícones */
+        list-style: none;
+    }
+
+    /* Corpo no modo escuro */
+    body.dark-mode {
+        background-color: #121212;
+        /* Fundo escuro */
+        color: #ffffff;
+        /* Texto claro */
+    }
+
+    /* Header, nav e parte superior */
+    body.dark-mode header,
+    body.dark-mode nav,
+    body.dark-mode .parte_cima {
+        background-color: #141414;
+        /* Um tom acima do fundo */
+    }
+
+    /* Categorias */
+    body.dark-mode .form_categorias {
+        background-color: #1c1c1c;
+    }
+
+    /* Links */
+    body.dark-mode a {
+        color: #ffffff;
+        /* Letras brancas */
+    }
+
+
+    /* Reportagens */
+    body.dark-mode .rep_maior,
+    body.dark-mode .rep_menor1,
+    body.dark-mode .rep_menor2 {
+        background-color: #313131;
+        box-shadow: 0px 0px 10px #000000;
+    }
+
+    /* Títulos nas categorias */
+    body.dark-mode .nav_categorias a {
+        color: #ffffff;
+    }
+
+    body.dark-mode .nav_categorias a:hover {
+        background-color: #313131;
+        color: #ffffff;
+    }
+
+    /* Parágrafo dentro da reportagem */
+    body.dark-mode .rep_maior-p {
+        background-color: rgba(20, 20, 20, 0.95);
+        color: #ffffff;
+    }
+
+    /* Modal (se usado) */
+    body.dark-mode #modalReportagem .modal-conteudo {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .tema-selector {
+        background-color: #ffffff;
+        color: #333333;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    body.dark-mode .tema-selector {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border: 1px solid #555555;
+    }
+
+
+
+
+    /* Botão com nome do usuário */
+    .user-btn {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #004080;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .user-btn:hover {
+        background-color: #cce5ff;
+    }
+
+
+    /* --------------------- */
+    /* 🔷 VARIÁVEIS GERAIS */
+    /* --------------------- */
+    :root {
+        --cor-primaria: #007bff;
+        --cor-secundaria: #17a2b8;
+        --cor-perigo: #dc3545;
+        --cor-fundo-modal: #ffffff;
+        --cor-texto: #333;
+        --cor-titulo: #004080;
+        --cor-borda: #ccc;
+        --cor-hover: #0056b3;
+        --espaco-base: 16px;
+        --radius: 12px;
+        --fonte-padrao: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* ---------------------- */
+    /* 🔲 RESET BÁSICO */
+    /* ---------------------- */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: var(--fonte-padrao);
+        background-color: #f5f5f5;
+        color: var(--cor-texto);
+    }
+
+    /* ----------------------------- */
+    /* 🪟 MODAL (FUNDO + CONTEÚDO) */
+    /* ----------------------------- */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: var(--cor-fundo-modal);
+        margin: 8% auto;
+        padding: 30px 40px;
+        border-radius: var(--radius);
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 0 15px rgba(0, 102, 204, 0.2);
+        position: relative;
+    }
+
+    /* ---------------------- */
+    /* ❌ BOTÃO FECHAR (X) */
+    /* ---------------------- */
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+        transition: color 0.3s;
+    }
+
+    .close:hover {
+        color: var(--cor-texto);
+    }
+
+    /* ------------------ */
+    /* 🧾 TÍTULO E TEXTOS */
+    /* ------------------ */
+    .modal-content h2 {
+        text-align: center;
+        color: var(--cor-titulo);
+        margin-bottom: var(--espaco-base);
+        font-size: 24px;
+    }
+
+    .modal-content p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: var(--cor-texto);
+    }
+
+    /* ------------------------- */
+    /* 🔐 CAMPO DE SENHA COM OLHO */
+    /* ------------------------- */
+    .senha-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+    }
+
+
+    .senha-wrapper input[type="password"],
+    .senha-wrapper input[type="text"] {
+        width: 100%;
+        padding: 10px 40px 10px 10px;
+        border: 1px solid var(--cor-borda);
+        border-radius: var(--radius);
+        font-size: 14px;
+    }
+
+    .olho {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .olho:hover {
+        color: var(--cor-texto);
+    }
+
+    /* ---------------------- */
+    /* 🟦 BOTÕES DE AÇÃO */
+    /* ---------------------- */
+    .botoes-acoes {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: var(--espaco-base);
+    }
+
+    .botoes-acoes button {
+        flex: 1;
+        min-width: 120px;
+        padding: 10px;
+        font-size: 14px;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.3s;
+    }
+
+    /* Botão Editar */
+    .editar-btn {
+        background-color: var(--cor-secundaria);
+    }
+
+    .editar-btn:hover {
+        background-color: #11707e;
+    }
+
+    /* Botão Excluir */
+    .logout-btn {
+        background-color: var(--cor-perigo);
+    }
+
+    .logout-btn:hover {
+        background-color: #a71d2a;
+    }
+
+    /* ------------------- */
+    /* 🔴 ERRO (opcional) */
+    /* ------------------- */
+    .erro {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+
+/* 🔧 Formulário de Edição de Perfil */
+.form-editar {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    /* Reduzido de 20px para 5px */
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.rep_menor1,
-.rep_menor2 {
-    position: relative;
-    height: calc(250px - 2.5px);
-    /* Ajuste para compensar o gap */
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
-    overflow: hidden;
-}
-
-/* Estilos das imagens */
-.rep_maior-img,
-.rep_menor1-img,
-.rep_menor2-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.rep_maior:hover .rep_maior-img,
-.rep_menor1:hover .rep_menor1-img,
-.rep_menor2:hover .rep_menor2-img {
-    transform: scale(1.05);
-}
-
-/* Estilos dos títulos */
-.rep_maior-h2,
-.rep_menor1-h2,
-.rep_menor2-h2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    color: white;
-    background: linear-gradient(to top, rgba(0, 51, 102, 0.8), transparent);
-    margin: 0;
-    font-size: clamp(14px, 2vw, 24px);
-    /* Título responsivo */
-}
-
-
-.rep_maior:hover .rep_maior-p {
-    bottom: 0;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .Reportagens {
-        flex-direction: column;
-    }
-
-    .rep_maior,
-    .rep_menor1,
-    .rep_menor2 {
-        height: 300px;
-    }
-
-    .rep_menor1,
-    .rep_menor2 {
-        height: calc(150px - 2.5px);
-        /* Ajuste para mobile */
-    }
-}
-
-
-/* Estilo para o botão de dark mode */
-.botao-darkmode {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: inherit;
+.form-editar .form-group {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
 
-.botao-darkmode:hover {
-    opacity: 0.8;
-}
-
-.icon-darkmode {
-    width: 24px;
-    height: 24px;
-}
-
-/* Exemplo para imagens pequenas: você pode deixar sem filtro ou ajustar caso queira */
-
-.nav_list {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    /* Espaço entre os ícones */
-    list-style: none;
-}
-
-/* Corpo no modo escuro */
-body.dark-mode {
-    background-color: #121212;
-    /* Fundo escuro */
-    color: #ffffff;
-    /* Texto claro */
-}
-
-/* Header, nav e parte superior */
-body.dark-mode header,
-body.dark-mode nav,
-body.dark-mode .parte_cima {
-    background-color: #141414;
-    /* Um tom acima do fundo */
-}
-
-/* Categorias */
-body.dark-mode .form_categorias {
-    background-color: #1c1c1c;
-}
-
-/* Links */
-body.dark-mode a {
-    color: #ffffff;
-    /* Letras brancas */
-}
-
-
-/* Reportagens */
-body.dark-mode .rep_maior,
-body.dark-mode .rep_menor1,
-body.dark-mode .rep_menor2 {
-    background-color: #313131;
-    box-shadow: 0px 0px 10px #000000;
-}
-
-/* Títulos nas categorias */
-body.dark-mode .nav_categorias a {
-    color: #ffffff;
-}
-
-body.dark-mode .nav_categorias a:hover {
-    background-color: #313131;
-    color: #ffffff;
-}
-
-/* Parágrafo dentro da reportagem */
-body.dark-mode .rep_maior-p {
-    background-color: rgba(20, 20, 20, 0.95);
-    color: #ffffff;
-}
-
-/* Modal (se usado) */
-body.dark-mode #modalReportagem .modal-conteudo {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.tema-selector {
-    background-color: #ffffff;
-    color: #333333;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-body.dark-mode .tema-selector {
-    background-color: #2a2a2a;
-    color: #ffffff;
-    border: 1px solid #555555;
-}
-
-
-
-
-/* Botão com nome do usuário */
-.user-btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #004080;
+.form-editar label {
     font-weight: bold;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background-color 0.3s;
+    color: var(--cor-texto);
+    margin-bottom: 5px;
 }
 
-.user-btn:hover {
-    background-color: #cce5ff;
-}
-
-/* Modal de fundo */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Conteúdo do modal */
-.modal-content {
-    background-color: #ffffff;
-    margin: 8% auto;
-    padding: 30px 40px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0px 0px 15px rgba(0, 102, 204, 0.2);
-    position: relative;
-}
-
-/* Botão fechar (X) */
-.close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #999;
-}
-
-.close:hover {
-    color: #333;
-}
-
-/* Título centralizado */
-.modal-content h2 {
-    text-align: center;
-    color: #004080;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-/* Informações do perfil */
-.modal-content p {
-    font-size: 16px;
-    margin: 10px 0;
-    color: #333;
-}
-
-/* Formulário de senha */
-.modal-content form {
-    margin-top: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center; 
-    gap: 10px; 
-    flex-wrap: wrap;
-}
-
-.modal-content input[type="password"] {
+.form-editar input {
     padding: 10px;
-    width: auto;
-    min-width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     font-size: 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--cor-borda);
+    width: 100%;
 }
 
-/* Botões */
-.modal-content button {
-    background-color: #007bff;
+/* ✅ Botões de ação: Salvar e Cancelar */
+.botoes-acoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-salvar {
+    background-color: #28a745;
     color: white;
+    padding: 10px;
+    border-radius: var(--radius);
     border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
     font-size: 14px;
+    flex: 1;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.modal-content button:hover {
-    background-color: #0056b3;
+.btn-salvar:hover {
+    background-color: #218838;
 }
 
-/* Botão de sair da conta */
-.logout-btn {
+.btn-cancelar {
     background-color: #dc3545;
-    margin-top: 20px;
+    color: white;
+    padding: 10px;
+    border-radius: var(--radius);
+    border: none;
+    font-size: 14px;
+    flex: 1;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.logout-btn:hover {
+.btn-cancelar:hover {
     background-color: #a71d2a;
 }
 
-.erro {
-    color: red;
+/* 🟢 Mensagem de sucesso */
+.mensagem-sucesso {
+    display: none;
+    color: green;
     font-weight: bold;
     text-align: center;
+    margin-top: 10px;
 }
 
-.editar-btn {
-    display: inline-block;
+#modalExclusao {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+#modalExclusao .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    background-color: #17a2b8;
-    color: white;
-    padding: 10px 16px;
+    position: relative;
+}
+
+#modalExclusao .modal-content h3 {
+    color: #dc3545;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#modalExclusao .modal-content p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#modalExclusao .botoes-confirmacao {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#modalExclusao .botoes-confirmacao button {
+    padding: 10px 20px;
+    border: none;
     border-radius: 8px;
-    text-decoration: none;
     font-size: 14px;
-    margin-top: 10px;
+    cursor: pointer;
+    color: #fff;
     transition: background-color 0.3s;
 }
 
-.editar-btn:hover {
-    background-color: #11707e;
+#modalExclusao .btn-confirmar-exclusao {
+    background-color: #dc3545;
 }
 
+#modalExclusao .btn-confirmar-exclusao:hover {
+    background-color: #a71d2a;
+}
 
+#modalExclusao .btn-cancelar-exclusao {
+    background-color: gray;
+}
 
+#modalExclusao .btn-cancelar-exclusao:hover {
+    background-color: #555;
+}
+
+#modalExclusao .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+}
+
+#modalExclusao .close:hover {
+    color: #333;
+}
