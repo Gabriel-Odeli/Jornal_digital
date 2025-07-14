@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔄 Alternância de Tema
     const botaoTema = document.getElementById("toggleTema");
     const iconeTema = document.getElementById("iconeTema");
 
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 👁️ Alternar visibilidade da senha (modal de perfil)
     const senhaInput = document.getElementById("senhaUsuario");
     const toggleSenha = document.getElementById("toggleSenha");
 
@@ -31,32 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Submissão do formulário de edição (simulado)
-    const formEditar = document.getElementById("form-editar");
-    const mensagem = document.getElementById("mensagemSucesso");
-
-    if (formEditar) {
-        formEditar.addEventListener("submit", function (e) {
-            e.preventDefault(); // impede envio real
-
-            if (mensagem) {
-                mensagem.style.display = "block";
-                setTimeout(() => {
-                    mensagem.style.display = "none";
-                    fecharEditarModal();
-                }, 2000);
-            }
-        });
-    }
-
-    // 🧹 Limpar campos ao cancelar
     const btnCancelar = document.querySelector(".btn-cancelar");
     if (btnCancelar) {
         btnCancelar.addEventListener("click", limparCampos);
     }
 });
 
-// 🪟 Abrir/Fechar Modais de Perfil
 function abrirModal() {
     const modal = document.getElementById("perfilModal");
     if (modal) modal.style.display = "block";
@@ -67,7 +45,6 @@ function fecharModal() {
     if (modal) modal.style.display = "none";
 }
 
-// 🪟 Abrir/Fechar Modal de Edição
 function abrirEditarModal() {
     const modal = document.getElementById("editarPerfilModal");
     if (modal) modal.style.display = "block";
@@ -78,7 +55,6 @@ function fecharEditarModal() {
     if (modal) modal.style.display = "none";
 }
 
-// Fechar modais clicando fora
 window.onclick = function (event) {
     const modalPerfil = document.getElementById("perfilModal");
     const modalEditar = document.getElementById("editarPerfilModal");
@@ -87,7 +63,6 @@ window.onclick = function (event) {
     if (event.target === modalEditar) modalEditar.style.display = "none";
 };
 
-// 🧼 Função para limpar os campos da edição
 function limparCampos() {
     const campos = ["novo_nome", "novo_email", "nova_senha"];
     campos.forEach(id => {
@@ -104,6 +79,3 @@ function fecharModalExclusao() {
     document.getElementById("modalExclusao").style.display = "none";
 }
 
-function confirmarExclusao() {
-    window.location.href = 'excluir_usuario.php';
-}

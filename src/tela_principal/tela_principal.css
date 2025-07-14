@@ -354,6 +354,7 @@
     /* ---------------------- */
     /* ❌ BOTÃO FECHAR (X) */
     /* ---------------------- */
+    
     .close {
         position: absolute;
         top: 20px;
@@ -622,4 +623,9 @@
 
 #modalExclusao .close:hover {
     color: #333;
+}
+
+.sair-btn {
+    background-color: #555;
+    color: white;
 }

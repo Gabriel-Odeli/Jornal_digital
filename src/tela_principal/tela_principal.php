@@ -69,7 +69,6 @@ session_start();
             </div>
         </header>
 
-        <!-- Modal para a reportagem -->
         <div id="modalReportagem" style="display: none;">
             <div class="modal-conteudo">
                 <button id="fecharModal" class="fechar-modal">X</button>
@@ -81,7 +80,6 @@ session_start();
     </header>
     <main></main>
 <?php if (isset($_SESSION['id_usuario'])): ?>
-    <!-- Modal de Visualização de Perfil -->
     <div id="perfilModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
@@ -92,48 +90,48 @@ session_start();
             <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
             <div class="senha-wrapper">
-                <input type="password" id="senhaUsuario" placeholder="Digite sua senha">
+                <input type="password" id="senhaUsuario" placeholder="Digite sua senha" >
                 <span id="toggleSenha" class="olho">&#128065;</span>
             </div>
 
             <div class="botoes-acoes">
                 <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                 <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
-</div>
+                <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
+            </div>
 
             </div>
         </div>
     </div>
 
-    <!-- Modal de Edição de Perfil -->
     <div id="editarPerfilModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharEditarModal()">&times;</span>
             <h2>Editar Perfil</h2>
 
-            <form id="form-editar" class="form-editar">
-    <div class="form-group">
-        <label for="novo_nome">Nome de Usuário:</label>
-        <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
-    </div>
+            <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                <div class="form-group">
+                    <label for="novo_nome">Nome de Usuário:</label>
+                    <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
+                </div>
 
-    <div class="form-group">
-        <label for="novo_email">Email:</label>
-        <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
-    </div>
+                <div class="form-group">
+                    <label for="novo_email">Email:</label>
+                    <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                </div>
 
-    <div class="form-group">
-        <label for="nova_senha">Nova Senha:</label>
-        <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
-    </div>
+                <div class="form-group">
+                    <label for="nova_senha">Nova Senha:</label>
+                    <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+                </div>
 
-    <div class="mensagem-sucesso" id="mensagemSucesso">Salvo com sucesso ✅</div>
+                <div class="mensagem-sucesso" id="mensagemSucesso">Salvo com sucesso</div>
 
-    <div class="botoes-acoes">
-        <button type="submit" class="btn-salvar">Salvar</button>
-        <button type="button" class="btn-cancelar" onclick="limparCampos()">Cancelar</button>
-    </div>
-</form>
+                <div class="botoes-acoes">
+                    <button type="submit" class="btn-salvar">Salvar</button>
+                    <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
+                </div>
+            </form>
 
 
         </div>
@@ -143,25 +141,25 @@ session_start();
 
 
 
-            <form action="../actions/logout.php" method="post">
-                <button class="logout-btn">Sair da Conta</button>
-            </form>
-        </div>
-    </div>
+    <form action="../actions/logout.php" method="post">
+        <button class="logout-btn">Sair da Conta</button>
+    </form>
     
     <script src="tela_principal.js"></script>
 
     <div id="modalExclusao">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModalExclusao()">&times;</span>
-    <h3>Confirmação de Exclusão</h3>
-    <p>Todos os seus dados de navegação e de usuário serão excluídos. Tem certeza que deseja fazer a exclusão permanente?</p>
-    <div class="botoes-confirmacao">
-      <button class="btn-confirmar-exclusao" onclick="confirmarExclusao()">Sim</button>
-      <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalExclusao()">&times;</span>
+            <h3>Confirmação de Exclusão</h3>
+            <p>Todos os seus dados de navegação e de usuário serão excluídos. Tem certeza que deseja fazer a exclusão permanente?</p>
+            <form action="../actions/delete_user.php" method="post">
+                <div class="botoes-confirmacao">
+                    <button class="btn-confirmar-exclusao" type="submit">Sim</button>
+                    <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
-</div>
 
 </body>
 
