@@ -22,12 +22,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleSenha = document.getElementById("toggleSenha");
 
     if (toggleSenha && senhaInput) {
-        toggleSenha.addEventListener("click", function () {
-            const isSenha = senhaInput.type === "password";
-            senhaInput.type = isSenha ? "text" : "password";
-            toggleSenha.textContent = isSenha ? "🙈" : "👁️";
-        });
-    }
+    toggleSenha.addEventListener("click", function () {
+        const isSenha = senhaInput.type === "password";
+        senhaInput.type = isSenha ? "text" : "password";
+
+        const icon = toggleSenha.querySelector("i");
+        if (isSenha) {
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        } else {
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        }
+    });
+}
 
     const btnCancelar = document.querySelector(".btn-cancelar");
     if (btnCancelar) {

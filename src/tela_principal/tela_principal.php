@@ -7,6 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="tela_principal.css">
     <title>ConectaNews</title>
@@ -90,8 +91,8 @@ session_start();
             <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
             <div class="senha-wrapper">
-                <input type="password" id="senhaUsuario" placeholder="Digite sua senha" >
-                <span id="toggleSenha" class="olho">&#128065;</span>
+                <input type="password" id="senhaUsuario" value = "<?php echo $_SESSION['senha'] ?>" readonly >
+                <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
             </div>
 
             <div class="botoes-acoes">
@@ -137,13 +138,6 @@ session_start();
         </div>
     </div>
 <?php endif; ?>
-
-
-
-
-    <form action="../actions/logout.php" method="post">
-        <button class="logout-btn">Sair da Conta</button>
-    </form>
     
     <script src="tela_principal.js"></script>
 
