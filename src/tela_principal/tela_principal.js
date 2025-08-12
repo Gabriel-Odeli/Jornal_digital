@@ -63,14 +63,6 @@ function fecharEditarModal() {
     if (modal) modal.style.display = "none";
 }
 
-window.onclick = function (event) {
-    const modalPerfil = document.getElementById("perfilModal");
-    const modalEditar = document.getElementById("editarPerfilModal");
-
-    if (event.target === modalPerfil) modalPerfil.style.display = "none";
-    if (event.target === modalEditar) modalEditar.style.display = "none";
-};
-
 function limparCampos() {
     const campos = ["novo_nome", "novo_email", "nova_senha"];
     campos.forEach(id => {

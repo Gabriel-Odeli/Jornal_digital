@@ -1,10 +1,10 @@
 <?php
 
-$host = "localhost";
+$host = "db";
 $port = "5432";
 $dbname = "ConectaNews";
 $user = "postgres";
-$password = "root";
+$password = "betoven2008-1";
 
 try {
     $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $password);

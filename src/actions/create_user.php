@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             throw new Exception("Todos os campos são obrigatórios!");
         }
 
-        $sql = "INSERT INTO usuarios(nome, email, data_nascimento, senha, tipo) VALUES (:nome, :email, :data_nascimento, :senha, :tipo)";
+        $sql = "INSERT INTO usuario(nome, email, data_nascimento, senha, tipo) VALUES (:nome, :email, :data_nascimento, :senha, :tipo)";
 
         $stmt = $conn->prepare($sql);
 

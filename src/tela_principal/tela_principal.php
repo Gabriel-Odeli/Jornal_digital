@@ -41,7 +41,7 @@ session_start();
             <div class="categorias">
                 <ul class="nav_categorias">
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="../tela_empregos/tela_empregos.html">Empregos</a></li>
+                    <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
                 </ul>
             </div>
         </form>
@@ -80,7 +80,7 @@ session_start();
         </div>
     </header>
     <main></main>
-<?php if (isset($_SESSION['id_usuario'])): ?>
+    <?php if (isset($_SESSION['id_usuario'])): ?>
     <div id="perfilModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
@@ -125,8 +125,6 @@ session_start();
                     <label for="nova_senha">Nova Senha:</label>
                     <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
                 </div>
-
-                <div class="mensagem-sucesso" id="mensagemSucesso">Salvo com sucesso</div>
 
                 <div class="botoes-acoes">
                     <button type="submit" class="btn-salvar">Salvar</button>
