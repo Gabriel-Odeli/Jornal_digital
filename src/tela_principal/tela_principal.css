@@ -629,3 +629,96 @@
     background-color: #555;
     color: white;
 }
+
+
+/* modal para add reportagem */
+.botao-add-reportagem button {
+    position: absolute;
+    right: 20px;
+    top: 82px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.botao-add-reportagem button:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Conteúdo do modal */
+.modal-conteudo {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+    box-shadow: 0px 0px 10px #0003;
+}
+
+/* Botão fechar */
+.fechar {
+    position: absolute;
+    right: 15px; top: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-conteudo label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.modal-conteudo input, .modal-conteudo textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.modal-botoes {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-salvar {
+    background-color: #0097a7;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-salvar:hover {
+    background-color: #007d8f;
+}
+
+.btn-cancelar {
+    background-color: #9e9e9e;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background-color: #757575;
+}

@@ -17,24 +17,24 @@ session_start();
     <header>
         <nav class="parte_cima">
             <?php
-                if (!isset($_SESSION['id_usuario'])) {
-                    echo '<a class="login" href="../login/login.php">Login'; 
-                    echo '<i class="bx bxs-user"></i></a>';
-                }else{
-                    echo '<button class="user-btn" onclick="abrirModal()">' . htmlspecialchars($_SESSION['nome']) . '</button>';
-                }
+            if (!isset($_SESSION['id_usuario'])) {
+                echo '<a class="login" href="../login/login.php">Login';
+                echo '<i class="bx bxs-user"></i></a>';
+            } else {
+                echo '<button class="user-btn" onclick="abrirModal()">' . htmlspecialchars($_SESSION['nome']) . '</button>';
+            }
             ?>
             <h1 class="titulo">ConectaNews</h1>
 
-        <ul class="nav_list">
-            <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-            <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
-            <li>
-                <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
-                <i id="iconeTema" class='bx bx-sun'></i>
-                </button>          
-            </li>        
-        </ul>
+            <ul class="nav_list">
+                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
+                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+                <li>
+                    <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
+                        <i id="iconeTema" class='bx bx-sun'></i>
+                    </button>
+                </li>
+            </ul>
 
         </nav>
         <form action="" class="form_categorias">
@@ -43,6 +43,18 @@ session_start();
                     <li><a href="#">Inicio</a></li>
                     <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
                 </ul>
+                <?php
+                if(isset($_SESSION['id_usuario'])){
+                    if ($_SESSION['tipo'] == 1) {
+                        echo '<div class="botao-add-reportagem">';
+                        echo  '<button onclick="abrirModalReportagem()">Adicionar reportagem</button>';
+                        echo '</div>';
+                    }else{
+                        echo '';
+                    }
+                }
+                
+                ?>
             </div>
         </form>
         <header class="Reportagens">
@@ -61,7 +73,7 @@ session_start();
                     </div>
                 </a>
                 <a href="../rep_menores/rep_menor2.html" class="rep_menor2">
-                    <div >
+                    <div>
                         <img class="rep_menor2-img" src="../imagens/Ucrania_Russia.png" alt="imagem da reportagem">
                         <h2 class="rep_menor2-h2">Guerra da Ucrania e Russia completa 3 anos. Quais foram suas
                             consequencias?</h2>
@@ -81,63 +93,62 @@ session_start();
     </header>
     <main></main>
     <?php if (isset($_SESSION['id_usuario'])): ?>
-    <div id="perfilModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+        <div id="perfilModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal()">&times;</span>
+                <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
 
-            <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
-            <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
-            <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+                <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+                <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-            <div class="senha-wrapper">
-                <input type="password" id="senhaUsuario" value = "<?php echo $_SESSION['senha'] ?>" readonly >
-                <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-            </div>
-
-            <div class="botoes-acoes">
-                <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
-                <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
-                <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
-            </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="editarPerfilModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharEditarModal()">&times;</span>
-            <h2>Editar Perfil</h2>
-
-            <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
-                <div class="form-group">
-                    <label for="novo_nome">Nome de Usuário:</label>
-                    <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="novo_email">Email:</label>
-                    <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="nova_senha">Nova Senha:</label>
-                    <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+                <div class="senha-wrapper">
+                    <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
+                    <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
                 </div>
 
                 <div class="botoes-acoes">
-                    <button type="submit" class="btn-salvar">Salvar</button>
-                    <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
+                    <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
+                    <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
+                    <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
                 </div>
-            </form>
 
-
+            </div>
         </div>
-    </div>
-<?php endif; ?>
-    
-    <script src="tela_principal.js"></script>
+        </div>
+
+        <div id="editarPerfilModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharEditarModal()">&times;</span>
+                <h2>Editar Perfil</h2>
+
+                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                    <div class="form-group">
+                        <label for="novo_nome">Nome de Usuário:</label>
+                        <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novo_email">Email:</label>
+                        <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nova_senha">Nova Senha:</label>
+                        <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+                    </div>
+
+                    <div class="botoes-acoes">
+                        <button type="submit" class="btn-salvar">Salvar</button>
+                        <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    <?php endif; ?>
+
 
     <div id="modalExclusao">
         <div class="modal-content">
@@ -152,6 +163,29 @@ session_start();
             </form>
         </div>
     </div>
+
+    <div id="modalReportagem" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharModalReportagem()">&times;</span>
+            <h2 style="color: #0056b3; text-align: center;">Adicionar Reportagem</h2>
+
+            <label>Título:</label>
+            <input type="text" placeholder="Digite o título da reportagem">
+
+            <label>Resumo:</label>
+            <textarea placeholder="Digite a reportagem aqui:"></textarea>
+
+            <label>Imagem:</label>
+            <input type="file" accept="image/*">
+
+            <div class="modal-botoes">
+                <button class="btn-salvar">Salvar</button>
+                <button class="btn-cancelar" onclick="fecharModalReportagem()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="tela_principal.js"></script>
 
 </body>
 

@@ -79,3 +79,9 @@ function fecharModalExclusao() {
     document.getElementById("modalExclusao").style.display = "none";
 }
 
+function abrirModalReportagem() {
+    document.getElementById("modalReportagem").style.display = "block";
+}
+function fecharModalReportagem() {
+    document.getElementById("modalReportagem").style.display = "none";
+}
