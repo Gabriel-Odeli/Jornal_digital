@@ -47,7 +47,7 @@ session_start();
                 if(isset($_SESSION['id_usuario'])){
                     if ($_SESSION['tipo'] == 1) {
                         echo '<div class="botao-add-reportagem">';
-                        echo  '<button onclick="abrirModalReportagem()">Adicionar reportagem</button>';
+                        echo  '<a href="../add_reportagem/add_reportagem.php">Adicionar reportagem</a>';
                         echo '</div>';
                     }else{
                         echo '';
@@ -163,30 +163,7 @@ session_start();
             </form>
         </div>
     </div>
-
-    <div id="modalReportagem" class="modal">
-        <div class="modal-conteudo">
-            <span class="fechar" onclick="fecharModalReportagem()">&times;</span>
-            <h2 style="color: #0056b3; text-align: center;">Adicionar Reportagem</h2>
-
-            <label>Título:</label>
-            <input type="text" placeholder="Digite o título da reportagem">
-
-            <label>Resumo:</label>
-            <textarea placeholder="Digite a reportagem aqui:"></textarea>
-
-            <label>Imagem:</label>
-            <input type="file" accept="image/*">
-
-            <div class="modal-botoes">
-                <button class="btn-salvar">Salvar</button>
-                <button class="btn-cancelar" onclick="fecharModalReportagem()">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
     <script src="tela_principal.js"></script>
-
 </body>
 
 </html>

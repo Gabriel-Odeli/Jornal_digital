@@ -1,280 +1,157 @@
     /* Reset e fonte */
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-        background-color: #f2f9ff;
-        padding: 10px;
-        /* Adiciona 5px de padding em todo o body */
+      background-color: #f2f9ff;
+      padding: 10px;
+      /* Adiciona 5px de padding em todo o body */
     }
 
     /* Header styles */
     .parte_cima {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background-color: #e6f2ff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: 10px;
-        /* Espaço entre header e reportagens */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #e6f2ff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+      /* Espaço entre header e reportagens */
     }
 
     .titulo {
-        color: #0066cc;
-        font-size: 24px;
+      color: #0066cc;
+      font-size: 24px;
     }
 
     .login {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-        color: #0066cc;
-        font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: 500;
     }
 
     .nav_list {
-        display: flex;
-        list-style: none;
-        gap: 15px;
+      display: flex;
+      list-style: none;
+      gap: 15px;
     }
 
     .nav_list img {
-        width: 24px;
-        height: 24px;
+      width: 24px;
+      height: 24px;
     }
 
     /* Categorias */
     .form_categorias {
-        background-color: #d9e9ff;
-        padding: 10px 20px;
-        margin-bottom: 5px;
-        /* Espaço entre categorias e reportagens */
+      background-color: #d9e9ff;
+      padding: 10px 20px;
+      margin-bottom: 5px;
+      /* Espaço entre categorias e reportagens */
     }
 
     .nav_categorias {
-        display: flex;
-        list-style: none;
-        gap: 20px;
+      display: flex;
+      list-style: none;
+      gap: 20px;
     }
 
     .nav_categorias a {
-        text-decoration: none;
-        color: #004080;
-        font-weight: 500;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+      text-decoration: none;
+      color: #004080;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
     .nav_categorias a:hover {
-        background-color: #b3d1ff;
+      background-color: #b3d1ff;
     }
 
-    /* Layout das reportagens */
-    .Reportagens {
-        display: flex;
-        gap: 15px;
-        /* Reduzido de 20px para 5px */
-        padding: 0;
-        width: 100%;
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .rep_maior {
-        flex: 2;
-        position: relative;
-        height: 500px;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
-        overflow: hidden;
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
     }
 
-    .rep_menores {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        /* Reduzido de 20px para 5px */
+    .form-group {
+      margin-bottom: 18px;
     }
 
-    .rep_menor1,
-    .rep_menor2 {
-        position: relative;
-        height: calc(250px - 2.5px);
-        /* Ajuste para compensar o gap */
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 0px 8px rgba(0, 102, 204, 0.1);
-        overflow: hidden;
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #444;
     }
 
-    /* Estilos das imagens */
-    .rep_maior-img,
-    .rep_menor1-img,
-    .rep_menor2-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccd9e8;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
     }
 
-    .rep_maior:hover .rep_maior-img,
-    .rep_menor1:hover .rep_menor1-img,
-    .rep_menor2:hover .rep_menor2-img {
-        transform: scale(1.05);
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
     }
 
-    /* Estilos dos títulos */
-    .rep_maior-h2,
-    .rep_menor1-h2,
-    .rep_menor2-h2 {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 15px;
-        color: white;
-        background: linear-gradient(to top, rgba(0, 51, 102, 0.8), transparent);
-        margin: 0;
-        font-size: clamp(14px, 2vw, 24px);
-        /* Título responsivo */
+    .form-group input[type="file"] {
+      border: none;
+      font-size: 15px;
     }
 
-
-    .rep_maior:hover .rep_maior-p {
-        bottom: 0;
+    .preview {
+      margin-top: 10px;
+      text-align: center;
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-        .Reportagens {
-            flex-direction: column;
-        }
-
-        .rep_maior,
-        .rep_menor1,
-        .rep_menor2 {
-            height: 300px;
-        }
-
-        .rep_menor1,
-        .rep_menor2 {
-            height: calc(150px - 2.5px);
-            /* Ajuste para mobile */
-        }
+    .preview img {
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
 
-
-    /* Estilo para o botão de dark mode */
-    .botao-darkmode {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #187bcd;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .botao-darkmode:hover {
-        opacity: 0.8;
+    .btn-submit:hover {
+      background: #125d99;
     }
 
-    .icon-darkmode {
-        width: 24px;
-        height: 24px;
-    }
-
-    /* Exemplo para imagens pequenas: você pode deixar sem filtro ou ajustar caso queira */
-
-    .nav_list {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        /* Espaço entre os ícones */
-        list-style: none;
-    }
-
-    /* Corpo no modo escuro */
-    body.dark-mode {
-        background-color: #121212;
-        /* Fundo escuro */
-        color: #ffffff;
-        /* Texto claro */
-    }
-
-    /* Header, nav e parte superior */
-    body.dark-mode header,
-    body.dark-mode nav,
-    body.dark-mode .parte_cima {
-        background-color: #141414;
-        /* Um tom acima do fundo */
-    }
-
-    /* Categorias */
-    body.dark-mode .form_categorias {
-        background-color: #1c1c1c;
-    }
-
-    /* Links */
-    body.dark-mode a {
-        color: #ffffff;
-        /* Letras brancas */
-    }
-
-
-    /* Reportagens */
-    body.dark-mode .rep_maior,
-    body.dark-mode .rep_menor1,
-    body.dark-mode .rep_menor2 {
-        background-color: #313131;
-        box-shadow: 0px 0px 10px #000000;
-    }
-
-    /* Títulos nas categorias */
-    body.dark-mode .nav_categorias a {
-        color: #ffffff;
-    }
-
-    body.dark-mode .nav_categorias a:hover {
-        background-color: #313131;
-        color: #ffffff;
-    }
-
-    /* Parágrafo dentro da reportagem */
-    body.dark-mode .rep_maior-p {
-        background-color: rgba(20, 20, 20, 0.95);
-        color: #ffffff;
-    }
-
-    /* Modal (se usado) */
-    body.dark-mode #modalReportagem .modal-conteudo {
-        background-color: #121212;
-        color: #ffffff;
-    }
-
-    .tema-selector {
-        background-color: #ffffff;
-        color: #333333;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 14px;
-        cursor: pointer;
-    }
-
-    body.dark-mode .tema-selector {
-        background-color: #2a2a2a;
-        color: #ffffff;
-        border: 1px solid #555555;
-    }
 
 
 
