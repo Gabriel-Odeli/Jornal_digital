@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] = 'post'){
     try{
         $id = $_SESSION['id_usuario'];
 
-        $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
+        $sql = "DELETE FROM usuario WHERE id_usuario = :id";
 
         $stmt = $conn->prepare($sql);
 

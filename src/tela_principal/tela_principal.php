@@ -47,7 +47,7 @@ session_start();
                 if(isset($_SESSION['id_usuario'])){
                     if ($_SESSION['tipo'] == 1) {
                         echo '<div class="botao-add-reportagem">';
-                        echo  '<a href="../add_reportagem/add_reportagem.php">Adicionar reportagem</a>';
+                        echo  '<a href="../reportagem/reportagem.php">Adicionar reportagem</a>';
                         echo '</div>';
                     }else{
                         echo '';
