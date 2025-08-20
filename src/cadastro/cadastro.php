@@ -3,6 +3,7 @@ include __DIR__ . '/../conect_pgsql/conn.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,23 +12,29 @@ include __DIR__ . '/../conect_pgsql/conn.php';
     <link rel="stylesheet" href="cadastro.css">
 
 </head>
+
 <body>
     <main class="container">
         <h1 class="cadastro_titulo"> <strong>Cadastro</strong> </h1>
+        <?php
+        if (isset($_GET['erro']) && $_GET['erro'] == "emailexistente") {
+            echo "<p class='mensagem erro'>Este email já está cadastrado!</p>";
+        }
+        ?>
         <form action="../actions/create_user.php" method="post">
             <div class="input_cadastro">
-                <input class="email" placeholder="Email" type="email" name = "email" required>
+                <input class="email" placeholder="Email" type="email" name="email" required>
                 <i class="bx bxs-envelope"></i>
             </div>
             <div class="input_cadastro">
-                <input class="nome" placeholder="Nome" type="text" name = "nome" required>
+                <input class="nome" placeholder="Nome" type="text" name="nome" required>
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input_cadastro">
-                <input class="data_nascimento" type="date" name = "data_nascimento" required>
+                <input class="data_nascimento" type="date" name="data_nascimento" required>
             </div>
             <div class="input_cadastro">
-                <input class="senha" placeholder="Senha" type="password" name = "senha" required>
+                <input class="senha" placeholder="Senha" type="password" name="senha" required>
                 <i class="bx bxs-lock-alt"></i>
             </div>
             <button type="submit" class="cadastro_button">Cadastrar-se</button>
@@ -37,4 +44,5 @@ include __DIR__ . '/../conect_pgsql/conn.php';
         </div>
     </main>
 </body>
+
 </html>

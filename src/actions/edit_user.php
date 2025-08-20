@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $stmt->execute();
             header("Location: ../tela_principal/tela_principal.php?error=invalid_request");
             $_SESSION['email'] = $novo_email;
-            $_SESSION['senha'] = $nova_senha;
             $_SESSION['nome'] = $novo_nome;
         }else{
             $sql = "UPDATE usuario SET email = '$novo_email', nome = '$novo_nome', senha = $nova_senha where id_usuario = " . $_SESSION['id_usuario'];

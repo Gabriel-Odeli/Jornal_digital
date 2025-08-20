@@ -157,8 +157,6 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
                         <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     <?php endif; ?>
@@ -172,7 +170,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             <form action="../actions/delete_user.php" method="post">
                 <div class="botoes-confirmacao">
                     <button class="btn-confirmar-exclusao" type="submit">Sim</button>
-                    <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+                    <button class="btn-cancelar-exclusao" type="button" onclick="fecharModalExclusao()">Não</button>
                 </div>
             </form>
         </div>
