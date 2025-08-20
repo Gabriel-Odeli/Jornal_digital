@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             exit;
         } else {
             $erro = "Email não encontrado.";
-            header("Location: ../login/login.php?error=not_find");
+            header("Location: ../login/login.php?erro=notfund");
         }        
 
     }catch(PDOException $e){

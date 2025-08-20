@@ -15,6 +15,10 @@
         if (isset($_GET['erro']) && $_GET['erro'] == "usernotfund") {
             echo "<p class='mensagem erro'>Crie ou entre em uma conta para ver as reportagens</p>";
         }
+
+        if(isset($_GET['erro']) && $_GET['erro'] == "notfund"){
+            echo "<p class='mensagem erro'>Email ou senha incorretos</p>";
+        }
         ?>
         <form action="../actions/select_user.php" method="POST">
             <h1 class="login_titulo"> <strong>Login</strong> </h1>

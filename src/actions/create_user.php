@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         } else {
             $sqlInsert = "INSERT INTO usuario(nome, email, data_nascimento, senha, tipo) VALUES (:nome, :email, :data_nascimento, :senha, :tipo)";
 
-            $stmtInsert = $conn->prepare($sql);
+            $stmtInsert = $conn->prepare($sqlInsert);
 
             //Atribuindo valor para as variaveis
             $stmtInsert->bindParam(':nome', $nome);
@@ -35,9 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             $stmtInsert->bindParam(':tipo', $tipo);
 
             $stmtInsert->execute();
-            $sqlLogin = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha' ";
 
-            $stmtLogin = $conn->prepare($sql);
+            $sqlLogin = "SELECT * FROM usuario WHERE email = :email AND senha = :senha ";
+
+            $stmtLogin = $conn->prepare($sqlLogin);
+            $stmtLogin->bindParam(":email", $email);
+            $stmtLogin->bindParam(":senha", $senha);
 
             $stmtLogin->execute();
 
