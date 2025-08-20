@@ -42,7 +42,7 @@ session_start();
     <form action="" class="form_categorias">
       <div class="categorias">
         <ul class="nav_categorias">
-          <li><a href="../tela_principal/tela_principal.php">Inicio</a></li>
+          <li><a href="../index.php">Inicio</a></li>
           <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
         </ul>
       </div>

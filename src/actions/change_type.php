@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'post') {
             $sql = "UPDATE usuario SET tipo = $tipo WHERE email = '$email'";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            header("Location: ../tela_principal/tela_principal.php");
+            header("Location: ../index.php");
         } catch (PDOException $e) {
             die("Erro no banco de dados: " . $e->getMessage());
         } catch (Exception $e) {

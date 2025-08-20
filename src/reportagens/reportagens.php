@@ -2,9 +2,14 @@
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
+if(!isset($_SESSION['id_usuario'])){
+    header("Location: ../login/login.php?erro=usernotfund");
+    exit;
+}
+
 if (!isset($_SESSION['id_reportagem'])) {
     echo "Nenhuma reportagem selecionada.";
-    exit();
+    exit;
 }
 
 $id_reportagem = $_SESSION['id_reportagem'];
@@ -69,7 +74,7 @@ $imagemBytes = stream_get_contents($stream);
         <form action="" class="form_categorias">
             <div class="categorias">
                 <ul class="nav_categorias">
-                    <li><a href="../tela_principal/tela_principal.php">Inicio</a></li>
+                    <li><a href="../index.php">Inicio</a></li>
                     <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
                 </ul>
             </div>
@@ -97,7 +102,7 @@ $imagemBytes = stream_get_contents($stream);
             <i class="fas fa-share-alt"></i> Compartilhar Reportagem
         </button>
 
-        <a href="../tela_principal/tela_principal.php" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <a href="../index.php" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
 
         <section class="forum">
             <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>

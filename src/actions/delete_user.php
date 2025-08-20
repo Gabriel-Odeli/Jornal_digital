@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] = 'post'){
 
         $stmt->execute();
         session_destroy();
-        header("Location: ../tela_principal/tela_principal.php?error=invalid_request");
+        header("Location: ../index.php");
     }
     catch(PDOException $e){
         die("Erro no banco de dados: " . $e->getMessage());

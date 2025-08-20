@@ -25,7 +25,7 @@ if (isset($_SESSION)) {
             $stmt->bindParam(":id_usuario", $_SESSION['id_usuario']);
             $stmt->bindParam(":imagem", $imagemBinaria, PDO::PARAM_LOB);
             $stmt->execute();
-            header("Location: ../tela_principal/tela_principal.php");
+            header("Location: ../index.php");
         } catch (PDOException $e) {
             die("Erro no banco de dados: " . $e->getMessage());
         } catch (Exception $e) {

@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: ../tela_principal/tela_principal.php");
+header("Location: ../index.php");
 exit();

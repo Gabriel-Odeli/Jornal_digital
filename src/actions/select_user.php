@@ -26,10 +26,11 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['data_nasc'] = $usuario['data_nascimento'];
             $_SESSION['tipo'] = $usuario['tipo'];
-            header("Location: ../tela_principal/tela_principal.php?error=invalid_request");
+            header("Location: ../index.php");
             exit;
         } else {
             $erro = "Email não encontrado.";
+            header("Location: ../login/login.php?error=not_find");
         }        
 
     }catch(PDOException $e){

@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../conect_pgsql/conn.php';
+include __DIR__ . '/conect_pgsql/conn.php';
 session_start();
 
 //Reportagem mais recente
@@ -7,18 +7,31 @@ $sqlPrimeira = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuar
 $stmtPrimeira = $conn->prepare($sqlPrimeira);
 $stmtPrimeira->execute();
 $primeira = $stmtPrimeira->fetch(PDO::FETCH_ASSOC);
-$stream = $primeira['imagem'];
-$imagemPrimeiraBytes = stream_get_contents($stream);
+if ($primeira != null) {
+    $stream = $primeira['imagem'];
+    $imagemPrimeiraBytes = stream_get_contents($stream);
+}
+
 
 //Reportagens para os campos menores
 $sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 2 OFFSET 1";
 $stmtMenores = $conn->prepare($sqlMenores);
 $stmtMenores->execute();
 $Menores = $stmtMenores->fetchAll(PDO::FETCH_ASSOC);
-$stream1 = $Menores[0]['imagem'];
-$stream2 = $Menores[1]['imagem'];
-$imagemMenor1Bytes = stream_get_contents($stream1);
-$imagemMenor2Bytes = stream_get_contents($stream2);
+if ($Menores != null) {
+    if ($stmtMenores->rowCount() == 1) {
+        $stream1 = $Menores[0]['imagem'];
+        $imagemMenor1Bytes = stream_get_contents($stream1);
+    } elseif ($stmtMenores->rowCount() == 2) {
+        $stream2 = $Menores[1]['imagem'];
+        $stream1 = $Menores[0]['imagem'];
+        $imagemMenor1Bytes = stream_get_contents($stream1);
+        $imagemMenor2Bytes = stream_get_contents($stream2);
+    } else {
+        echo "Erro";
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +42,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="tela_principal.css">
+    <link rel="stylesheet" href="tela_principal/tela_principal.css">
     <title>ConectaNews</title>
 </head>
 
@@ -47,8 +60,8 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             <h1 class="titulo">ConectaNews</h1>
 
             <ul class="nav_list">
-                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+                <li> <a href="#"> <img src="imagens/instagram.png" alt="Instagram"> </a> </li>
+                <li> <a href="#"><img src="imagens/facebook.png" alt="Facebook"> </a> </li>
                 <li>
                     <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
                         <i id="iconeTema" class='bx bx-sun'></i>
@@ -61,14 +74,14 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             <div class="categorias">
                 <ul class="nav_categorias">
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
+                    <li><a href="tela_empregos/tela_empregos.php">Empregos</a></li>
                     <?php
                     if (isset($_SESSION['id_usuario'])) {
                         if ($_SESSION['tipo'] == 1) {
-                            echo '<li class="botao-add-admin"><a href="../administrador/administrador.php">Adicionar administrador</a></li>';
+                            echo '<li class="botao-add-admin"><a href="administrador/administrador.php">Adicionar administrador</a></li>';
 
                             echo '<li class="botao-add-reportagem">';
-                            echo  '<a href="../add_reportagem/add_reportagem.php">Adicionar reportagem</a>';
+                            echo  '<a href="add_reportagem/add_reportagem.php">Adicionar reportagem</a>';
                             echo '</li>';
                         } else {
                             echo '';
@@ -80,29 +93,46 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
                 ?>
             </div>
         </form>
+
         <h2 class='ultimas_text'>Últimas reportagens:</h2>
         <header class="Reportagens">
-            <a href="../actions/pegar_id-rep.php?id=<?php echo $primeira['id_reportagem'] ?>" class="rep_maior">
-                <div>
-                    <img class="rep_maior-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemPrimeiraBytes); ?>" alt="imagem da reportagem">
-                    <h2 class="rep_maior-h2"> <?php echo $primeira['titulo'] ?></h2>
-                </div>
-            </a>
-            <div class="rep_menores">
-                <a href="../actions/pegar_id-rep.php?id=<?php echo $Menores[0]['id_reportagem'] ?>" class="rep_menor1">
+            <?php if ($primeira != null): ?>
+                <!-- Reportagem principal -->
+                <a href="actions/pegar_id-rep.php?id=<?php echo $primeira['id_reportagem'] ?>" class="rep_maior">
                     <div>
-                        <img class="rep_menor1-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor1Bytes); ?>" alt="imagem da reportagem">
-                        <h2 class="rep_menor1-h2"><?php echo $Menores[0]['titulo'] ?></h2>
+                        <img class="rep_maior-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemPrimeiraBytes); ?>" alt="imagem da reportagem">
+                        <h2 class="rep_maior-h2"><?php echo $primeira['titulo'] ?></h2>
                     </div>
                 </a>
-                <a href="../actions/pegar_id-rep.php?id=<?php echo $Menores[1]['id_reportagem'] ?>" class="rep_menor2">
-                    <div>
-                        <img class="rep_menor2-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor2Bytes); ?>" alt="imagem da reportagem">
-                        <h2 class="rep_menor2-h2"> <?php echo $Menores[1]['titulo'] ?></h2>
+
+                <?php if (!empty($Menores)): ?>
+                    <div class="rep_menores">
+                        <?php if (isset($Menores[0])): ?>
+                            <a href="actions/pegar_id-rep.php?id=<?php echo $Menores[0]['id_reportagem'] ?>" class="rep_menor1">
+                                <div>
+                                    <img class="rep_menor1-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemMenor1Bytes); ?>" alt="imagem da reportagem">
+                                    <h2 class="rep_menor1-h2"><?php echo $Menores[0]['titulo'] ?></h2>
+                                </div>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (isset($Menores[1])): ?>
+                            <a href="actions/pegar_id-rep.php?id=<?php echo $Menores[1]['id_reportagem'] ?>" class="rep_menor2">
+                                <div>
+                                    <img class="rep_menor2-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemMenor2Bytes); ?>" alt="imagem da reportagem">
+                                    <h2 class="rep_menor2-h2"><?php echo $Menores[1]['titulo'] ?></h2>
+                                </div>
+                            </a>
+                        <?php endif; ?>
                     </div>
-                </a>
-            </div>
+                <?php else: ?>
+                    <p>Mais reportagens em breve</p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>Não há reportagens</p>
+            <?php endif; ?>
         </header>
+
 
     </header>
     <main></main>
@@ -136,7 +166,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
                 <span class="close" onclick="fecharEditarModal()">&times;</span>
                 <h2>Editar Perfil</h2>
 
-                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
                     <div class="form-group">
                         <label for="novo_nome">Nome de Usuário:</label>
                         <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
@@ -167,7 +197,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             <span class="close" onclick="fecharModalExclusao()">&times;</span>
             <h3>Confirmação de Exclusão</h3>
             <p>Todos os seus dados de navegação e de usuário serão excluídos. Tem certeza que deseja fazer a exclusão permanente?</p>
-            <form action="../actions/delete_user.php" method="post">
+            <form action="actions/delete_user.php" method="post">
                 <div class="botoes-confirmacao">
                     <button class="btn-confirmar-exclusao" type="submit">Sim</button>
                     <button class="btn-cancelar-exclusao" type="button" onclick="fecharModalExclusao()">Não</button>
@@ -175,7 +205,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             </form>
         </div>
     </div>
-    <script src="tela_principal.js"></script>
+    <script src="tela_principal/tela_principal.js"></script>
 </body>
 
 </html>

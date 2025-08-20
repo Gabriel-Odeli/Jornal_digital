@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['data_nasc'] = $usuario['data_nascimento'];
             $_SESSION['tipo'] = $usuario['tipo'];
-            header("Location: ../../login/login.php");
+            header("Location: ../index.php");
         }
     } catch (PDOException $e) {
         die("Erro no banco de dados: " . $e->getMessage());
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         die("Erro: " . $e->getMessage());
     }
 } else {
-    // Se não for POST, redireciona
     header("Location: ../../cadastro/cadastro.php?error=invalid_request");
     exit();
 }

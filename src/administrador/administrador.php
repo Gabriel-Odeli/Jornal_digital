@@ -11,8 +11,7 @@ session_start();
 </head>
 <body>
     <div class="container">
-        <!-- Botão de fechar -->
-        <button class="close-btn" onclick="window.location.href='../tela_principal/tela_principal.php'">X</button>
+        <button class="close-btn" onclick="window.location.href='../index.php'">X</button>
 
         <h1>Adicionar Administrador</h1>
         <form action="../actions/change_type.php" method="POST">
