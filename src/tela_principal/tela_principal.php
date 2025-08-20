@@ -1,5 +1,25 @@
 <?php
+include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
+
+//Reportagem mais recente
+$sqlPrimeira = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 1";
+$stmtPrimeira = $conn->prepare($sqlPrimeira);
+$stmtPrimeira->execute();
+$primeira = $stmtPrimeira->fetch(PDO::FETCH_ASSOC);
+$stream = $primeira['imagem'];
+$imagemPrimeiraBytes = stream_get_contents($stream);
+
+//Reportagens para os campos menores
+$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 2 OFFSET 1";
+$stmtMenores = $conn->prepare($sqlMenores);
+$stmtMenores->execute();
+$Menores = $stmtMenores->fetchAll(PDO::FETCH_ASSOC);
+$stream1 = $Menores[0]['imagem'];
+$stream2 = $Menores[1]['imagem'];
+$imagemMenor1Bytes = stream_get_contents($stream1);
+$imagemMenor2Bytes = stream_get_contents($stream2);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,54 +62,48 @@ session_start();
                 <ul class="nav_categorias">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
+                    <?php
+                    if (isset($_SESSION['id_usuario'])) {
+                        if ($_SESSION['tipo'] == 1) {
+                            echo '<li class="botao-add-admin"><a href="../administrador/administrador.php">Adicionar administrador</a></li>';
+
+                            echo '<li class="botao-add-reportagem">';
+                            echo  '<a href="../reportagem/reportagem.php">Adicionar reportagem</a>';
+                            echo '</li>';
+                        } else {
+                            echo '';
+                        }
+                    }
+                    ?>
                 </ul>
                 <?php
-                if(isset($_SESSION['id_usuario'])){
-                    if ($_SESSION['tipo'] == 1) {
-                        echo '<div class="botao-add-reportagem">';
-                        echo  '<a href="../reportagem/reportagem.php">Adicionar reportagem</a>';
-                        echo '</div>';
-                    }else{
-                        echo '';
-                    }
-                }
-                
                 ?>
             </div>
         </form>
+        <h2 class='ultimas_text'>Últimas reportagens:</h2>
         <header class="Reportagens">
             <a href="../rep_maior/rep_maior.html" class="rep_maior">
                 <div>
-                    <img class="rep_maior-img" src="../imagens/pinguins.png" alt="imagem da reportagem">
-                    <h2 class="rep_maior-h2">Pinguins loucos deixam 3 pessoas feridas</h2>
+                    <img class="rep_maior-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemPrimeiraBytes); ?>" alt="imagem da reportagem">
+                    <h2 class="rep_maior-h2"> <?php echo $primeira['titulo'] ?></h2>
                 </div>
             </a>
             <div class="rep_menores">
                 <a href="../rep_menores/rep_menor1.html" class="rep_menor1">
                     <div>
-                        <img class="rep_menor1-img" src="../imagens/jogo_ano.png" alt="imagem da reportagem">
-                        <h2 class="rep_menor1-h2">Astro Bot ganha o jogo do ano de 2024 e surpreende gamers de todos os
-                            lugares</h2>
+                        <img class="rep_menor1-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor1Bytes); ?>" alt="imagem da reportagem">
+                        <h2 class="rep_menor1-h2"><?php echo $Menores[0]['titulo'] ?></h2>
                     </div>
                 </a>
                 <a href="../rep_menores/rep_menor2.html" class="rep_menor2">
                     <div>
-                        <img class="rep_menor2-img" src="../imagens/Ucrania_Russia.png" alt="imagem da reportagem">
-                        <h2 class="rep_menor2-h2">Guerra da Ucrania e Russia completa 3 anos. Quais foram suas
-                            consequencias?</h2>
+                        <img class="rep_menor2-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor2Bytes); ?>" alt="imagem da reportagem">
+                        <h2 class="rep_menor2-h2"> <?php echo $Menores[1]['titulo'] ?></h2>
                     </div>
                 </a>
             </div>
         </header>
 
-        <div id="modalReportagem" style="display: none;">
-            <div class="modal-conteudo">
-                <button id="fecharModal" class="fechar-modal">X</button>
-                <h2 id="modalTitulo"></h2>
-                <img id="modalImagem" alt="Imagem da reportagem">
-                <p id="modalTexto"></p>
-            </div>
-        </div>
     </header>
     <main></main>
     <?php if (isset($_SESSION['id_usuario'])): ?>
