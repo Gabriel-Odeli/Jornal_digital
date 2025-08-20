@@ -1,3 +1,63 @@
+const senhaInput = document.getElementById("senhaUsuario");
+const toggleSenha = document.getElementById("toggleSenha");
+
+if (toggleSenha && senhaInput) {
+    toggleSenha.addEventListener("click", function () {
+        const isSenha = senhaInput.type === "password";
+        senhaInput.type = isSenha ? "text" : "password";
+
+        const icon = toggleSenha.querySelector("i");
+        if (isSenha) {
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        } else {
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        }
+    });
+}
+
+const btnCancelar = document.querySelector(".btn-cancelar");
+if (btnCancelar) {
+    btnCancelar.addEventListener("click", limparCampos);
+}
+
+function abrirModal() {
+    const modal = document.getElementById("perfilModal");
+    if (modal) modal.style.display = "block";
+}
+
+function fecharModal() {
+    const modal = document.getElementById("perfilModal");
+    if (modal) modal.style.display = "none";
+}
+
+function abrirEditarModal() {
+    const modal = document.getElementById("editarPerfilModal");
+    if (modal) modal.style.display = "block";
+}
+
+function fecharEditarModal() {
+    const modal = document.getElementById("editarPerfilModal");
+    if (modal) modal.style.display = "none";
+}
+
+function limparCampos() {
+    const campos = ["novo_nome", "novo_email", "nova_senha"];
+    campos.forEach(id => {
+        const campo = document.getElementById(id);
+        if (campo) campo.value = "";
+    });
+}
+
+function abrirModalExclusao() {
+    document.getElementById("modalExclusao").style.display = "flex";
+}
+
+function fecharModalExclusao() {
+    document.getElementById("modalExclusao").style.display = "none";
+}
+
 const botaoCompartilhar = document.getElementById('botao-compartilhar');
 
 botaoCompartilhar.addEventListener('click', async () => {
@@ -17,8 +77,9 @@ botaoCompartilhar.addEventListener('click', async () => {
     }
 });
 
+
 // Barra de progresso
-window.onscroll = function() {
+window.onscroll = function () {
     const barra = document.getElementById('barra-progresso');
     const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrollAtual = document.documentElement.scrollTop;
@@ -147,27 +208,33 @@ function criarResposta(respostasContainer, texto) {
     respostasContainer.appendChild(divResposta);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const botaoDarkMode = document.getElementById("botao-darkmode");
 
-    // Verificar tema salvo
+document.addEventListener("DOMContentLoaded", function () {
+    const botaoTema = document.getElementById("toggleTema");
+    const iconeTema = document.getElementById("iconeTema");
+
+    // Verifica tema salvo
     const temaSalvo = localStorage.getItem("tema");
+
     if (temaSalvo === "escuro") {
         document.body.classList.add("dark-mode");
-        botaoDarkMode.querySelector("i").classList.replace("bx-sun", "bx-moon");
+        iconeTema.className = "bx bx-moon";
+    } else {
+        iconeTema.className = "bx bx-sun";
     }
 
-    // Alternar tema ao clicar no botão
-    botaoDarkMode.addEventListener("click", function () {
-        if (document.body.classList.contains("dark-mode")) {
-            document.body.classList.remove("dark-mode");
-            localStorage.setItem("tema", "claro");
-            botaoDarkMode.querySelector("i").classList.replace("bx-moon", "bx-sun");
-        } else {
-            document.body.classList.add("dark-mode");
+    botaoTema.addEventListener("click", function () {
+        const isDark = document.body.classList.toggle("dark-mode");
+
+        if (isDark) {
+            iconeTema.className = "bx bx-moon";
             localStorage.setItem("tema", "escuro");
-            botaoDarkMode.querySelector("i").classList.replace("bx-sun", "bx-moon");
+        } else {
+            iconeTema.className = "bx bx-sun";
+            localStorage.setItem("tema", "claro");
         }
     });
 });
+
+
 

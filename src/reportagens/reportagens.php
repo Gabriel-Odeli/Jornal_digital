@@ -2,38 +2,48 @@
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
-//Reportagem mais recente
-$sqlPrimeira = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 1";
-$stmtPrimeira = $conn->prepare($sqlPrimeira);
-$stmtPrimeira->execute();
-$primeira = $stmtPrimeira->fetch(PDO::FETCH_ASSOC);
-$stream = $primeira['imagem'];
-$imagemPrimeiraBytes = stream_get_contents($stream);
+if (!isset($_SESSION['id_reportagem'])) {
+    echo "Nenhuma reportagem selecionada.";
+    exit();
+}
 
-//Reportagens para os campos menores
-$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 2 OFFSET 1";
-$stmtMenores = $conn->prepare($sqlMenores);
-$stmtMenores->execute();
-$Menores = $stmtMenores->fetchAll(PDO::FETCH_ASSOC);
-$stream1 = $Menores[0]['imagem'];
-$stream2 = $Menores[1]['imagem'];
-$imagemMenor1Bytes = stream_get_contents($stream1);
-$imagemMenor2Bytes = stream_get_contents($stream2);
+$id_reportagem = $_SESSION['id_reportagem'];
 
+$sql = "SELECT * FROM reportagem WHERE id_reportagem = :id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $id_reportagem);
+$stmt->execute();
+
+//Reportagem clickada
+$reportagem = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$sqlAutor = "SELECT * FROM usuario WHERE id_usuario = :idU";
+$stmtUsuario = $conn->prepare($sqlAutor);
+$stmtUsuario->bindParam(":idU", $reportagem['id_usuario']);
+$stmtUsuario->execute();
+//Autor
+$autor = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
+
+//Imagem
+$stream = $reportagem['imagem'];
+$imagemBytes = stream_get_contents($stream);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Jornal Digital - <?php echo $reportagem['titulo'] ?></title>
+    <link rel="stylesheet" href="reportagens.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="tela_principal.css">
-    <title>ConectaNews</title>
 </head>
 
 <body>
+    <div id="barra-progresso"></div>
+
     <header>
         <nav class="parte_cima">
             <?php
@@ -45,67 +55,65 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             }
             ?>
             <h1 class="titulo">ConectaNews</h1>
-
             <ul class="nav_list">
-                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+                <li><a href="#"><img src="../imagens/instagram.png" alt="Instagram"></a></li>
+                <li><a href="#"><img src="../imagens/facebook.png" alt="Facebook"></a></li>
                 <li>
                     <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
                         <i id="iconeTema" class='bx bx-sun'></i>
                     </button>
                 </li>
             </ul>
-
         </nav>
+
         <form action="" class="form_categorias">
             <div class="categorias">
                 <ul class="nav_categorias">
-                    <li><a href="#">Inicio</a></li>
+                    <li><a href="../tela_principal/tela_principal.php">Inicio</a></li>
                     <li><a href="../tela_empregos/tela_empregos.php">Empregos</a></li>
-                    <?php
-                    if (isset($_SESSION['id_usuario'])) {
-                        if ($_SESSION['tipo'] == 1) {
-                            echo '<li class="botao-add-admin"><a href="../administrador/administrador.php">Adicionar administrador</a></li>';
-
-                            echo '<li class="botao-add-reportagem">';
-                            echo  '<a href="../add_reportagem/add_reportagem.php">Adicionar reportagem</a>';
-                            echo '</li>';
-                        } else {
-                            echo '';
-                        }
-                    }
-                    ?>
                 </ul>
-                <?php
-                ?>
             </div>
         </form>
-        <h2 class='ultimas_text'>Últimas reportagens:</h2>
-        <header class="Reportagens">
-            <a href="../actions/pegar_id-rep.php?id=<?php echo $primeira['id_reportagem'] ?>" class="rep_maior">
-                <div>
-                    <img class="rep_maior-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemPrimeiraBytes); ?>" alt="imagem da reportagem">
-                    <h2 class="rep_maior-h2"> <?php echo $primeira['titulo'] ?></h2>
-                </div>
-            </a>
-            <div class="rep_menores">
-                <a href="../actions/pegar_id-rep.php?id=<?php echo $Menores[0]['id_reportagem'] ?>" class="rep_menor1">
-                    <div>
-                        <img class="rep_menor1-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor1Bytes); ?>" alt="imagem da reportagem">
-                        <h2 class="rep_menor1-h2"><?php echo $Menores[0]['titulo'] ?></h2>
-                    </div>
-                </a>
-                <a href="../actions/pegar_id-rep.php?id=<?php echo $Menores[1]['id_reportagem'] ?>" class="rep_menor2">
-                    <div>
-                        <img class="rep_menor2-img" src="data:image/jpeg;base64, <?php echo base64_encode($imagemMenor2Bytes); ?>" alt="imagem da reportagem">
-                        <h2 class="rep_menor2-h2"> <?php echo $Menores[1]['titulo'] ?></h2>
-                    </div>
-                </a>
-            </div>
-        </header>
-
     </header>
-    <main></main>
+
+    <main class="reportagem">
+        <h2 class="titulo-reportagem"><?php echo $reportagem['titulo']; ?></h2>
+
+        <div class="info-reportagem">
+            <span><i class="fas fa-calendar-alt"></i> Publicado em: <?php echo date("d/m/Y", strtotime($reportagem['data_publicacao'])); ?></span>
+            <span><i class="fas fa-user"></i> Por: <?php echo $autor['nome']; ?></span>
+        </div>
+
+        <img class="imagem-reportagem" src="data:image/jpeg;base64,<?php echo base64_encode($imagemBytes); ?>" alt="Pinguins causando confusão">
+
+        <p class="texto-reportagem">
+            <?php
+            echo nl2br($reportagem['texto_reportagem']);
+            ?>
+        </p>
+
+
+        <button id="botao-compartilhar" class="btn-compartilhar">
+            <i class="fas fa-share-alt"></i> Compartilhar Reportagem
+        </button>
+
+        <a href="../tela_principal/tela_principal.php" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
+
+        <section class="forum">
+            <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
+
+            <form id="form-mensagem" class="form-mensagem">
+                <input type="text" id="nome-usuario" value='<?php echo $_SESSION['nome'] ?>' readonly>
+                <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
+                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+            </form>
+
+            <div id="lista-mensagens" class="lista-mensagens">
+                <!-- Mensagens aparecerão aqui -->
+            </div>
+        </section>
+
+    </main>
     <?php if (isset($_SESSION['id_usuario'])): ?>
         <div id="perfilModal" class="modal">
             <div class="modal-content">
@@ -177,7 +185,7 @@ $imagemMenor2Bytes = stream_get_contents($stream2);
             </form>
         </div>
     </div>
-    <script src="tela_principal.js"></script>
+    <script src="reportagens.js" defer></script>
 </body>
 
 </html>

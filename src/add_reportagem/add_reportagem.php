@@ -11,7 +11,7 @@ session_start();
   <title>Adicionar Reportagem - ConectaNews</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-  <link rel="stylesheet" href="reportagem.css">
+  <link rel="stylesheet" href="add_reportagem.css">
 </head>
 
 <body>
@@ -151,7 +151,7 @@ session_start();
         </form>
       </div>
     </div>
-    <script src="reportagem.js"></script>
+    <script src="add_reportagem.js"></script>
 
 </body>
 
