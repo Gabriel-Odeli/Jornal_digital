@@ -1,5 +1,10 @@
-<?php 
+<?php
+include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
+$sql = "SELECT * FROM emprego";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -18,85 +23,76 @@ session_start();
     <header>
         <nav class="parte_cima">
             <?php
-                if (!isset($_SESSION['id_usuario'])) {
-                    echo '<a class="login" href="../login/login.php">Login'; 
-                    echo '<i class="bx bxs-user"></i></a>';
-                }else{
-                    echo '<button class="user-btn" onclick="abrirModal()">' . htmlspecialchars($_SESSION['nome']) . '</button>';
-                }
+            if (!isset($_SESSION['id_usuario'])) {
+                echo '<a class="login" href="../login/login.php">Login';
+                echo '<i class="bx bxs-user"></i></a>';
+            } else {
+                echo '<button class="user-btn" onclick="abrirModal()">' . htmlspecialchars($_SESSION['nome']) . '</button>';
+            }
             ?>
 
             <h1 class="titulo">ConectaNews</h1>
 
-        <ul class="nav_list">
-            <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
-            <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
-            <li>
-                <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
-                    <i id="iconeTema" class="bx bx-sun"></i>
-                </button>
-            </li>                            
-        </ul>
+            <ul class="nav_list">
+                <li> <a href="#"> <img src="../imagens/instagram.png" alt="Instagram"> </a> </li>
+                <li> <a href="#"><img src="../imagens/facebook.png" alt="Facebook"> </a> </li>
+                <li>
+                    <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">
+                        <i id="iconeTema" class="bx bx-sun"></i>
+                    </button>
+                </li>
+            </ul>
         </nav>
         <form action="" class="form_categorias">
             <div class="categorias">
                 <ul class="nav_categorias">
                     <li><a href="../index.php">Inicio</a></li>
                     <li><a href="#">Empregos</a></li>
+                    <?php
+                    if (isset($_SESSION['id_usuario'])) {
+                        if ($_SESSION['tipo'] == 1) {
+                            echo '<li class="botao-add-emprego">';
+                            echo  '<a href="../add_emprego/add_emprego.php">Adicionar vaga de emprego</a>';
+                            echo '</li>';
+                        } else {
+                            echo '';
+                        }
+                    }
+                    ?>
                 </ul>
+
             </div>
         </form>
     </header>
 
     <main class="job-section">
-        <div class="job-card">
-            <img src="../imagens/emprego.png" alt="Local">
-            <h2>Supermercado Real</h2>
-            <p>Repositor de Mercadorias</p>
-            <div class="job-info">
-                <span><i class="fas fa-dollar-sign"></i> R$ 1.800</span>
-                <span><i class="fas fa-map-marker-alt"></i> Centro</span>
-                <span><i class="fas fa-phone-alt"></i> (11) 9999-9999</span>
-            </div>
-            <button class="btn-candidatar">Candidatar-se</button>
-        </div>
-
-        <div class="job-card">
-            <img src="../imagens/emprego.png" alt="Local">
-            <h2>Farmácia Vida</h2>
-            <p>Atendente de Balcão</p>
-            <div class="job-info">
-                <span><i class="fas fa-dollar-sign"></i> R$ 1.500</span>
-                <span><i class="fas fa-map-marker-alt"></i> Bairro Norte</span>
-                <span><i class="fas fa-phone-alt"></i> (11) 98888-8888</span>
-            </div>
-            <button class="btn-candidatar">Candidatar-se</button>
-        </div>
-
-        <div class="job-card">
-            <img src="../imagens/emprego.png" alt="Local">
-            <h2>Loja Tech</h2>
-            <p>Caixa</p>
-            <div class="job-info">
-                <span><i class="fas fa-dollar-sign"></i> R$ 1.700</span>
-                <span><i class="fas fa-map-marker-alt"></i> Shopping Azul</span>
-                <span><i class="fas fa-phone-alt"></i> (11) 97777-7777</span>
-            </div>
-            <button class="btn-candidatar">Candidatar-se</button>
-        </div>
-
-        <div class="job-card">
-            <img src="../imagens/emprego.png" alt="Local">
-            <h2>Supermercado Real</h2>
-            <p>Repositor de Mercadorias</p>
-            <div class="job-info">
-                <span><i class="fas fa-dollar-sign"></i> R$ 1.800</span>
-                <span><i class="fas fa-map-marker-alt"></i> Centro</span>
-                <span><i class="fas fa-phone-alt"></i> (11) 9999-9999</span>
-            </div>
-            <button class="btn-candidatar">Candidatar-se</button>
-        </div>
-
+        <?php if (!empty($empregos)): ?>
+            <?php foreach ($empregos as $e): ?>
+                <?php
+                if (!empty($e['imagem_local'])) {
+                    $stream = $e['imagem_local'];
+                    $imagemPrimeiraBytes = stream_get_contents($stream);
+                    $imagem = "data:image/jpeg;base64," . base64_encode($imagemPrimeiraBytes);
+                } else {
+                    $imagem = "../imagens/emprego.png";
+                }
+                ?>
+                <div class="job-card">
+                    <img src="<?= $imagem ?>" alt="Local">
+                    <h2><?= htmlspecialchars($e['nome_local']) ?></h2>
+                    <p><?= htmlspecialchars($e['cargo']) ?></p>
+                    <div class="job-info">
+                        <span><i class="fas fa-dollar-sign"></i> R$ <?= number_format($e['salario'], 2, ',', '.') ?></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($e['localizacao']) ?></span>
+                        <span><i class="fas fa-phone-alt"></i> <?= htmlspecialchars($e['telefone']) ?></span>
+                    </div>
+                    <button class="btn-candidatar">Candidatar-se</button>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="sem-empregos">⚠️ Não existem empregos cadastrados no momento.</p>
+        <?php endif; ?>
+        
         <!-- Formulário escondido inicialmente -->
         <div id="form-candidatura" style="display: none;">
             <div class="form-container">
@@ -123,62 +119,62 @@ session_start();
 
 
     <?php if (isset($_SESSION['id_usuario'])): ?>
-    <div id="perfilModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+        <div id="perfilModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal()">&times;</span>
+                <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
 
-            <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
-            <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
-            <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+                <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+                <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-            <div class="senha-wrapper">
-                <input type="password" id="senhaUsuario" value = "<?php echo $_SESSION['senha'] ?>" readonly >
-                <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-            </div>
-
-            <div class="botoes-acoes">
-                <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
-                <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
-                <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
-            </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="editarPerfilModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharEditarModal()">&times;</span>
-            <h2>Editar Perfil</h2>
-
-            <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
-                <div class="form-group">
-                    <label for="novo_nome">Nome de Usuário:</label>
-                    <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="novo_email">Email:</label>
-                    <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="nova_senha">Nova Senha:</label>
-                    <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+                <div class="senha-wrapper">
+                    <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
+                    <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
                 </div>
 
                 <div class="botoes-acoes">
-                    <button type="submit" class="btn-salvar">Salvar</button>
-                    <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
+                    <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
+                    <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
+                    <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
                 </div>
-            </form>
 
-
+            </div>
         </div>
-    </div>
-<?php endif; ?>
-    
+        </div>
+
+        <div id="editarPerfilModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharEditarModal()">&times;</span>
+                <h2>Editar Perfil</h2>
+
+                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                    <div class="form-group">
+                        <label for="novo_nome">Nome de Usuário:</label>
+                        <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novo_email">Email:</label>
+                        <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nova_senha">Nova Senha:</label>
+                        <input type="password" name="nova_senha" id="nova_senha" placeholder="Deixe em branco para manter a atual">
+                    </div>
+
+                    <div class="botoes-acoes">
+                        <button type="submit" class="btn-salvar">Salvar</button>
+                        <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    <?php endif; ?>
+
     <script src="tela_principal.js"></script>
 
     <div id="modalExclusao">

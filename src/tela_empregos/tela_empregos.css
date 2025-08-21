@@ -770,3 +770,17 @@ body.dark-mode .tema-selector {
     color: #ffffff;
     border: 1px solid #555555;
 }
+
+    .botao-add-emprego a {
+        position: absolute;
+        right: 20px;
+        top: 82px;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .botao-add-emprego a:hover {
+        background-color: #b3d1ff;
+    }

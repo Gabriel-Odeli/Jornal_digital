@@ -16,7 +16,7 @@
             echo "<p class='mensagem erro'>Crie ou entre em uma conta para ver as reportagens</p>";
         }
 
-        if(isset($_GET['erro']) && $_GET['erro'] == "notfund"){
+        elseif(isset($_GET['erro']) && $_GET['erro'] == "notfund"){
             echo "<p class='mensagem erro'>Email ou senha incorretos</p>";
         }
         ?>

@@ -643,32 +643,26 @@
         position: absolute;
         right: 20px;
         top: 82px;
-        background-color: #007bff;
-        color: white;
         padding: 8px 15px;
         border-radius: 5px;
-        font-weight: bold;
         text-decoration: none;
         transition: 0.3s;
     }
 
     .botao-add-reportagem a:hover {
-        background-color: #0056b3;
+        background-color: #b3d1ff;
     }
 
     .botao-add-admin a {
         position: absolute;
         right: 230px;
         top: 82px;
-        background-color: #007bff;
-        color: white;
         padding: 8px 15px;
         border-radius: 5px;
-        font-weight: bold;
         text-decoration: none;
         transition: 0.3s;
     }
 
     .botao-add-admin a:hover {
-        background-color: #0056b3;
+        background-color: #b3d1ff;
     }
