@@ -8,4 +8,5 @@ if(isset($_GET['id'])){
 }else{
     echo "Nenhuma reportagem selecionada";
 }
+
 ?>
