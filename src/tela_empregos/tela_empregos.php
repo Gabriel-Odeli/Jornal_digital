@@ -79,10 +79,10 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="job-card">
                     <img src="<?= $imagem ?>" alt="Local">
-                    <h2><?= htmlspecialchars($e['nome_local']) ?></h2>
+                    <h2><?= htmlspecialchars($e['nome_lugar']) ?></h2>
                     <p><?= htmlspecialchars($e['cargo']) ?></p>
                     <div class="job-info">
-                        <span><i class="fas fa-dollar-sign"></i> R$ <?= number_format($e['salario'], 2, ',', '.') ?></span>
+                        <span><i class="fas fa-dollar-sign"></i> <?= number_format($e['salario'], 2, ',', '.') ?></span>
                         <span><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($e['localizacao']) ?></span>
                         <span><i class="fas fa-phone-alt"></i> <?= htmlspecialchars($e['telefone']) ?></span>
                     </div>
@@ -96,13 +96,13 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Formulário escondido inicialmente -->
         <div id="form-candidatura" style="display: none;">
             <div class="form-container">
-                <h2 id="vagaTitulo"></h2> <!-- NOVO: onde mostra o título da vaga -->
-                <form id="curriculoForm">
+                <h2 id="vagaTitulo"></h2>
+                <form id="curriculoForm" action="../actions/send_curriculum.php">
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" value="<?php echo $_SESSION['nome'] ?>" id="nome" name="nome" required>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" readonly required>
 
                     <label for="curriculo">Currículo (PDF):</label>
                     <input type="file" id="curriculo" name="curriculo" accept=".pdf" required>

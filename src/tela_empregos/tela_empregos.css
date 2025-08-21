@@ -8,7 +8,8 @@
 
 body {
     background-color: #f2f9ff;
-    padding: 10px; /* Adiciona 5px de padding em todo o body */
+    padding: 10px;
+    /* Adiciona 5px de padding em todo o body */
 }
 
 /* HEADER SUPERIOR */
@@ -19,7 +20,8 @@ body {
     padding: 15px 20px;
     background-color: #e6f2ff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px; /* Espaço entre header e reportagens */
+    margin-bottom: 10px;
+    /* Espaço entre header e reportagens */
 }
 
 .titulo {
@@ -51,7 +53,8 @@ body {
 .form_categorias {
     background-color: #d9e9ff;
     padding: 10px 20px;
-    margin-bottom: 5px; /* Espaço entre categorias e reportagens */
+    margin-bottom: 5px;
+    /* Espaço entre categorias e reportagens */
 }
 
 .nav_categorias {
@@ -95,7 +98,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 360px; 
+    min-height: 360px;
 }
 
 .job-card:hover {
@@ -160,16 +163,21 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
-#form-candidatura button{
+#form-candidatura button {
     background-color: #0056b3;
     color: white;
+    border-radius: 10px;
+}
+
+#form-candidatura input {
+    border-radius: 5px;
 }
 
 .form-container {
@@ -178,7 +186,7 @@ body {
     border-radius: 8px;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .form-container h2 {
@@ -223,7 +231,7 @@ body {
     color: white;
     padding: 15px 25px;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     font-size: 16px;
     display: none;
     opacity: 0;
@@ -237,10 +245,13 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
-    10%, 90% {
+
+    10%,
+    90% {
         opacity: 1;
         transform: translateY(0);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-20px);
@@ -250,13 +261,15 @@ body {
 /* Mensagem de sucesso */
 .mensagem-sucesso {
     position: fixed;
-    top: 70px; /* Um pouco mais embaixo para não colidir com a de erro */
+    top: 70px;
+    /* Um pouco mais embaixo para não colidir com a de erro */
     right: 20px;
-    background-color: #4CAF50; /* Verde bonito */
+    background-color: #4CAF50;
+    /* Verde bonito */
     color: white;
     padding: 15px 25px;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     font-size: 16px;
     display: none;
     opacity: 0;
@@ -266,196 +279,196 @@ body {
 
 
 
-    /* Botão com nome do usuário */
-    .user-btn {
-        cursor: pointer;
-        background: none;
-        border: none;
-        color: #004080;
-        font-weight: bold;
-        font-size: 16px;
-        padding: 6px 12px;
-        border-radius: 8px;
-        transition: background-color 0.3s;
-    }
+/* Botão com nome do usuário */
+.user-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #004080;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
 
-    .user-btn:hover {
-        background-color: #cce5ff;
-    }
-
-
-    /* --------------------- */
-    /* 🔷 VARIÁVEIS GERAIS */
-    /* --------------------- */
-    :root {
-        --cor-primaria: #007bff;
-        --cor-secundaria: #17a2b8;
-        --cor-perigo: #dc3545;
-        --cor-fundo-modal: #ffffff;
-        --cor-texto: #333;
-        --cor-titulo: #004080;
-        --cor-borda: #ccc;
-        --cor-hover: #0056b3;
-        --espaco-base: 16px;
-        --radius: 12px;
-        --fonte-padrao: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /* ---------------------- */
-    /* 🔲 RESET BÁSICO */
-    /* ---------------------- */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: var(--fonte-padrao);
-        background-color: #f5f5f5;
-        color: var(--cor-texto);
-    }
-
-    /* ----------------------------- */
-    /* 🪟 MODAL (FUNDO + CONTEÚDO) */
-    /* ----------------------------- */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-content {
-        background-color: var(--cor-fundo-modal);
-        margin: 8% auto;
-        padding: 30px 40px;
-        border-radius: var(--radius);
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 0 15px rgba(0, 102, 204, 0.2);
-        position: relative;
-    }
-
-    /* ---------------------- */
-    /* ❌ BOTÃO FECHAR (X) */
-    /* ---------------------- */
-    
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #999;
-        transition: color 0.3s;
-    }
-
-    .close:hover {
-        color: var(--cor-texto);
-    }
-
-    /* ------------------ */
-    /* 🧾 TÍTULO E TEXTOS */
-    /* ------------------ */
-    .modal-content h2 {
-        text-align: center;
-        color: var(--cor-titulo);
-        margin-bottom: var(--espaco-base);
-        font-size: 24px;
-    }
-
-    .modal-content p {
-        font-size: 16px;
-        margin: 10px 0;
-        color: var(--cor-texto);
-    }
-
-    /* ------------------------- */
-    /* 🔐 CAMPO DE SENHA COM OLHO */
-    /* ------------------------- */
-    .senha-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 300px;
-        margin-top: 20px;
-    }
+.user-btn:hover {
+    background-color: #cce5ff;
+}
 
 
-    .senha-wrapper input[type="password"],
-    .senha-wrapper input[type="text"] {
-        width: 100%;
-        padding: 10px 40px 10px 10px;
-        border: 1px solid var(--cor-borda);
-        border-radius: var(--radius);
-        font-size: 14px;
-    }
+/* --------------------- */
+/* 🔷 VARIÁVEIS GERAIS */
+/* --------------------- */
+:root {
+    --cor-primaria: #007bff;
+    --cor-secundaria: #17a2b8;
+    --cor-perigo: #dc3545;
+    --cor-fundo-modal: #ffffff;
+    --cor-texto: #333;
+    --cor-titulo: #004080;
+    --cor-borda: #ccc;
+    --cor-hover: #0056b3;
+    --espaco-base: 16px;
+    --radius: 12px;
+    --fonte-padrao: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    .olho {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        transform: translateY(-50%);
-        font-size: 20px;
-        color: #666;
-        cursor: pointer;
-        transition: color 0.3s;
-    }
+/* ---------------------- */
+/* 🔲 RESET BÁSICO */
+/* ---------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    .olho:hover {
-        color: var(--cor-texto);
-    }
+body {
+    font-family: var(--fonte-padrao);
+    background-color: #f5f5f5;
+    color: var(--cor-texto);
+}
 
-    /* ---------------------- */
-    /* 🟦 BOTÕES DE AÇÃO */
-    /* ---------------------- */
-    .botoes-acoes {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: var(--espaco-base);
-    }
+/* ----------------------------- */
+/* 🪟 MODAL (FUNDO + CONTEÚDO) */
+/* ----------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-    .botoes-acoes button {
-        flex: 1;
-        min-width: 120px;
-        padding: 10px;
-        font-size: 14px;
-        border: none;
-        border-radius: var(--radius);
-        cursor: pointer;
-        color: white;
-        transition: background-color 0.3s;
-    }
+.modal-content {
+    background-color: var(--cor-fundo-modal);
+    margin: 8% auto;
+    padding: 30px 40px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 102, 204, 0.2);
+    position: relative;
+}
 
-    /* Botão Editar */
-    .editar-btn {
-        background-color: var(--cor-secundaria);
-    }
+/* ---------------------- */
+/* ❌ BOTÃO FECHAR (X) */
+/* ---------------------- */
 
-    .editar-btn:hover {
-        background-color: #11707e;
-    }
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s;
+}
 
-    /* Botão Excluir */
-    .logout-btn {
-        background-color: var(--cor-perigo);
-    }
+.close:hover {
+    color: var(--cor-texto);
+}
 
-    .logout-btn:hover {
-        background-color: #a71d2a;
-    }
+/* ------------------ */
+/* 🧾 TÍTULO E TEXTOS */
+/* ------------------ */
+.modal-content h2 {
+    text-align: center;
+    color: var(--cor-titulo);
+    margin-bottom: var(--espaco-base);
+    font-size: 24px;
+}
 
-    /* ------------------- */
-    /* 🔴 ERRO (opcional) */
-    /* ------------------- */
-    .erro {
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 10px;
-    }
+.modal-content p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: var(--cor-texto);
+}
+
+/* ------------------------- */
+/* 🔐 CAMPO DE SENHA COM OLHO */
+/* ------------------------- */
+.senha-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+}
+
+
+.senha-wrapper input[type="password"],
+.senha-wrapper input[type="text"] {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--radius);
+    font-size: 14px;
+}
+
+.olho {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.olho:hover {
+    color: var(--cor-texto);
+}
+
+/* ---------------------- */
+/* 🟦 BOTÕES DE AÇÃO */
+/* ---------------------- */
+.botoes-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: var(--espaco-base);
+}
+
+.botoes-acoes button {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+/* Botão Editar */
+.editar-btn {
+    background-color: var(--cor-secundaria);
+}
+
+.editar-btn:hover {
+    background-color: #11707e;
+}
+
+/* Botão Excluir */
+.logout-btn {
+    background-color: var(--cor-perigo);
+}
+
+.logout-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* ------------------- */
+/* 🔴 ERRO (opcional) */
+/* ------------------- */
+.erro {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
 
 
 /* 🔧 Formulário de Edição de Perfil */
@@ -645,7 +658,8 @@ body {
 .nav_list {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre os ícones */
+    gap: 10px;
+    /* Espaço entre os ícones */
     list-style: none;
 }
 
@@ -699,6 +713,7 @@ body.dark-mode a,
 body.dark-mode .nav_categorias a {
     color: #ffffff;
 }
+
 body.dark-mode .nav_categorias a:hover {
     background-color: #333333;
 }
@@ -707,6 +722,7 @@ body.dark-mode .nav_categorias a:hover {
 body.dark-mode .job-section {
     background-color: #181818;
 }
+
 body.dark-mode .job-card {
     background-color: #2c2c2c;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
@@ -717,6 +733,7 @@ body.dark-mode .btn-candidatar {
     background-color: #444;
     color: #ffffff;
 }
+
 body.dark-mode .btn-candidatar:hover {
     background-color: #666;
 }
@@ -725,18 +742,22 @@ body.dark-mode .btn-candidatar:hover {
 body.dark-mode #form-candidatura {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
 body.dark-mode .form-container {
     background-color: #2a2a2a;
 }
+
 body.dark-mode .form-container input {
     background-color: #444;
     color: #fff;
     border: 1px solid #666;
 }
+
 body.dark-mode .form-container button {
     background-color: #555;
     color: #fff;
 }
+
 body.dark-mode #fecharFormulario {
     background-color: #888;
     color: #fff;
@@ -746,6 +767,7 @@ body.dark-mode #fecharFormulario {
 body.dark-mode .mensagem-erro {
     background-color: #b00020;
 }
+
 body.dark-mode .mensagem-sucesso {
     background-color: #00c853;
 }
@@ -771,16 +793,42 @@ body.dark-mode .tema-selector {
     border: 1px solid #555555;
 }
 
-    .botao-add-emprego a {
-        position: absolute;
-        right: 20px;
-        top: 82px;
-        padding: 8px 15px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
+.botao-add-emprego a {
+    position: absolute;
+    right: 20px;
+    top: 82px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-    .botao-add-emprego a:hover {
-        background-color: #b3d1ff;
-    }
+.botao-add-emprego a:hover {
+    background-color: #b3d1ff;
+}
+
+input[type="file"] {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #b3d1ff;
+}
