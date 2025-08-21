@@ -538,15 +538,6 @@ body {
     background-color: #a71d2a;
 }
 
-/* 🟢 Mensagem de sucesso */
-.mensagem-sucesso {
-    display: none;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-}
-
 #modalExclusao {
     display: none;
     position: fixed;

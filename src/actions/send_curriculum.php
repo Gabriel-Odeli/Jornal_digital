@@ -1,33 +1,54 @@
-<?php 
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-
+$nome = $_POST['nome'];
+$email = $_POST['email'];
+$curriculo = $_FILES['curriculo'] ?? null;
+$email_empresa = $_POST['email_empresa'];
 $mail = new PHPMailer(true);
 try {
-    // Configuração do servidor SMTP
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com'; // Servidor SMTP (ex: Gmail)
+    $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'gabrielodeli8@gmail.com'; // Seu email
-    $mail->Password   = 'ewwx szzs rouh vmir';          // Senha ou App Password do Gmail
+    $mail->Username   = $_ENV['EMAIL_USER'];
+    $mail->Password   = $_ENV['EMAIL_PASS'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
-    // Remetente e destinatário
     $mail->setFrom('gabrielodeli8@gmail.com', 'Seu Nome');
-    $mail->addAddress('gabrielodeli8@gmail.com', 'Nome do Destinatário');
+    $mail->addAddress($email_empresa, 'Nome do Destinatário');
 
-    // Conteúdo
     $mail->isHTML(true);
-    $mail->Subject = 'Teste de envio com PHPMailer';
-    $mail->Body    = '<h1>Olá!</h1><p>Esse email foi enviado via <b>PHPMailer</b>.</p>';
-    $mail->AltBody = 'Esse é o corpo alternativo sem HTML.';
+    $mail->Subject = 'Curriculo para emprego - ConectaNews';
+    $mail->Body = "
+    <h1>Nova candidatura recebida</h1>
+    <p>Uma nova candidatura foi enviada atraves do site.</p>
+    
+    <h3>Dados do candidato:</h3>
+    <ul>
+        <li><b>Nome:</b> {$nome}</li>
+        <li><b>E-mail:</b> {$email}</li>
+    </ul>
+
+    <p>O curriculo do candidato esta anexado a este e-mail.</p>
+    <br>
+    <p style='font-size:12px;color:#555;'>Mensagem automatica - Nao responda este e-mail.</p>";
+    $mail->AltBody = "Nova candidatura recebida.\n\nNome: {$nome}\nE-mail: {$email}\nO currículo está anexado a este e-mail.";
+    if ($curriculo && $curriculo['error'] === UPLOAD_ERR_OK) {
+        $mail->addAttachment($curriculo['tmp_name'], $curriculo['name']);
+    } else {
+        header("Location: /sua_pagina.php?erro=notsend");
+        exit;
+    }
 
     $mail->send();
-    echo '✅ Email enviado com sucesso!';
+    header("Location: ../tela_empregos/tela_empregos.php?sucesso=send");
 } catch (Exception $e) {
-    echo "❌ Erro: {$mail->ErrorInfo}";
+    header("Location: ../tela_empregos/tela_empregos.php?erro=notsend");
 }
-?>

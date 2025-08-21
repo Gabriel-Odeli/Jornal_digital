@@ -64,6 +64,15 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </form>
     </header>
+    <?php
+    if (isset($_GET['sucesso']) && $_GET['sucesso'] === 'send') {
+        echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Currículo enviado com sucesso!</div>';
+    }
+
+    if (isset($_GET['erro']) && $_GET['erro'] == 'notsend') {
+        echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block">ERRO: Currículo não foi enviado.</div>';
+    }
+    ?>
 
     <main class="job-section">
         <?php if (!empty($empregos)): ?>
@@ -86,18 +95,20 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <span><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($e['localizacao']) ?></span>
                         <span><i class="fas fa-phone-alt"></i> <?= htmlspecialchars($e['telefone']) ?></span>
                     </div>
-                    <button class="btn-candidatar">Candidatar-se</button>
+                    <button class="btn-candidatar"
+                        data-email="<?= htmlspecialchars($e['email']) ?>">
+                        Candidatar-se
+                    </button>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
             <p class="sem-empregos">⚠️ Não existem empregos cadastrados no momento.</p>
         <?php endif; ?>
-        
-        <!-- Formulário escondido inicialmente -->
+
         <div id="form-candidatura" style="display: none;">
             <div class="form-container">
                 <h2 id="vagaTitulo"></h2>
-                <form id="curriculoForm" action="../actions/send_curriculum.php">
+                <form id="curriculoForm" action="../actions/send_curriculum.php" method="post" enctype="multipart/form-data">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" value="<?php echo $_SESSION['nome'] ?>" id="nome" name="nome" required>
 
@@ -105,16 +116,15 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <input type="email" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" readonly required>
 
                     <label for="curriculo">Currículo (PDF):</label>
-                    <input type="file" id="curriculo" name="curriculo" accept=".pdf" required>
+                    <input type="file" id="curriculo" name="curriculo" accept="application/pdf" required>
 
+                    <input type="hidden" id="email_empresa" name="email_empresa" value="">
                     <button type="submit">Enviar</button>
                     <button type="button" id="fecharFormulario">Cancelar</button>
                 </form>
             </div>
         </div>
     </main>
-    <div id="mensagem-erro" class="mensagem-erro">Arquivo inválido! Envie um PDF.</div>
-    <div id="mensagem-sucesso" class="mensagem-sucesso">Currículo enviado com sucesso!</div>
     <script src="tela_emprego.js" defer></script>
 
 
