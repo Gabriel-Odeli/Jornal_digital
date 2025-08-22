@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
 
-        $sql= "INSERT INTO emprego(nome_lugar, cargo, salario, localizacao, email, telefone, imagem_local) VALUES (:nome, :cargo, :salario, :localizacao, :email, :telefone, :imagem)";
+        $sql = "INSERT INTO emprego(nome_lugar, cargo, salario, localizacao, email, telefone, imagem_local) VALUES (:nome, :cargo, :salario, :localizacao, :email, :telefone, :imagem)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":nome", $nome_local);
         $stmt->bindParam(":cargo", $cargo);
@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         $stmt->bindParam(":telefone", $telefone);
         $stmt->bindParam(":imagem", $imagemBinaria, PDO::PARAM_LOB);
         $stmt->execute();
-        header("Location: ../add_emprego/add_emprego.php?sucesso=1");
+        header("Location: ../add_emprego/add_emprego.php?sucesso=send");
     } catch (PDOException $e) {
         die("Erro no banco de dados: " . $e->getMessage());
     } catch (Exception $e) {
         die("Erro: " . $e->getMessage());
     }
-}else{
+} else {
     header("Location: ../tela_empregos/tela_empregos.php?erro=wrongmethod");
 }

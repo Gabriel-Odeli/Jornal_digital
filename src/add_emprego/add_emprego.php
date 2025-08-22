@@ -56,11 +56,16 @@ if (!$_SESSION['tipo'] == 1) {
             </div>
         </form>
 
-        <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
-            <div class="msg_sucesso">
-                <h3>✅ Emprego salvo com sucesso!</h3>
-            </div>
-        <?php endif; ?>
+        <?php
+        if (isset($_GET['sucesso']) && $_GET['sucesso'] === 'send') {
+            echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Emprego cadastrado com sucesso!</div>';
+        }
+
+        if (isset($_GET['erro']) && $_GET['erro'] == 'notsend') {
+            echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block">ERRO: Emprego não foi cadastrado.</div>';
+        }
+        ?>
+
 
         <div class="container">
             <h2>Adicionar Nova Vaga De Emprego</h2>
@@ -171,7 +176,7 @@ if (!$_SESSION['tipo'] == 1) {
                 <form action="../actions/delete_user.php" method="post">
                     <div class="botoes-confirmacao">
                         <button class="btn-confirmar-exclusao" type="submit">Sim</button>
-                        <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+                        <button class="btn-cancelar-exclusao" type="button" onclick="fecharModalExclusao()">Não</button>
                     </div>
                 </form>
             </div>

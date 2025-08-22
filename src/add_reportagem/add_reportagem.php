@@ -146,7 +146,7 @@ session_start();
         <form action="../actions/delete_user.php" method="post">
           <div class="botoes-confirmacao">
             <button class="btn-confirmar-exclusao" type="submit">Sim</button>
-            <button class="btn-cancelar-exclusao" onclick="fecharModalExclusao()">Não</button>
+            <button class="btn-cancelar-exclusao" type="button" onclick="fecharModalExclusao()">Não</button>
           </div>
         </form>
       </div>
