@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('America/Sao_Paulo');
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +9,7 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../imagens/ConectaNews.png">
   <title>Adicionar Reportagem - ConectaNews</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -72,7 +74,7 @@ session_start();
 
         <div class="form-group">
           <label for="imagem">Imagem de Destaque:</label>
-          <input type="file" id="imagem" name = "imagem" required>
+          <input type="file" id="imagem" name="imagem" required>
         </div>
 
         <button type="submit" class="btn-submit">Salvar Reportagem</button>
@@ -90,11 +92,6 @@ session_start();
           <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
           <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-          <div class="senha-wrapper">
-            <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
-            <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-          </div>
-
           <div class="botoes-acoes">
             <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
             <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
@@ -103,14 +100,13 @@ session_start();
 
         </div>
       </div>
-      </div>
 
       <div id="editarPerfilModal" class="modal">
         <div class="modal-content">
           <span class="close" onclick="fecharEditarModal()">&times;</span>
           <h2>Editar Perfil</h2>
 
-          <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+          <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
             <div class="form-group">
               <label for="novo_nome">Nome de Usuário:</label>
               <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
@@ -119,6 +115,11 @@ session_start();
             <div class="form-group">
               <label for="novo_email">Email:</label>
               <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+            </div>
+
+            <div class="form-group">
+              <label for="senha_atual">Senha atual:</label>
+              <input type="password" name="senha_atual" id="senha_atual" placeholder="Para editar digite sua senha atual">
             </div>
 
             <div class="form-group">
@@ -131,8 +132,6 @@ session_start();
               <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
             </div>
           </form>
-
-
         </div>
       </div>
     <?php endif; ?>

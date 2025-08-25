@@ -981,3 +981,15 @@ body {
 .botao-add-admin a:hover {
     background-color: #0056b3;
 }
+
+.login-mensagem {
+    color: #e74c3c;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #ffe6e6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e74c3c;
+}

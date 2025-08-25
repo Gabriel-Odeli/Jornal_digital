@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
-if(!isset($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../login/login.php?erro=nouser");
 }
 $sql = "SELECT * FROM emprego";
@@ -16,6 +16,7 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../imagens/ConectaNews.png">
     <title>Site de Vagas</title>
     <link rel="stylesheet" href="tela_empregos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -149,14 +150,13 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             </div>
         </div>
-        </div>
 
         <div id="editarPerfilModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="fecharEditarModal()">&times;</span>
                 <h2>Editar Perfil</h2>
 
-                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
                     <div class="form-group">
                         <label for="novo_nome">Nome de Usuário:</label>
                         <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
@@ -165,6 +165,11 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="form-group">
                         <label for="novo_email">Email:</label>
                         <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha_atual">Senha atual:</label>
+                        <input type="password" name="senha_atual" id="senha_atual" placeholder="Para editar digite sua senha atual">
                     </div>
 
                     <div class="form-group">
@@ -177,8 +182,6 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     <?php endif; ?>

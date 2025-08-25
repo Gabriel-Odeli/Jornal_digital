@@ -2,17 +2,17 @@
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
-if(!isset($_SESSION['id_usuario'])){
-    header("Location: ../login/login.php?erro=nouser");
-    exit;
-}
 
 if (!isset($_SESSION['id_reportagem'])) {
     echo "Nenhuma reportagem selecionada.";
     exit;
 }
 
-$id_reportagem = $_SESSION['id_reportagem'];
+if (isset($_GET['id'])) {
+    $id_reportagem = $_GET['id'];
+} else {
+    $id_reportagem = $_SESSION['id_reportagem'];
+}
 
 $sql = "SELECT * FROM reportagem WHERE id_reportagem = :id";
 $stmt = $conn->prepare($sql);
@@ -40,6 +40,7 @@ $imagemBytes = stream_get_contents($stream);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../imagens/ConectaNews.png">
     <title>Jornal Digital - <?php echo $reportagem['titulo'] ?></title>
     <link rel="stylesheet" href="reportagens.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -104,19 +105,25 @@ $imagemBytes = stream_get_contents($stream);
 
         <a href="../index.php" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
 
-        <section class="forum">
-            <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
+        <?php
+        if (isset($_SESSION['id_usuario'])):
+        ?>
+            <section class="forum">
+                <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
 
-            <form id="form-mensagem" class="form-mensagem">
-                <input type="text" id="nome-usuario" value='<?php echo $_SESSION['nome'] ?>' readonly>
-                <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
-                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-            </form>
+                <form id="form-mensagem" class="form-mensagem">
+                    <input type="text" id="nome-usuario" value='<?php echo $_SESSION['nome'] ?>' readonly>
+                    <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
+                    <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                </form>
 
-            <div id="lista-mensagens" class="lista-mensagens">
-                <!-- Mensagens aparecerão aqui -->
-            </div>
-        </section>
+                <div id="lista-mensagens" class="lista-mensagens">
+                    <!-- Mensagens aparecerão aqui -->
+                </div>
+            </section>
+        <?php else: ?>
+            <p class="login-mensagem">Faça login para Comentar!</p>
+        <?php endif ?>
 
     </main>
     <?php if (isset($_SESSION['id_usuario'])): ?>
@@ -129,11 +136,6 @@ $imagemBytes = stream_get_contents($stream);
                 <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
                 <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-                <div class="senha-wrapper">
-                    <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
-                    <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-                </div>
-
                 <div class="botoes-acoes">
                     <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                     <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
@@ -142,14 +144,13 @@ $imagemBytes = stream_get_contents($stream);
 
             </div>
         </div>
-        </div>
 
         <div id="editarPerfilModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="fecharEditarModal()">&times;</span>
                 <h2>Editar Perfil</h2>
 
-                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
                     <div class="form-group">
                         <label for="novo_nome">Nome de Usuário:</label>
                         <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
@@ -158,6 +159,11 @@ $imagemBytes = stream_get_contents($stream);
                     <div class="form-group">
                         <label for="novo_email">Email:</label>
                         <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha_atual">Senha atual:</label>
+                        <input type="password" name="senha_atual" id="senha_atual" placeholder="Para editar digite sua senha atual">
                     </div>
 
                     <div class="form-group">
@@ -170,8 +176,6 @@ $imagemBytes = stream_get_contents($stream);
                         <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     <?php endif; ?>
@@ -190,6 +194,14 @@ $imagemBytes = stream_get_contents($stream);
             </form>
         </div>
     </div>
+
+    <?php
+    $urlCompartilhar = "reportagens.php?id=" . $reportagem['id_reportagem'];
+    $tituloReportagem = $reportagem['titulo'];
+    ?>
+    <input type="hidden" value="<?php echo $urlCompartilhar ?>" id="URL_REPORTAGEM" readonly>
+    <input type="hidden" value="<?php echo $tituloReportagem ?>" id="TITULO_REPORTAGEM" readonly>
+
     <script src="reportagens.js" defer></script>
 </body>
 

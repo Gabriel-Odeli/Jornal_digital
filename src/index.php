@@ -14,7 +14,7 @@ if ($primeira != null) {
 
 
 //Reportagens para os campos menores
-$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao LIMIT 2 OFFSET 1";
+$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 2 OFFSET 1";
 $stmtMenores = $conn->prepare($sqlMenores);
 $stmtMenores->execute();
 $Menores = $stmtMenores->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ if ($Menores != null) {
 }
 
 //Outras Reportagens
-$sqlResto = "SELECT * FROM reportagem ORDER BY data_publicacao LIMIT 10 OFFSET 3";
+$sqlResto = "SELECT * FROM reportagem ORDER BY data_publicacao DESC LIMIT 10 OFFSET 3";
 $stmtResto = $conn->prepare($sqlResto);
 $stmtResto->execute();
 $Resto = $stmtResto->fetchAll(PDO::FETCH_ASSOC);
@@ -57,6 +57,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="imagens/ConectaNews.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="tela_principal/tela_principal.css">
@@ -152,7 +153,9 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
         </header>
         <br>
         <br>
-        <h2 class='text'>Veja também:</h2>
+        <?php if($Resto){
+            echo "<h2 class='text'>Veja também:</h2>";
+        }?>
         <div class="veja-tambem">
             <?php foreach($Resto as $r): 
                 $streamR = $r['imagem'];
@@ -183,7 +186,6 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
                 </div>
 
             </div>
-        </div>
         </div>
 
         <div id="editarPerfilModal" class="modal">

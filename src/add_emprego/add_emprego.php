@@ -8,6 +8,10 @@ if (!$_SESSION) {
 if (!$_SESSION['tipo'] == 1) {
     header("Location: ../tela_empregos/tela_empregos.php?erro=notadm");
 }
+
+if (isset($_GET['erro']) && $_GET['erro'] = 'notnumeric') {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Insira apenas números no salário</div>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +20,7 @@ if (!$_SESSION['tipo'] == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../imagens/ConectaNews.png">
     <title>Adicionar Emprego - ConectaNews</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -97,7 +102,7 @@ if (!$_SESSION['tipo'] == 1) {
 
                 <div class="form-group">
                     <label for="salario">Salário Proposto:</label>
-                    <input type="number" id="salario" name="salario" required></input>
+                    <input type="text" id="salario" name="salario" required></input>
                 </div>
 
                 <div class="form-group">
@@ -120,11 +125,6 @@ if (!$_SESSION['tipo'] == 1) {
                     <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
                     <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-                    <div class="senha-wrapper">
-                        <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
-                        <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-                    </div>
-
                     <div class="botoes-acoes">
                         <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                         <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
@@ -133,14 +133,13 @@ if (!$_SESSION['tipo'] == 1) {
 
                 </div>
             </div>
-            </div>
 
             <div id="editarPerfilModal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="fecharEditarModal()">&times;</span>
                     <h2>Editar Perfil</h2>
 
-                    <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
+                    <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
                         <div class="form-group">
                             <label for="novo_nome">Nome de Usuário:</label>
                             <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>
@@ -149,6 +148,11 @@ if (!$_SESSION['tipo'] == 1) {
                         <div class="form-group">
                             <label for="novo_email">Email:</label>
                             <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha_atual">Senha atual:</label>
+                            <input type="password" name="senha_atual" id="senha_atual" placeholder="Para editar digite sua senha atual">
                         </div>
 
                         <div class="form-group">
@@ -161,8 +165,6 @@ if (!$_SESSION['tipo'] == 1) {
                             <button type="button" class="btn-cancelar" onclick="fecharEditarModal()">Cancelar</button>
                         </div>
                     </form>
-
-
                 </div>
             </div>
         <?php endif; ?>

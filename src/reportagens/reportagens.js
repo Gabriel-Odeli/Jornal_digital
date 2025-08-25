@@ -59,14 +59,16 @@ function fecharModalExclusao() {
 }
 
 const botaoCompartilhar = document.getElementById('botao-compartilhar');
+const url = document.getElementById('URL_REPORTAGEM');
+const titulo = document.getElementById('TITULO_REPORTAGEM');
 
 botaoCompartilhar.addEventListener('click', async () => {
     if (navigator.share) {
         try {
             await navigator.share({
-                title: document.title,
+                title: titulo.value,
                 text: "Confira essa reportagem incrível!",
-                url: window.location.href
+                url: url.value
             });
             console.log('Reportagem compartilhada com sucesso!');
         } catch (error) {

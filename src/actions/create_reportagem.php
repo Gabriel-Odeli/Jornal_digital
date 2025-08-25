@@ -10,18 +10,16 @@ if (isset($_SESSION)) {
 
             $titulo = $_POST['titulo'];
             $texto = $_POST['texto'];
-            $data = $_POST['data'];
 
             $sql = 'SELECT * from usuario where id_usuario =' . $_SESSION['id_usuario'];
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $id_usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "INSERT INTO reportagem(titulo, data_publicacao, texto_reportagem, imagem, id_usuario) VALUES (:titulo, :data_publicacao, :texto_reportagem, :imagem, :id_usuario)";
+            $sql = "INSERT INTO reportagem(titulo, data_publicacao, texto_reportagem, imagem, id_usuario) VALUES (:titulo, CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo', :texto_reportagem, :imagem, :id_usuario)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":titulo", $_POST['titulo']);
             $stmt->bindParam(":texto_reportagem", $_POST['texto']);
-            $stmt->bindParam(":data_publicacao", $_POST['data']);
             $stmt->bindParam(":id_usuario", $_SESSION['id_usuario']);
             $stmt->bindParam(":imagem", $imagemBinaria, PDO::PARAM_LOB);
             $stmt->execute();
