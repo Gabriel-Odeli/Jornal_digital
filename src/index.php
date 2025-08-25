@@ -32,6 +32,17 @@ if ($Menores != null) {
     }
 }
 
+if(isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword'){
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhapequena") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha deve ter mais de 8 caracteres</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Digite a senha atual para editar!</div>';
+}
 
 ?>
 <!DOCTYPE html>
@@ -149,11 +160,6 @@ if ($Menores != null) {
                 <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
                 <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-                <div class="senha-wrapper">
-                    <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
-                    <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-                </div>
-
                 <div class="botoes-acoes">
                     <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                     <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
@@ -178,6 +184,11 @@ if ($Menores != null) {
                     <div class="form-group">
                         <label for="novo_email">Email:</label>
                         <input type="email" name="novo_email" id="novo_email" value="<?= htmlspecialchars($_SESSION['email']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha_atual">Senha atual:</label>
+                        <input type="password" name="senha_atual" id="senha_atual" placeholder="Para editar digite sua senha atual">
                     </div>
 
                     <div class="form-group">

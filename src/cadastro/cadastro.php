@@ -12,6 +12,11 @@ if (isset($_GET['erro']) && $_GET['erro'] == "camponulo") {
 if (isset($_GET['erro']) && $_GET['erro'] == "idadeinapropriada") {
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Idade do usuario inapropriada</div>';
 }
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhapequena") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha deve ter mais de 8 caracteres</div>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

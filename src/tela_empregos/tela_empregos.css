@@ -385,41 +385,6 @@ body {
     color: var(--cor-texto);
 }
 
-/* ------------------------- */
-/* 🔐 CAMPO DE SENHA COM OLHO */
-/* ------------------------- */
-.senha-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin-top: 20px;
-}
-
-
-.senha-wrapper input[type="password"],
-.senha-wrapper input[type="text"] {
-    width: 100%;
-    padding: 10px 40px 10px 10px;
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--radius);
-    font-size: 14px;
-}
-
-.olho {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #666;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.olho:hover {
-    color: var(--cor-texto);
-}
-
 /* ---------------------- */
 /* 🟦 BOTÕES DE AÇÃO */
 /* ---------------------- */

@@ -8,30 +8,51 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
         $novo_email = $_POST['novo_email'];
         $novo_nome = $_POST['novo_nome'];
         $nova_senha = $_POST['nova_senha'];
+        $senha_atual = $_POST['senha_atual'];
 
         if($nova_senha === ''){
-            $sql = "UPDATE usuario SET email= :email, nome= :nome  WHERE id_usuario = :id";
-            $stmt = $conn->prepare($sql);
+            if($senha_atual === ''){
+                header("Location: ../index.php?erro=senhanaodigitada");
+                exit;
+            }
+            if($id_usuario && password_verify($senha_atual, $_SESSION['senha'])){
+                $sql = "UPDATE usuario SET email= :email, nome= :nome  WHERE id_usuario = :id";
+                $stmt = $conn->prepare($sql);
 
-            $stmt->bindParam(':nome', $novo_nome);
-            $stmt->bindParam(':email', $novo_email);
-            $stmt->bindParam(':id', $id_usuario);
+                $stmt->bindParam(':nome', $novo_nome);
+                $stmt->bindParam(':email', $novo_email);
+                $stmt->bindParam(':id', $id_usuario);
 
 
-            $stmt->execute();
-            header("Location: ../index.php");
-            $_SESSION['email'] = $novo_email;
-            $_SESSION['nome'] = $novo_nome;
-        }else{
-            $sql = "UPDATE usuario SET email = '$novo_email', nome = '$novo_nome', senha = $nova_senha where id_usuario = " . $_SESSION['id_usuario'];
-            $stmt = $conn->prepare($sql);
-            if ($stmt->execute()){
-                $_SESSION['email'] = $novo_email;
-                $_SESSION['senha'] = $nova_senha;
-                $_SESSION['nome'] = $novo_nome;
+                $stmt->execute();
                 header("Location: ../index.php");
+                $_SESSION['email'] = $novo_email;
+                $_SESSION['nome'] = $novo_nome;
+            }
+        }else{
+            if(strlen($nova_senha) >= 8){
+                if($senha_atual === ''){
+                    header("Location: ../index.php?erro=senhanaodigitada");
+                    exit;
+                }
+                if($id_usuario && password_verify($senha_atual, $_SESSION['senha'])){
+                    $hash = password_hash($nova_senha, PASSWORD_BCRYPT, ['cost' => 12]);
+                    $sql = "UPDATE usuario SET email = '$novo_email', nome = '$novo_nome', senha = $nova_senha where id_usuario = " . $_SESSION['id_usuario'];
+                    $stmt = $conn->prepare($sql);
+                    if ($stmt->execute()){
+                        $_SESSION['email'] = $novo_email;
+                        $_SESSION['senha'] = $hash;
+                        $_SESSION['nome'] = $novo_nome;
+                        header("Location: ../index.php");
+                    }
+                    else{
+                        echo "ERRO";
+                    }
+                }else{
+                    header("Location: ../index.php?erro=incorrectpassword");
+                }
             }else{
-                echo "ERRO";
+                header("Location: ../index.php?erro=senhapequena");
             }
         }
     }

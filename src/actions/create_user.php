@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             exit;
         }
 
+        if(strlen($senha) < 8){
+            header("Location: ../cadastro/cadastro.php?erro=senhapequena");
+        }
+
         
         $sql = "SELECT id_usuario FROM usuario WHERE email = :email LIMIT 1";
         $stmt = $conn->prepare($sql);
@@ -35,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             header("Location: ../cadastro/cadastro.php?erro=emailexistente");
             exit;
         } else {
+            $hash = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
             $sqlInsert = "INSERT INTO usuario(nome, email, data_nascimento, senha, tipo) VALUES (:nome, :email, :data_nascimento, :senha, :tipo)";
 
             $stmtInsert = $conn->prepare($sqlInsert);
@@ -43,19 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
             $stmtInsert->bindParam(':nome', $nome);
             $stmtInsert->bindParam(':email', $email);
             $stmtInsert->bindParam(':data_nascimento', $data_nascimento);
-            $stmtInsert->bindParam(':senha', $senha);
+            $stmtInsert->bindParam(':senha', $hash);
             $stmtInsert->bindParam(':tipo', $tipo);
 
             $stmtInsert->execute();
 
-            $sqlLogin = "SELECT * FROM usuario WHERE email = :email AND senha = :senha ";
+            $sqlLogin = "SELECT * FROM usuario WHERE email = :email";
 
             $stmtLogin = $conn->prepare($sqlLogin);
             $stmtLogin->bindParam(":email", $email);
-            $stmtLogin->bindParam(":senha", $senha);
 
             $stmtLogin->execute();
-
+        
             $usuario = $stmtLogin->fetch(PDO::FETCH_ASSOC);
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['email'] = $usuario['email'];

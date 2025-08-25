@@ -141,11 +141,6 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
                 <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
-                <div class="senha-wrapper">
-                    <input type="password" id="senhaUsuario" value="<?php echo $_SESSION['senha'] ?>" readonly>
-                    <span id="toggleSenha" class="olho"><i class="fas fa-eye-slash"></i></span>
-                </div>
-
                 <div class="botoes-acoes">
                     <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                     <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>

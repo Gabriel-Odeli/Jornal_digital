@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             throw new Exception("Todos os campos são obrigatórios!");
         }
 
-        $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha' ";
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
 
         $stmt = $conn->prepare($sql);
 
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
 
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario) {
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['senha'] = $usuario['senha'];
@@ -29,7 +29,6 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             header("Location: ../index.php");
             exit;
         } else {
-            $erro = "Email não encontrado.";
             header("Location: ../login/login.php?erro=notfund");
         }        
 
