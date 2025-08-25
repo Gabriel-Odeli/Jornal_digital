@@ -14,7 +14,7 @@ if ($primeira != null) {
 
 
 //Reportagens para os campos menores
-$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 2 OFFSET 1";
+$sqlMenores = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao LIMIT 2 OFFSET 1";
 $stmtMenores = $conn->prepare($sqlMenores);
 $stmtMenores->execute();
 $Menores = $stmtMenores->fetchAll(PDO::FETCH_ASSOC);
@@ -31,6 +31,12 @@ if ($Menores != null) {
         echo "Erro";
     }
 }
+
+//Outras Reportagens
+$sqlResto = "SELECT * FROM reportagem ORDER BY data_publicacao LIMIT 10 OFFSET 3";
+$stmtResto = $conn->prepare($sqlResto);
+$stmtResto->execute();
+$Resto = $stmtResto->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword'){
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
@@ -105,8 +111,9 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
             </div>
         </form>
         <br>
-
+        <?php if ($primeira != null): ?>
         <h2 class='text'>Últimas reportagens:</h2>
+        <?php endif; ?>
         <header class="Reportagens">
             <?php if ($primeira != null): ?>
                 <a href="actions/pegar_id-rep.php?id=<?php echo $primeira['id_reportagem'] ?>" class="rep_maior">
@@ -140,13 +147,22 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
                     <p>Mais reportagens em breve</p>
                 <?php endif; ?>
             <?php else: ?>
-                <p>Não há reportagens</p>
+                <p class="sem-reportagens">⚠️ Não existem reportagens no momento</p>
             <?php endif; ?>
         </header>
         <br>
+        <br>
         <h2 class='text'>Veja também:</h2>
-
-
+        <div class="veja-tambem">
+            <?php foreach($Resto as $r): 
+                $streamR = $r['imagem'];
+                $imagemRestoBytes = stream_get_contents($streamR);?>
+                <a href="actions/pegar_id-rep.php?id=<?php echo $r['id_reportagem'] ?>" class="card">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($imagemRestoBytes); ?>" alt="Imagem da Reportagem">
+                    <h3><?php echo $r['titulo'] ?></h3>
+                </a>
+            <?php endforeach; ?>
+        </div>
 
     </header>
     <main></main>
