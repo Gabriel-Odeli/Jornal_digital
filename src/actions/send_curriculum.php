@@ -11,7 +11,13 @@ $nome = $_POST['nome'];
 $email = $_POST['email'];
 $curriculo = $_FILES['curriculo'] ?? null;
 $email_empresa = $_POST['email_empresa'];
+$body = file_get_contents("email.html");    
+$body = str_replace("{{NOME}}", $nome, $body);
+$body = str_replace("{{EMAIL}}", $email, $body);
+
+
 $mail = new PHPMailer(true);
+
 try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
@@ -21,25 +27,15 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
-    $mail->setFrom('gabrielodeli8@gmail.com', 'Seu Nome');
-    $mail->addAddress($email_empresa, 'Nome do Destinatário');
+    $mail->setFrom('gabrielodeli8@gmail.com', 'ConectaNews');
+    $mail->addAddress($email_empresa, 'Empresa');
 
     $mail->isHTML(true);
     $mail->Subject = 'Curriculo para emprego - ConectaNews';
-    $mail->Body = "
-    <h1>Nova candidatura recebida</h1>
-    <p>Uma nova candidatura foi enviada atraves do site.</p>
-    
-    <h3>Dados do candidato:</h3>
-    <ul>
-        <li><b>Nome:</b> {$nome}</li>
-        <li><b>E-mail:</b> {$email}</li>
-    </ul>
+    $mail->Body = $body;
+    $mail->AltBody = "Você recebeu um novo currículo de $nome. Email: $email. O currículo está em anexo.";
+    $mail->addEmbeddedImage('../imagens/ConectaNews.png', 'logo_cid');
 
-    <p>O curriculo do candidato esta anexado a este e-mail.</p>
-    <br>
-    <p style='font-size:12px;color:#555;'>Mensagem automatica - Nao responda este e-mail.</p>";
-    $mail->AltBody = "Nova candidatura recebida.\n\nNome: {$nome}\nE-mail: {$email}\nO currículo está anexado a este e-mail.";
     if ($curriculo && $curriculo['error'] === UPLOAD_ERR_OK) {
         $mail->addAttachment($curriculo['tmp_name'], $curriculo['name']);
     } else {

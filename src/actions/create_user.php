@@ -10,10 +10,22 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         $email = $_POST['email'] ?? null;
         $tipo = 0;
 
+        $hoje = new DateTime();
+        $nascimento = new DateTime($data_nascimento);
+        $idade = $hoje->diff($nascimento)->y;
+
+
         if (empty($nome) || empty($senha) || empty($data_nascimento) || empty($email)) {
-            throw new Exception("Todos os campos são obrigatórios!");
+            header("Location: ../cadastro/cadastro.php?erro=camponulo");
+            exit;
         }
 
+        if($idade < 18 || $idade>100){
+            header("Location: ../cadastro/cadastro.php?erro=idadeinapropriada");
+            exit;
+        }
+
+        
         $sql = "SELECT id_usuario FROM usuario WHERE email = :email LIMIT 1";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':email', $email);

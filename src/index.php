@@ -93,11 +93,11 @@ if ($Menores != null) {
                 ?>
             </div>
         </form>
+        <br>
 
-        <h2 class='ultimas_text'>Últimas reportagens:</h2>
+        <h2 class='text'>Últimas reportagens:</h2>
         <header class="Reportagens">
             <?php if ($primeira != null): ?>
-                <!-- Reportagem principal -->
                 <a href="actions/pegar_id-rep.php?id=<?php echo $primeira['id_reportagem'] ?>" class="rep_maior">
                     <div>
                         <img class="rep_maior-img" src="data:image/jpeg;base64,<?php echo base64_encode($imagemPrimeiraBytes); ?>" alt="imagem da reportagem">
@@ -132,6 +132,9 @@ if ($Menores != null) {
                 <p>Não há reportagens</p>
             <?php endif; ?>
         </header>
+        <br>
+        <h2 class='text'>Veja também:</h2>
+
 
 
     </header>

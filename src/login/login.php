@@ -1,3 +1,12 @@
+<?php
+if (isset($_GET['erro']) && $_GET['erro'] == "nouser") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Crie ou entre em uma conta para acessar!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "notfund") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Email ou senha incorretos!</div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,13 +21,6 @@
 <body>
     <main class="container">
         <?php
-        if (isset($_GET['erro']) && $_GET['erro'] == "usernotfund") {
-            echo "<p class='mensagem erro'>Crie ou entre em uma conta para ver as reportagens</p>";
-        }
-
-        elseif(isset($_GET['erro']) && $_GET['erro'] == "notfund"){
-            echo "<p class='mensagem erro'>Email ou senha incorretos</p>";
-        }
         ?>
         <form action="../actions/select_user.php" method="POST">
             <h1 class="login_titulo"> <strong>Login</strong> </h1>

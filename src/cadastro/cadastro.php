@@ -1,5 +1,17 @@
 <?php
 include __DIR__ . '/../conect_pgsql/conn.php';
+
+if (isset($_GET['erro']) && $_GET['erro'] == "emailexistente") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Este email já está cadastrado!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "camponulo") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Todos os campos são obrigatórios!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "idadeinapropriada") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Idade do usuario inapropriada</div>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,25 +28,21 @@ include __DIR__ . '/../conect_pgsql/conn.php';
 <body>
     <main class="container">
         <h1 class="cadastro_titulo"> <strong>Cadastro</strong> </h1>
-        <?php
-        if (isset($_GET['erro']) && $_GET['erro'] == "emailexistente") {
-            echo "<p class='mensagem erro'>Este email já está cadastrado!</p>";
-        }
-        ?>
+
         <form action="../actions/create_user.php" method="post">
             <div class="input_cadastro">
-                <input class="email" placeholder="Email" type="email" name="email" required>
+                <input class="email" placeholder="Email" type="email" name="email" require>
                 <i class="bx bxs-envelope"></i>
             </div>
             <div class="input_cadastro">
-                <input class="nome" placeholder="Nome" type="text" name="nome" required>
+                <input class="nome" placeholder="Nome" type="text" name="nome" require>
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input_cadastro">
-                <input class="data_nascimento" type="date" name="data_nascimento" required>
+                <input class="data_nascimento" type="date" name="data_nascimento" require>
             </div>
             <div class="input_cadastro">
-                <input class="senha" placeholder="Senha" type="password" name="senha" required>
+                <input class="senha" placeholder="Senha" type="password" name="senha" require>
                 <i class="bx bxs-lock-alt"></i>
             </div>
             <button type="submit" class="cadastro_button">Cadastrar-se</button>

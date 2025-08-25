@@ -3,7 +3,7 @@ include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
 if(!isset($_SESSION['id_usuario'])){
-    header("Location: ../login/login.php?erro=usernotfund");
+    header("Location: ../login/login.php?erro=nouser");
     exit;
 }
 
