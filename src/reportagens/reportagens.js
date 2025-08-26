@@ -86,110 +86,80 @@ formMensagem.addEventListener('submit', (e) => {
     }
 });
 
-function criarMensagem(nome, texto) {
-    const divMensagem = document.createElement('div');
-    divMensagem.classList.add('mensagem');
 
-    const titulo = document.createElement('h4');
-    titulo.textContent = nome;
+document.addEventListener('click', (e) => {
+  // Verifica se o botão clicado tem a classe btn-responder
+  if (!e.target.classList.contains('btn-responder')) return;
 
-    const corpo = document.createElement('p');
-    corpo.textContent = texto;
+  e.preventDefault();
 
-    const hora = document.createElement('time');
-    const agora = new Date();
-    hora.textContent = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const comentario = e.target.closest('.comentario'); // pega o comentário clicado
+  if (!comentario) return;
 
-    const botaoResponder = document.createElement('button');
-    botaoResponder.classList.add('btn-responder');
-    botaoResponder.textContent = 'Responder';
+  const idComentario = comentario.dataset.id;
 
-    const divRespostas = document.createElement('div');
-    divRespostas.classList.add('respostas');
+  // verifica se já existe um formulário aberto neste comentário
+  if (comentario.querySelector('.form-resposta')) return;
 
-    divMensagem.appendChild(titulo);
-    divMensagem.appendChild(corpo);
-    divMensagem.appendChild(hora);
-    divMensagem.appendChild(botaoResponder);
-    divMensagem.appendChild(divRespostas);
+  // cria o formulário
+  const formResposta = document.createElement('form');
+  formResposta.classList.add('form-resposta');
 
-    listaMensagens.prepend(divMensagem);
+  const textarea = document.createElement('textarea');
+  textarea.placeholder = 'Escreva sua resposta...';
+  textarea.required = true;
 
-    botaoResponder.addEventListener('click', () => abrirFormularioResposta(divRespostas));
-}
+  const botoes = document.createElement('div');
+  botoes.style.display = 'flex';
+  botoes.style.gap = '10px';
+  botoes.style.marginTop = '5px';
 
-function abrirFormularioResposta(respostasContainer) {
-    // Cria novo formulário de resposta SEM apagar os antigos
-    const formResposta = document.createElement('form');
-    formResposta.classList.add('form-resposta');
+  const btnEnviar = document.createElement('button');
+  btnEnviar.type = 'submit';
+  btnEnviar.textContent = 'Responder';
 
-    const textareaResposta = document.createElement('textarea');
-    textareaResposta.placeholder = 'Escreva sua resposta...';
-    textareaResposta.required = true;
+  const btnCancelar = document.createElement('button');
+  btnCancelar.type = 'button';
+  btnCancelar.textContent = 'Cancelar';
+  btnCancelar.style.backgroundColor = '#dc3545';
+  btnCancelar.style.color = '#fff';
+  btnCancelar.style.border = 'none';
+  btnCancelar.style.borderRadius = '4px';
+  btnCancelar.style.padding = '5px 10px';
+  btnCancelar.style.cursor = 'pointer';
 
-    const containerBotoes = document.createElement('div');
-    containerBotoes.style.display = 'flex';
-    containerBotoes.style.gap = '10px';
-    containerBotoes.style.marginTop = '5px';
+  botoes.appendChild(btnEnviar);
+  botoes.appendChild(btnCancelar);
+  formResposta.appendChild(textarea);
+  formResposta.appendChild(botoes);
 
-    const botaoEnviarResposta = document.createElement('button');
-    botaoEnviarResposta.type = 'submit';
-    botaoEnviarResposta.textContent = 'Responder';
+  let respostasContainer = comentario.querySelector('.add_respostas');
+  if (!respostasContainer) {
+    respostasContainer = document.createElement('div');
+    respostasContainer.classList.add('add_respostas');
+    respostasContainer.style.marginLeft = '20px';
+    comentario.appendChild(respostasContainer);
+  }
 
-    const botaoCancelarResposta = document.createElement('button');
-    botaoCancelarResposta.type = 'button';
-    botaoCancelarResposta.textContent = 'Cancelar';
-    botaoCancelarResposta.style.backgroundColor = '#dc3545';
-    botaoCancelarResposta.style.color = '#fff';
-    botaoCancelarResposta.style.border = 'none';
-    botaoCancelarResposta.style.borderRadius = '4px';
-    botaoCancelarResposta.style.padding = '5px 10px';
-    botaoCancelarResposta.style.cursor = 'pointer';
+  respostasContainer.appendChild(formResposta);
 
-    containerBotoes.appendChild(botaoEnviarResposta);
-    containerBotoes.appendChild(botaoCancelarResposta);
+  // evento cancelar → remove o form
+  btnCancelar.addEventListener('click', () => formResposta.remove());
 
-    formResposta.appendChild(textareaResposta);
-    formResposta.appendChild(containerBotoes);
+  // evento submit → só pra teste, mostra a resposta abaixo
+  formResposta.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const respostaTexto = textarea.value.trim();
+    if (!respostaTexto) return;
 
-    respostasContainer.appendChild(formResposta);
-
-    // Evento de enviar resposta
-    formResposta.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const respostaTexto = textareaResposta.value.trim();
-        if (respostaTexto) {
-            criarResposta(respostasContainer, respostaTexto);
-            formResposta.reset(); // Limpa o campo para permitir nova resposta
-        }
-    });
-
-    // Evento de cancelar resposta
-    botaoCancelarResposta.addEventListener('click', () => {
-        respostasContainer.removeChild(formResposta);
-    });
-}
-
-function criarResposta(respostasContainer, texto) {
     const divResposta = document.createElement('div');
     divResposta.classList.add('resposta');
-
-    const nomeResposta = document.createElement('h5');
-    nomeResposta.textContent = 'Usuário Anônimo';
-
-    const corpoResposta = document.createElement('p');
-    corpoResposta.textContent = texto;
-
-    const horaResposta = document.createElement('time');
-    const agora = new Date();
-    horaResposta.textContent = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-
-    divResposta.appendChild(nomeResposta);
-    divResposta.appendChild(corpoResposta);
-    divResposta.appendChild(horaResposta);
+    divResposta.innerHTML = `<p>${respostaTexto}</p>`;
 
     respostasContainer.appendChild(divResposta);
-}
+    formResposta.remove();
+  });
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -218,6 +188,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
-
