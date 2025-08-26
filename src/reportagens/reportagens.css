@@ -198,169 +198,232 @@ body {
 
 /* --- Fórum --- */
 .forum {
-    margin: 40px auto;
     max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
     background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .forum-titulo {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
     color: #333;
-    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: .5rem;
 }
 
+/* ===== Formulário ===== */
 .form-mensagem {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: .8rem;
+    margin-bottom: 2rem;
 }
 
-.form-mensagem input,
+.form-mensagem input[type="text"],
 .form-mensagem textarea {
     width: 100%;
-    padding: 10px;
+    padding: .8rem 1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
+    border-radius: 8px;
+    font-size: .95rem;
+    background: #fff;
+    transition: border .2s;
+}
+
+.form-mensagem input[readonly] {
+    background: #f1f1f1;
+    cursor: not-allowed;
 }
 
 .form-mensagem textarea {
     min-height: 100px;
+    resize: vertical;
+}
+
+.form-mensagem input:focus,
+.form-mensagem textarea:focus {
+    border-color: #0077ff;
+    outline: none;
 }
 
 .btn-enviar {
-    padding: 10px 20px;
-    background-color: #007bff;
+    align-self: flex-end;
+    padding: .7rem 1.5rem;
+    background: #0077ff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    align-self: flex-end;
+    font-weight: bold;
+    transition: background .2s;
 }
 
 .btn-enviar:hover {
-    background-color: #0056b3;
+    background: #005fd4;
 }
 
+/* ===== Lista de mensagens ===== */
 .lista-mensagens {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-bottom: 2rem;
 }
 
-.lista-mensagens {
-    background-color: #ffffff;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.comentario {
+    background: #fff;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
     position: relative;
 }
 
 .usuario_comentario {
-    margin: 0 0 5px;
-    color: #007bff;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
 }
 
 .texto_comentario {
-    margin: 5px 0 0;
-    color: #555;
+    margin: .6rem 0;
+    font-size: .95rem;
+    color: #444;
 }
 
 .time {
-    font-size: 12px;
-    color: #999;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-}
-
-/* Respostas */
-
-.respostas {
-    margin-top: 15px;
-    padding-left: 20px;
-    border-left: 2px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.resposta {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 6px;
-    position: relative;
-}
-
-.resposta h5 {
-    margin: 0 0 5px;
-    font-size: 14px;
-    color: #007bff;
-}
-
-.resposta p {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.resposta_time {
-    font-size: 11px;
-    color: #999;
-    position: absolute;
-    top: 8px;
-    right: 10px;
+    position:absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: .8rem;
+    color: #888;
 }
 
 .btn-responder {
-    margin-top: 10px;
-    background: none;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background: transparent;
     border: none;
-    color: #007bff;
+    color: #0077ff;
+    font-size: .85rem;
     cursor: pointer;
-    font-size: 14px;
-    padding: 0;
+    font-weight: bold;
+}
+
+.btn-responder:hover {
+    text-decoration: underline;
+}
+
+/* ===== Respostas ===== */
+.resposta {
+    margin-left: 2rem;
+    margin-top: .8rem;
+    padding: .8rem 1rem;
+    background: #f1f5ff;
+    border-left: 3px solid #0077ff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.usuario_resposta {
+    margin: 0;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.texto_resposta {
+    margin: .4rem 0;
+    font-size: .9rem;
+    color: #444;
+}
+
+.time_resposta {
+    position:absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: .75rem;
+    color: #666;
 }
 
 .form-resposta {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    gap: 5px;
+  display: flex;
+  flex-direction: column; /* Empilha os elementos */
+  gap: 0.6rem;
+  margin-top: 1rem;
+  max-width: 500px; /* largura máxima */
 }
 
+/* Nome */
+.form-resposta input[type="text"] {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f1f1f1;
+  cursor: not-allowed;
+}
+
+/* Mensagem */
 .form-resposta textarea {
-    width: 100%;
-    min-height: 60px;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    resize: vertical;
+  min-height: 80px;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
-.form-resposta button {
-    align-self: flex-end;
-    padding: 5px 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.form-resposta textarea:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0,119,255,0.2);
+  outline: none;
 }
 
-.form-resposta button:hover {
-    background-color: #218838;
+/* Botões */
+.form-resposta .acoes {
+  display: flex;
+  gap: 0.6rem;
 }
 
-.form-resposta button[type="button"]:hover {
-    background-color: #c82333;
+.form-resposta .btn-enviar,
+.form-resposta .btn-cancelar {
+  flex: 1; /* mesma largura pros dois */
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
 }
 
+/* Estilo enviar */
+.form-resposta .btn-enviar {
+  background: #0077ff;
+  color: #fff;
+}
+.form-resposta .btn-enviar:hover {
+  background: #005fd4;
+  transform: scale(1.05);
+}
+
+/* Estilo cancelar */
+.form-resposta .btn-cancelar {
+  background: #e63946;
+  color: #fff;
+}
+.form-resposta .btn-cancelar:hover {
+  background: #c71c2c;
+  transform: scale(1.05);
+}
 
 .botao-darkmode {
     background: none;

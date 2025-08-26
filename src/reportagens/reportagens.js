@@ -71,95 +71,37 @@ window.onscroll = function () {
 }
 
 // --- Fórum de Mensagens ---
-const formMensagem = document.getElementById('form-mensagem');
-const listaMensagens = document.getElementById('lista-mensagens');
+document.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('btn-responder')) return;
 
-formMensagem.addEventListener('submit', (e) => {
-    e.preventDefault();
+    const comentario = e.target.closest('.comentario');
 
-    const nome = document.getElementById('nome-usuario').value.trim();
-    const mensagem = document.getElementById('mensagem-usuario').value.trim();
+    // Remove formulário se já existir em outro comentário
+    const formExistente = document.querySelector('.form-resposta');
+    if (formExistente) formExistente.remove();
 
-    if (nome && mensagem) {
-        criarMensagem(nome, mensagem);
-        formMensagem.reset();
-    }
+    // Cria o formulário de resposta
+    const nomeUsuario = document.getElementById('nome_usuario');
+    const form = document.createElement('form');
+    form.classList.add('form-resposta');
+    form.method = 'post';
+    form.innerHTML = `
+        <input type="text" name="nome_usuario" value="${nomeUsuario.value}" readonly>
+        <textarea name="mensagem_user" placeholder="Escreva sua resposta..." required></textarea>
+        <input type="hidden" name="id_resposta" value="${comentario.dataset.id}" readonly>
+        <input type="hidden" name="tipo" value="1" readonly>
+        <div class='acoes'>
+        <button type="submit" class="btn-enviar">Enviar</button>
+        <button type="button" class="btn-cancelar">Cancelar</button>
+        </div>
+    `;
+
+    comentario.appendChild(form);
+
+    // Cancelar
+    form.querySelector('.btn-cancelar').addEventListener('click', () => form.remove());
 });
 
-
-document.addEventListener('click', (e) => {
-  // Verifica se o botão clicado tem a classe btn-responder
-  if (!e.target.classList.contains('btn-responder')) return;
-
-  e.preventDefault();
-
-  const comentario = e.target.closest('.comentario'); // pega o comentário clicado
-  if (!comentario) return;
-
-  const idComentario = comentario.dataset.id;
-
-  // verifica se já existe um formulário aberto neste comentário
-  if (comentario.querySelector('.form-resposta')) return;
-
-  // cria o formulário
-  const formResposta = document.createElement('form');
-  formResposta.classList.add('form-resposta');
-
-  const textarea = document.createElement('textarea');
-  textarea.placeholder = 'Escreva sua resposta...';
-  textarea.required = true;
-
-  const botoes = document.createElement('div');
-  botoes.style.display = 'flex';
-  botoes.style.gap = '10px';
-  botoes.style.marginTop = '5px';
-
-  const btnEnviar = document.createElement('button');
-  btnEnviar.type = 'submit';
-  btnEnviar.textContent = 'Responder';
-
-  const btnCancelar = document.createElement('button');
-  btnCancelar.type = 'button';
-  btnCancelar.textContent = 'Cancelar';
-  btnCancelar.style.backgroundColor = '#dc3545';
-  btnCancelar.style.color = '#fff';
-  btnCancelar.style.border = 'none';
-  btnCancelar.style.borderRadius = '4px';
-  btnCancelar.style.padding = '5px 10px';
-  btnCancelar.style.cursor = 'pointer';
-
-  botoes.appendChild(btnEnviar);
-  botoes.appendChild(btnCancelar);
-  formResposta.appendChild(textarea);
-  formResposta.appendChild(botoes);
-
-  let respostasContainer = comentario.querySelector('.add_respostas');
-  if (!respostasContainer) {
-    respostasContainer = document.createElement('div');
-    respostasContainer.classList.add('add_respostas');
-    respostasContainer.style.marginLeft = '20px';
-    comentario.appendChild(respostasContainer);
-  }
-
-  respostasContainer.appendChild(formResposta);
-
-  // evento cancelar → remove o form
-  btnCancelar.addEventListener('click', () => formResposta.remove());
-
-  // evento submit → só pra teste, mostra a resposta abaixo
-  formResposta.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const respostaTexto = textarea.value.trim();
-    if (!respostaTexto) return;
-
-    const divResposta = document.createElement('div');
-    divResposta.classList.add('resposta');
-    divResposta.innerHTML = `<p>${respostaTexto}</p>`;
-
-    respostasContainer.appendChild(divResposta);
-    formResposta.remove();
-  });
-});
 
 
 document.addEventListener("DOMContentLoaded", function () {
