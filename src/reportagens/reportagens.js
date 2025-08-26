@@ -1,22 +1,3 @@
-const senhaInput = document.getElementById("senhaUsuario");
-const toggleSenha = document.getElementById("toggleSenha");
-
-if (toggleSenha && senhaInput) {
-    toggleSenha.addEventListener("click", function () {
-        const isSenha = senhaInput.type === "password";
-        senhaInput.type = isSenha ? "text" : "password";
-
-        const icon = toggleSenha.querySelector("i");
-        if (isSenha) {
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        } else {
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        }
-    });
-}
-
 const btnCancelar = document.querySelector(".btn-cancelar");
 if (btnCancelar) {
     btnCancelar.addEventListener("click", limparCampos);
@@ -194,7 +175,7 @@ function criarResposta(respostasContainer, texto) {
     divResposta.classList.add('resposta');
 
     const nomeResposta = document.createElement('h5');
-    nomeResposta.textContent = 'Usuário Anônimo'; // ou pode puxar de um login se quiser
+    nomeResposta.textContent = 'Usuário Anônimo';
 
     const corpoResposta = document.createElement('p');
     corpoResposta.textContent = texto;

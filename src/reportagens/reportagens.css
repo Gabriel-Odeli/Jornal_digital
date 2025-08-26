@@ -253,7 +253,7 @@ body {
     gap: 15px;
 }
 
-.mensagem {
+.lista-mensagens {
     background-color: #ffffff;
     padding: 15px;
     border: 1px solid #ddd;
@@ -261,17 +261,17 @@ body {
     position: relative;
 }
 
-.mensagem h4 {
+.usuario_comentario {
     margin: 0 0 5px;
     color: #007bff;
 }
 
-.mensagem p {
+.texto_comentario {
     margin: 5px 0 0;
     color: #555;
 }
 
-.mensagem time {
+.time {
     font-size: 12px;
     color: #999;
     position: absolute;

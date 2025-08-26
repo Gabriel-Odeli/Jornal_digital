@@ -32,6 +32,57 @@ $autor = $stmtUsuario->fetch(PDO::FETCH_ASSOC);
 //Imagem
 $stream = $reportagem['imagem'];
 $imagemBytes = stream_get_contents($stream);
+
+// ID da reportagem atual
+$id_reportagem = $_SESSION['id_reportagem'];
+
+// --- Inserção de comentário ou resposta ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensagem_user'])) {
+    if (isset($_SESSION['id_usuario'])) {
+        $id_usuario = $_SESSION['id_usuario'];
+        $texto = $_POST['mensagem_user'];
+        $id_resposta = $_POST['id_resposta'] ?? null;
+
+        $tipo = $id_resposta ? 1 : 0; // 0 = comentário, 1 = resposta
+
+        $sqlAdd = "INSERT INTO comentarios (id_usuario, id_reportagem, texto_comentario, tipo, id_resposta, data_comentario)
+                   VALUES (:id_usuario, :id_reportagem, :texto, :tipo, :id_resposta, CURRENT_TIMESTAMP)";
+        $stmtAdd = $conn->prepare($sqlAdd);
+        $stmtAdd->bindParam(":id_usuario", $id_usuario);
+        $stmtAdd->bindParam(":id_reportagem", $id_reportagem);
+        $stmtAdd->bindParam(":texto", $texto);
+        $stmtAdd->bindParam(":tipo", $tipo);
+        $stmtAdd->bindParam(":id_resposta", $id_resposta);
+        $stmtAdd->execute();
+
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit;
+    }
+}
+
+// --- Buscar comentários e respostas ---
+$sqlComentarios = "SELECT c.*, u.nome 
+                   FROM comentarios c
+                   JOIN usuario u ON c.id_usuario = u.id_usuario
+                   WHERE c.id_reportagem = :id_reportagem
+                   ORDER BY c.data_comentario ASC";
+$stmtComentarios = $conn->prepare($sqlComentarios);
+$stmtComentarios->bindParam(":id_reportagem", $id_reportagem);
+$stmtComentarios->execute();
+$comentarios = $stmtComentarios->fetchAll(PDO::FETCH_ASSOC);
+
+// Organizar comentários principais e respostas
+$lista = [];
+foreach ($comentarios as $c) {
+    if ($c['tipo'] == 0) {
+        $lista[$c['id_comentario']] = $c;
+        $lista[$c['id_comentario']]['respostas'] = [];
+    } else {
+        if (isset($lista[$c['id_resposta']])) {
+            $lista[$c['id_resposta']]['respostas'][] = $c;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -111,15 +162,38 @@ $imagemBytes = stream_get_contents($stream);
             <section class="forum">
                 <h2 class="forum-titulo"><i class="fas fa-comments"></i> Fórum de Discussão</h2>
 
-                <form id="form-mensagem" class="form-mensagem">
+                <form id="form-mensagem" class="form-mensagem" method="post">
                     <input type="text" id="nome-usuario" value='<?php echo $_SESSION['nome'] ?>' readonly>
-                    <textarea id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
+                    <textarea name='mensagem_user' id="mensagem-usuario" placeholder="Escreva sua mensagem..." required></textarea>
                     <button type="submit" class="btn-enviar">Enviar Mensagem</button>
                 </form>
 
                 <div id="lista-mensagens" class="lista-mensagens">
-                    <!-- Mensagens aparecerão aqui -->
-                </div>
+                    <div id="lista-mensagens" class="lista-mensagens">
+                        <?php foreach ($lista as $comentario): ?>
+                            <div class="comentario">
+                                <h4 class="usuario_comentario"><?php echo htmlspecialchars($comentario['nome']); ?></h4>
+                                <p class="texto_comentario"><?php echo nl2br(htmlspecialchars($comentario['texto_comentario'])); ?></p>
+                                <small class="time"><?php echo date("d/m/Y H:i", strtotime($comentario['data_comentario'])); ?></small>
+                                <form class="form-resposta">
+                                    <button type="button" class="btn-responder">Responder</button>
+                                </form>
+
+                                <!-- Respostas -->
+                                <?php if (!empty($comentario['respostas'])): ?>
+                                    <div class="respostas" style="margin-left:20px;">
+                                        <?php foreach ($comentario['respostas'] as $resposta): ?>
+                                            <div class="resposta">
+                                                <h5><?php echo htmlspecialchars($resposta['nome']); ?></h5>
+                                                <p><?php echo nl2br(htmlspecialchars($resposta['texto_comentario'])); ?></p>
+                                                <small><?php echo date("d/m/Y H:i", strtotime($resposta['data_comentario'])); ?></small>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
             </section>
         <?php else: ?>
             <p class="login-mensagem">Faça login para Comentar!</p>
@@ -206,3 +280,7 @@ $imagemBytes = stream_get_contents($stream);
 </body>
 
 </html>
+
+<?php
+
+?>
