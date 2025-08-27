@@ -138,9 +138,9 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="close" onclick="fecharModal()">&times;</span>
                 <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
 
-                <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
-                <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
-                <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+                <p class="perfil"><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+                <p class="perfil"><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+                <p class="perfil"><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
                 <div class="botoes-acoes">
                     <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>

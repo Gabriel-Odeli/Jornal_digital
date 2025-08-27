@@ -73,7 +73,7 @@ date_default_timezone_set('America/Sao_Paulo');
         </div>
 
         <div class="form-group">
-          <label for="imagem">Imagem de Destaque:</label>
+          <label for="imagem" class="upload_label">Imagem de Destaque:</label>
           <input type="file" id="imagem" name="imagem" required>
         </div>
 
@@ -88,9 +88,9 @@ date_default_timezone_set('America/Sao_Paulo');
           <span class="close" onclick="fecharModal()">&times;</span>
           <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
 
-          <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
-          <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
-          <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+          <p class="perfil"><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+          <p class="perfil"><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+          <p class="perfil"><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
           <div class="botoes-acoes">
             <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>

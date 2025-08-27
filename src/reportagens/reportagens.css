@@ -297,7 +297,7 @@ body {
 }
 
 .time {
-    position:absolute;
+    position: absolute;
     right: 1rem;
     top: 1rem;
     font-size: .8rem;
@@ -345,7 +345,7 @@ body {
 }
 
 .time_resposta {
-    position:absolute;
+    position: absolute;
     right: 1rem;
     top: 1rem;
     font-size: .75rem;
@@ -353,76 +353,81 @@ body {
 }
 
 .form-resposta {
-  display: flex;
-  flex-direction: column; /* Empilha os elementos */
-  gap: 0.6rem;
-  margin-top: 1rem;
-  max-width: 500px; /* largura máxima */
+    display: flex;
+    flex-direction: column;
+    /* Empilha os elementos */
+    gap: 0.6rem;
+    margin-top: 1rem;
+    max-width: 500px;
+    /* largura máxima */
 }
 
 /* Nome */
 .form-resposta input[type="text"] {
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #f1f1f1;
-  cursor: not-allowed;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f1f1f1;
+    cursor: not-allowed;
 }
 
 /* Mensagem */
 .form-resposta textarea {
-  min-height: 80px;
-  padding: 0.6rem;
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  resize: vertical;
-  transition: border 0.2s, box-shadow 0.2s;
+    min-height: 80px;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
 .form-resposta textarea:focus {
-  border-color: #0077ff;
-  box-shadow: 0 0 0 2px rgba(0,119,255,0.2);
-  outline: none;
+    border-color: #0077ff;
+    box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+    outline: none;
 }
 
 /* Botões */
 .form-resposta .acoes {
-  display: flex;
-  gap: 0.6rem;
+    display: flex;
+    gap: 0.6rem;
 }
 
 .form-resposta .btn-enviar,
 .form-resposta .btn-cancelar {
-  flex: 1; /* mesma largura pros dois */
-  padding: 0.6rem;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s, transform 0.1s;
+    flex: 1;
+    /* mesma largura pros dois */
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
 }
 
 /* Estilo enviar */
 .form-resposta .btn-enviar {
-  background: #0077ff;
-  color: #fff;
+    background: #0077ff;
+    color: #fff;
 }
+
 .form-resposta .btn-enviar:hover {
-  background: #005fd4;
-  transform: scale(1.05);
+    background: #005fd4;
+    transform: scale(1.05);
 }
 
 /* Estilo cancelar */
 .form-resposta .btn-cancelar {
-  background: #e63946;
-  color: #fff;
+    background: #e63946;
+    color: #fff;
 }
+
 .form-resposta .btn-cancelar:hover {
-  background: #c71c2c;
-  transform: scale(1.05);
+    background: #c71c2c;
+    transform: scale(1.05);
 }
 
 .botao-darkmode {
@@ -449,250 +454,259 @@ body {
 /* Modo Escuro */
 body.dark-mode {
     background-color: #121212;
-    /* Fundo escuro */
-    color: white;
-    /* Texto claro */
+    color: #e0e0e0;
 }
 
-/* Cabeçalho */
-body.dark-mode .parte_cima {
-    background-color: #1e1e1e;
-    /* Fundo do cabeçalho */
+/* 🔹 Cabeçalho e Categorias */
+body.dark-mode .parte_cima,
+body.dark-mode .form_categorias {
+    background-color: #1c1c1c;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 body.dark-mode .titulo {
-    color: #0066cc;
-    /* Cor do título */
-}
-
-body.dark-mode .nav_categorias a:hover {
-    background-color: #313131;
-    color: #ffffff;
-}
-
-
-body.dark-mode a:hover {
-    color: #ffffff;
-    /* Amarelo claro para contraste */
-}
-
-body.dark-mode a {
-    color: white;
-}
-
-body.dark-mode .info-reportagem {
-    color: white;
-}
-
-body.dark-mode .titulo-reportagem {
-    color: white;
-}
-
-body.dark-mode .texto-reportagem {
-    color: white;
-}
-
-/* Navegação */
-body.dark-mode .nav_list a {
-    color: #ffffff;
-    /* Links com cor roxa */
-}
-
-/* Texto da reportagem */
-body.dark-mode .reportagem {
-    background-color: #181818;
-    /* Fundo das seções */
-    color: white;
-    /* Texto claro */
-    padding: 20px;
-}
-
-/* Fórum */
-body.dark-mode .forum {
-    background-color: black;
-    /* Fundo preto para o fórum */
-    color: white;
-    /* Texto branco */
-    padding: 20px;
-}
-
-body.dark-mode .forum-titulo {
-    color: white;
-    /* Cor do título do fórum */
-}
-
-/* Botões */
-body.dark-mode .btn-compartilhar,
-body.dark-mode .btn-voltar {
-    background-color: #444;
-    /* Fundo dos botões */
-    color: #ffffff;
-    /* Texto dos botões */
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-body.dark-mode .btn-compartilhar:hover,
-body.dark-mode .btn-voltar:hover {
-    background-color: #666;
-    /* Cor de fundo ao passar o mouse */
-}
-
-/* Formulários */
-body.dark-mode .form-mensagem input,
-body.dark-mode .form-mensagem textarea {
-    background-color: #333;
-    /* Fundo escuro nos campos de input */
-    color: #ffffff;
-    /* Texto claro nos campos de input */
-    border: 1px solid #444;
-    /* Borda do input */
-    padding: 10px;
-    width: 100%;
-}
-
-body.dark-mode .form-mensagem button {
-    background-color: #444;
-    /* Fundo do botão */
-    color: #ffffff;
-    /* Texto do botão */
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-body.dark-mode .form-mensagem button:hover {
-    background-color: #666;
-    /* Cor de fundo ao passar o mouse no botão */
-}
-
-/* Ícones do modo escuro */
-body.dark-mode .botao-darkmode i {
-    color: #ffffff;
-    /* Cor do ícone de alternância de tema */
-}
-
-/* Ícone de alternância de tema */
-body.dark-mode .botao-darkmode {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-}
-
-body.dark-mode .botao-darkmode img {
-    width: 32px;
-    /* Tamanho aumentado para os ícones */
-    height: 32px;
-    filter: invert(1);
-    /* Inverte a cor do ícone para se adaptar ao modo escuro */
-}
-
-/* Ajuste para os botões no modo escuro */
-body.dark-mode .btn-enviar {
-    background-color: #444;
-    /* Fundo do botão de enviar */
-    color: #ffffff;
-    /* Texto do botão */
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-body.dark-mode .btn-enviar:hover {
-    background-color: #666;
-    /* Cor de fundo ao passar o mouse no botão */
-}
-
-/* Ajuste para a barra de progresso */
-body.dark-mode #barra-progresso {
-    background-color: #333;
-    /* Barra de progresso escura */
-}
-
-/* Ajuste para o fundo das imagens */
-body.dark-mode .imagem-reportagem {
-    filter: brightness(80%);
-    /* Escurece as imagens */
-}
-
-/* Mensagens de erro e sucesso no modo escuro */
-body.dark-mode .mensagem-erro {
-    background-color: #b00020;
-}
-
-body.dark-mode .mensagem-sucesso {
-    background-color: #00c853;
-}
-
-/* Seção de categorias */
-body.dark-mode .form_categorias {
-    background-color: #2a2a2a;
-    /* Fundo escuro para a seção de categorias */
+    color: #4da6ff;
 }
 
 body.dark-mode .nav_categorias a {
-    color: #ffffff;
-    /* Links brancos */
+    color: #ddd;
 }
 
 body.dark-mode .nav_categorias a:hover {
-    background-color: #333333;
-    /* Hover efeito para links */
-}
-
-/* Estilo para o botão de alternância de modo escuro */
-body.dark-mode .botao-darkmode img {
-    width: 32px;
-    /* Tamanho proporcional aos outros ícones */
-    height: 32px;
-}
-
-/* Ajustes para os ícones do Instagram e Facebook */
-body.dark-mode .nav_list img {
-    width: 32px;
-    /* Ícones maiores para se alinhar com os ícones do sol e lua */
-    height: 32px;
-}
-
-/* Modo escuro para a área do fórum */
-body.dark-mode .forum {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* Inputs e textarea no modo escuro */
-body.dark-mode .form-mensagem input,
-body.dark-mode .form-mensagem textarea {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    border: 1px solid #444;
-}
-
-/* Botão de enviar no modo escuro */
-body.dark-mode .btn-enviar {
-    background-color: #333;
+    background-color: #2a2a2a;
     color: #fff;
 }
 
-/* Mensagens do fórum no modo escuro */
-body.dark-mode .lista-mensagens {
+/* 🔹 Reportagem */
+body.dark-mode .reportagem {
     background-color: #1e1e1e;
+    color: #f1f1f1;
 }
 
-body.dark-mode .lista-mensagens .mensagem {
+body.dark-mode .titulo-reportagem {
+    color: #f1f1f1;
+}
+
+body.dark-mode .data_publicacao {
+    color: #ccc;
+}
+
+body.dark-mode .autor {
+    color: #ccc;
+}
+
+body.dark-mode .texto-reportagem {
+    color: #ccc;
+}
+
+body.dark-mode .info-reportagem {
+    color: #aaa;
+}
+
+/* 🔹 Fórum */
+body.dark-mode .forum {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
+
+body.dark-mode .forum-titulo {
+    color: #f1f1f1;
+}
+
+body.dark-mode .comentario {
     background-color: #2a2a2a;
-    color: #ffffff;
     border: 1px solid #444;
 }
 
-body.dark-mode {
+body.dark-mode .resposta {
+    background-color: #222;
+    border-left: 3px solid #4da6ff;
+}
+
+body.dark-mode .usuario_comentario,
+body.dark-mode .usuario_resposta {
+    color: #4da6ff;
+}
+
+body.dark-mode .texto_comentario,
+body.dark-mode .texto_resposta {
     color: white;
 }
 
+body.dark-mode .time,
+body.dark-mode .time_resposta {
+    color: white;
+}
 
+/* 🔹 Botões */
+body.dark-mode .btn-voltar,
+body.dark-mode .btn-compartilhar,
+body.dark-mode .btn-enviar {
+    background-color: #4da6ff;
+    color: #fff;
+    border: none;
+}
+
+body.dark-mode .btn-voltar:hover,
+body.dark-mode .btn-compartilhar:hover,
+body.dark-mode .btn-enviar:hover {
+    background-color: #1c75d8;
+}
+
+/* 🔹 Formulários */
+body.dark-mode .form-mensagem input,
+body.dark-mode .form-mensagem textarea,
+body.dark-mode .form-resposta textarea {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #eee;
+}
+
+body.dark-mode .form-mensagem input:focus,
+body.dark-mode .form-mensagem textarea:focus {
+    border-color: #4da6ff;
+}
+
+/* 🔹 Barra de progresso */
+body.dark-mode #barra-progresso {
+    background-color: #4da6ff;
+}
+
+/* 🔹 Modais */
+body.dark-mode .modal-content,
+body.dark-mode #modalExclusao .modal-content {
+    background-color: #1e1e1e;
+    color: #eee;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .modal-content h2{
+    color: #4da6ff;
+}
+body.dark-mode #modalExclusao .modal-content h3 {
+    color: #dc3545;
+}
+
+body.dark-mode #modalExclusao .modal-content p {
+    color: #ccc;
+}
+
+body.dark-mode .close {
+    color: #aaa;
+}
+
+body.dark-mode .close:hover {
+    color: #fff;
+}
+
+/* 🔹 Botões de modais */
+body.dark-mode .editar-btn {
+    background-color: #17a2b8;
+}
+
+body.dark-mode .editar-btn:hover {
+    background-color: #0d5f66;
+}
+
+body.dark-mode .logout-btn,
+body.dark-mode .btn-confirmar-exclusao {
+    background-color: #dc3545;
+}
+
+body.dark-mode .logout-btn:hover,
+body.dark-mode .btn-confirmar-exclusao:hover {
+    background-color: #a71d2a;
+}
+
+body.dark-mode .btn-cancelar-exclusao {
+    background-color: #666;
+}
+
+body.dark-mode .btn-cancelar-exclusao:hover {
+    background-color: #888;
+}
+
+body.dark-mode .texto_excluir {
+    color: #f1f1f1;
+}
+
+/* 🔹 Mensagens */
+body.dark-mode .login-mensagem {
+    background-color: #331111;
+    border: 1px solid #ff4d4d;
+    color: #ff8888;
+}
+
+body.dark-mode .user-btn{
+    color: #4da6ff;
+}
+
+body.dark-mode .user-btn:hover{
+    background-color: rgb(105, 105, 118);
+}
+
+body.dark-mode .perfil{
+    color: #ccc;
+}
+
+/* Container dos botões */
+body.dark-mode .botoes-acoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Botões gerais */
+body.dark-mode .botoes-acoes button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Editar */
+body.dark-mode .editar-btn {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+body.dark-mode .editar-btn:hover {
+    background-color: #0d5f66;
+}
+
+/* Excluir */
+body.dark-mode .logout-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+body.dark-mode .logout-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* Sair da conta */
+body.dark-mode .sair-btn {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+body.dark-mode .sair-btn:hover {
+    background-color: #565e64;
+}
+
+/* 🌙 Ajustes no modo escuro */
+body.dark-mode .botoes-acoes button {
+    color: #fff;
+}
+
+body.dark-mode .form-group label{
+    color: #ccc;
+}
 
 /* Botão com nome do usuário */
 .user-btn {
@@ -710,7 +724,6 @@ body.dark-mode {
 .user-btn:hover {
     background-color: #cce5ff;
 }
-
 
 /* --------------------- */
 /* 🔷 VARIÁVEIS GERAIS */

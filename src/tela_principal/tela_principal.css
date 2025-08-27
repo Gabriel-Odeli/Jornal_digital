@@ -173,45 +173,47 @@
         bottom: 0;
     }
 
-.veja-tambem {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 colunas iguais */
-    gap: 15px; /* espaço entre os cards */
-    width: 100%;
-    margin: 20px auto;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
+    .veja-tambem {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 colunas iguais */
+        gap: 15px;
+        /* espaço entre os cards */
+        width: 100%;
+        margin: 20px auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
 
-.card {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #000;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #000;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.25);
-}
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    }
 
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
 
-.card h3 {
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-}
+    .card h3 {
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+    }
 
     /* Responsividade */
     @media (max-width: 768px) {
@@ -254,30 +256,26 @@
         height: 24px;
     }
 
-    /* Exemplo para imagens pequenas: você pode deixar sem filtro ou ajustar caso queira */
-
-    .nav_list {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        /* Espaço entre os ícones */
-        list-style: none;
-    }
-
     /* Corpo no modo escuro */
     body.dark-mode {
         background-color: #121212;
-        /* Fundo escuro */
-        color: #ffffff;
-        /* Texto claro */
+        color: #e0e0e0;
     }
 
     /* Header, nav e parte superior */
     body.dark-mode header,
     body.dark-mode nav,
     body.dark-mode .parte_cima {
-        background-color: #141414;
-        /* Um tom acima do fundo */
+        background-color: #1e1e1e;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .titulo {
+        color: #4da6ff;
+    }
+
+    body.dark-mode .login {
+        color: #4da6ff;
     }
 
     /* Categorias */
@@ -285,61 +283,110 @@
         background-color: #1c1c1c;
     }
 
-    /* Links */
-    body.dark-mode a {
-        color: #ffffff;
-        /* Letras brancas */
+    body.dark-mode .nav_categorias a {
+        color: #e0e0e0;
     }
 
+    body.dark-mode .nav_categorias a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    /* Texto */
+    body.dark-mode .text {
+        color: #f1f1f1;
+        border-left: 5px solid #4da6ff;
+    }
+
+    /* Quando não há reportagens */
+    body.dark-mode .sem-reportagens {
+        background-color: #1e1e1e;
+        color: #cccccc;
+        border: 1px solid #4da6ff;
+    }
 
     /* Reportagens */
     body.dark-mode .rep_maior,
     body.dark-mode .rep_menor1,
     body.dark-mode .rep_menor2 {
-        background-color: #313131;
-        box-shadow: 0px 0px 10px #000000;
+        background-color: #1c1c1c;
+        box-shadow: 0px 0px 10px #000;
     }
 
-    /* Títulos nas categorias */
-    body.dark-mode .nav_categorias a {
-        color: #ffffff;
+    /* Cards (veja também) */
+    body.dark-mode .card {
+        background: #1c1c1c;
+        color: #e0e0e0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
 
-    body.dark-mode .nav_categorias a:hover {
-        background-color: #313131;
-        color: #ffffff;
+    body.dark-mode .card h3 {
+        color: #fff;
     }
 
-    /* Parágrafo dentro da reportagem */
-    body.dark-mode .rep_maior-p {
-        background-color: rgba(20, 20, 20, 0.95);
-        color: #ffffff;
+    /* Botões */
+    body.dark-mode .user-btn {
+        color: #4da6ff;
     }
 
-    /* Modal (se usado) */
-    body.dark-mode #modalReportagem .modal-conteudo {
-        background-color: #121212;
-        color: #ffffff;
+    body.dark-mode .user-btn:hover {
+        background-color: #333;
     }
 
-    .tema-selector {
-        background-color: #ffffff;
-        color: #333333;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 14px;
-        cursor: pointer;
-    }
-
+    /* Select de tema */
     body.dark-mode .tema-selector {
         background-color: #2a2a2a;
         color: #ffffff;
-        border: 1px solid #555555;
+        border: 1px solid #555;
     }
 
+    /* Modal padrão */
+    body.dark-mode .modal-content {
+        background-color: #1c1c1c;
+        color: #e0e0e0;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    }
 
+    body.dark-mode .modal-content h2 {
+        color: #4da6ff;
+    }
 
+    /* Modal de exclusão */
+    body.dark-mode #modalExclusao .modal-content {
+        background-color: #1c1c1c;
+        color: #e0e0e0;
+    }
+
+    body.dark-mode #modalExclusao .modal-content p {
+        color: #ccc;
+    }
+
+    body.dark-mode #modalExclusao .close {
+        color: #aaa;
+    }
+
+    body.dark-mode #modalExclusao .close:hover {
+        color: #fff;
+    }
+
+    /* Mensagens de erro */
+    body.dark-mode .mensagem-erro {
+        background-color: #ff3333;
+        color: white;
+    }
+
+    /* Mensagem de sucesso */
+    body.dark-mode .mensagem-sucesso {
+        color: #66ff99;
+    }
+
+    body.dark-mode .perfil {
+        color: #ccc;
+    }
+
+    body.dark-mode .form-group label{
+        color: #ccc;
+    }
 
     /* Botão com nome do usuário */
     .user-btn {
@@ -718,4 +765,13 @@
         opacity: 0;
         animation: fadeInOut 4s forwards;
         z-index: 1000;
+    }
+
+
+    .nav_list {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Espaço entre os ícones */
+        list-style: none;
     }

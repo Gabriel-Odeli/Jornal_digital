@@ -633,7 +633,6 @@ body {
 }
 
 
-
 .botao-darkmode {
     background: none;
     border: none;
@@ -654,66 +653,93 @@ body {
     height: 24px;
 }
 
-/* Modo Escuro - ajustes adicionais */
 body.dark-mode {
     background-color: #121212;
-    color: #ffffff;
+    color: #e0e0e0;
 }
 
-/* Header, nav e categorias */
-body.dark-mode header,
-body.dark-mode nav,
+/* Header, navbar e parte superior */
 body.dark-mode .parte_cima,
 body.dark-mode .form_categorias {
     background-color: #1e1e1e;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Títulos e textos */
-body.dark-mode .titulo,
-body.dark-mode .job-card h2,
-body.dark-mode .job-card p,
-body.dark-mode .job-info,
-body.dark-mode .form-container label {
-    color: #ffffff;
+body.dark-mode .titulo {
+    color: #4da6ff;
 }
 
-/* Links */
-body.dark-mode a,
+body.dark-mode .login,
+body.dark-mode .user-btn {
+    color: #4da6ff;
+}
+
+/* Links e categorias */
 body.dark-mode .nav_categorias a {
-    color: #ffffff;
+    color: #e0e0e0;
 }
 
 body.dark-mode .nav_categorias a:hover {
-    background-color: #333333;
+    background-color: #333;
+    color: #fff;
 }
 
-/* Seção de vagas */
+/* Mensagem quando não há empregos */
+body.dark-mode .sem-empregos {
+    background-color: #1e1e1e;
+    color: #cccccc;
+    border: 1px solid #4da6ff;
+}
+
+/* Vagas */
 body.dark-mode .job-section {
     background-color: #181818;
 }
 
 body.dark-mode .job-card {
-    background-color: #2c2c2c;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .job-card h2 {
+    color: #fff;
+}
+
+body.dark-mode .job-card p {
+    color: #aad4ff;
+}
+
+body.dark-mode .job-info {
+    color: #ccc;
 }
 
 /* Botões */
 body.dark-mode .btn-candidatar {
-    background-color: #444;
-    color: #ffffff;
+    background-color: #4da6ff;
+    color: #fff;
 }
 
 body.dark-mode .btn-candidatar:hover {
-    background-color: #666;
+    background-color: #1c75d8;
+}
+
+body.dark-mode .user-btn:hover {
+    background-color: #333;
 }
 
 /* Formulário */
 body.dark-mode #form-candidatura {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 body.dark-mode .form-container {
     background-color: #2a2a2a;
+    color: #fff;
+}
+
+body.dark-mode .form-container label {
+    color: #ddd;
 }
 
 body.dark-mode .form-container input {
@@ -723,12 +749,12 @@ body.dark-mode .form-container input {
 }
 
 body.dark-mode .form-container button {
-    background-color: #555;
+    background-color: #4da6ff;
     color: #fff;
 }
 
 body.dark-mode #fecharFormulario {
-    background-color: #888;
+    background-color: #666;
     color: #fff;
 }
 
@@ -741,25 +767,89 @@ body.dark-mode .mensagem-sucesso {
     background-color: #00c853;
 }
 
-/* Ícone modo escuro */
+/* Modal padrão */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .modal-content h2{
+    color: #4da6ff;
+}
+
+body.dark-mode .modal-content p {
+    color: #fff;
+}
+
+body.dark-mode .close {
+    color: #aaa;
+}
+
+body.dark-mode .close:hover {
+    color: #fff;
+}
+
+/* Modal de exclusão */
+body.dark-mode #modalExclusao .modal-content {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+body.dark-mode .form-group label {
+    color: #ccc;
+}
+
+body.dark-mode #modalExclusao .modal-content h3 {
+    color: #ff4d4d;
+}
+
+body.dark-mode #modalExclusao .modal-content p {
+    color: #ccc;
+}
+
+body.dark-mode #modalExclusao .btn-cancelar-exclusao {
+    background-color: #555;
+}
+
+body.dark-mode #modalExclusao .btn-cancelar-exclusao:hover {
+    background-color: #777;
+}
+
+/* Inputs de arquivo */
+body.dark-mode input[type="file"] {
+    background-color: #2a2a2a;
+    border: 2px solid #4da6ff;
+    color: #ccc;
+}
+
+body.dark-mode input[type="file"]::file-selector-button {
+    background: #4da6ff;
+    color: white;
+}
+
+body.dark-mode input[type="file"]::file-selector-button:hover {
+    background: #1c75d8;
+}
+
+/* Seletor de tema */
+body.dark-mode .tema-selector {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #555;
+}
+
+/* Ícones do dark mode */
 body.dark-mode .botao-darkmode img {
     filter: invert(1);
 }
 
-.tema-selector {
-    background-color: #ffffff;
-    color: #333333;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 14px;
-    cursor: pointer;
+.body.dark-mode .perfil{
+    color: #ccc;
 }
 
-body.dark-mode .tema-selector {
-    background-color: #2a2a2a;
-    color: #ffffff;
-    border: 1px solid #555555;
+.body.dark-mode .perfil strong{
+    color: #f1f1f1;
 }
 
 .botao-add-emprego a {

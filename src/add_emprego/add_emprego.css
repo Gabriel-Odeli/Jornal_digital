@@ -1,4 +1,3 @@
-    /* Reset e fonte */
     * {
         margin: 0;
         padding: 0;
@@ -9,10 +8,8 @@
     body {
         background-color: #f2f9ff;
         padding: 10px;
-        /* Adiciona 5px de padding em todo o body */
     }
 
-    /* Header styles */
     .parte_cima {
         display: flex;
         justify-content: space-between;
@@ -21,7 +18,6 @@
         background-color: #e6f2ff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 10px;
-        /* Espaço entre header e reportagens */
     }
 
     .nome {
@@ -49,12 +45,10 @@
         height: 24px;
     }
 
-    /* Categorias */
     .form_categorias {
         background-color: #d9e9ff;
         padding: 10px 20px;
         margin-bottom: 5px;
-        /* Espaço entre categorias e reportagens */
     }
 
     .nav_categorias {
@@ -140,7 +134,6 @@
         background: #125d99;
     }
 
-    /* Botão com nome do usuário */
     .user-btn {
         cursor: pointer;
         background: none;
@@ -157,10 +150,6 @@
         background-color: #cce5ff;
     }
 
-
-    /* --------------------- */
-    /* 🔷 VARIÁVEIS GERAIS */
-    /* --------------------- */
     :root {
         --cor-primaria: #007bff;
         --cor-secundaria: #17a2b8;
@@ -175,9 +164,6 @@
         --fonte-padrao: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* ---------------------- */
-    /* 🔲 RESET BÁSICO */
-    /* ---------------------- */
     * {
         margin: 0;
         padding: 0;
@@ -190,9 +176,6 @@
         color: var(--cor-texto);
     }
 
-    /* ----------------------------- */
-    /* 🪟 MODAL (FUNDO + CONTEÚDO) */
-    /* ----------------------------- */
     .modal {
         display: none;
         position: fixed;
@@ -212,10 +195,6 @@
         position: relative;
     }
 
-    /* ---------------------- */
-    /* ❌ BOTÃO FECHAR (X) */
-    /* ---------------------- */
-
     .close {
         position: absolute;
         top: 20px;
@@ -230,9 +209,6 @@
         color: var(--cor-texto);
     }
 
-    /* ------------------ */
-    /* 🧾 TÍTULO E TEXTOS */
-    /* ------------------ */
     .modal-content h2 {
         text-align: center;
         color: var(--cor-titulo);
@@ -246,44 +222,6 @@
         color: var(--cor-texto);
     }
 
-    /* ------------------------- */
-    /* 🔐 CAMPO DE SENHA COM OLHO */
-    /* ------------------------- */
-    .senha-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 300px;
-        margin-top: 20px;
-    }
-
-
-    .senha-wrapper input[type="password"],
-    .senha-wrapper input[type="text"] {
-        width: 100%;
-        padding: 10px 40px 10px 10px;
-        border: 1px solid var(--cor-borda);
-        border-radius: var(--radius);
-        font-size: 14px;
-    }
-
-    .olho {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        transform: translateY(-50%);
-        font-size: 20px;
-        color: #666;
-        cursor: pointer;
-        transition: color 0.3s;
-    }
-
-    .olho:hover {
-        color: var(--cor-texto);
-    }
-
-    /* ---------------------- */
-    /* 🟦 BOTÕES DE AÇÃO */
-    /* ---------------------- */
     .botoes-acoes {
         display: flex;
         justify-content: center;
@@ -303,7 +241,6 @@
         transition: background-color 0.3s;
     }
 
-    /* Botão Editar */
     .editar-btn {
         background-color: var(--cor-secundaria);
     }
@@ -312,7 +249,6 @@
         background-color: #11707e;
     }
 
-    /* Botão Excluir */
     .logout-btn {
         background-color: var(--cor-perigo);
     }
@@ -321,18 +257,6 @@
         background-color: #a71d2a;
     }
 
-    /* ------------------- */
-    /* 🔴 ERRO (opcional) */
-    /* ------------------- */
-    .erro {
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-
-    /* 🔧 Formulário de Edição de Perfil */
     .form-editar {
         display: flex;
         flex-direction: column;
@@ -359,7 +283,6 @@
         width: 100%;
     }
 
-    /* ✅ Botões de ação: Salvar e Cancelar */
     .botoes-acoes {
         display: flex;
         justify-content: space-between;
@@ -433,7 +356,6 @@
         }
     }
 
-    /* 🟢 Mensagem de sucesso */
     .mensagem-sucesso {
         position: fixed;
         top: 70px;
@@ -534,7 +456,6 @@
     }
 
 
-    /* modal para add reportagem */
     .botao-add-reportagem a {
         position: absolute;
         right: 20px;
@@ -558,11 +479,9 @@
         padding: 6px;
         border: 2px solid #4CAF50;
         border-radius: 8px;
-        background-color: #f9f9f9;
         cursor: pointer;
     }
 
-    /* Estiliza apenas o botão "Escolher arquivo" */
     input[type="file"]::file-selector-button {
         background: #007bff;
         color: white;
@@ -577,4 +496,145 @@
 
     input[type="file"]::file-selector-button:hover {
         background: #b3d1ff;
+    }
+
+       .botao-darkmode {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botao-darkmode:hover {
+        opacity: 0.8;
+    }
+
+    .icon-darkmode {
+        width: 24px;
+        height: 24px;
+    }
+
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .parte_cima {
+        background-color: #1e1e1e;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-mode .titulo {
+        color: #6ab7ff;
+    }
+
+    body.dark-mode .login,
+    body.dark-mode .user-btn {
+        color: #6ab7ff;
+    }
+
+    body.dark-mode .user-btn:hover {
+        background-color: #2b2b2b;
+    }
+
+    body.dark-mode .form_categorias {
+        background-color: #1a1a1a;
+    }
+
+    body.dark-mode .nav_categorias a {
+        color: #a8cfff;
+    }
+
+    body.dark-mode .nav_categorias a:hover {
+        background-color: #2a3f66;
+    }
+
+    /* Container principal */
+    body.dark-mode .container {
+        background: #1e1e1e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-mode .container h2 {
+        color: #ffffff;
+    }
+
+    body.dark-mode .form-group label {
+        color: #cccccc;
+    }
+
+    body.dark-mode .form-group input[type="text"],
+    body.dark-mode .form-group input[type="date"],
+    body.dark-mode .form-group input[type="email"],
+    body.dark-mode .form-group textarea {
+        background-color: #2b2b2b;
+        border: 1px solid #444;
+        color: #f5f5f5;
+    }
+
+    body.dark-mode .form-editar .form-group input[type="text"],
+    body.dark-mode .form-editar .form-group input[type="email"]{
+        color: black;
+        background-color: #f5f5f5;
+    }
+
+    body.dark-mode .perfil{
+        color: #ccc;
+    }
+
+    body.dark-mode .perfil strong{
+        color: white;
+    }
+
+    body.dark-mode .modal-content,
+    body.dark-mode #modalExclusao .modal-content {
+        background-color: #2b2b2b;
+        color: #f5f5f5;
+        border: 1px solid #444;
+    }
+
+    body.dark-mode .modal-content h2{
+        color: #6ab7ff;
+    }
+
+    body.dark-mode .close,
+    body.dark-mode #modalExclusao .close {
+        color: #bbb;
+    }
+
+    body.dark-mode .close:hover,
+    body.dark-mode #modalExclusao .close:hover {
+        color: #fff;
+    }
+
+    body.dark-mode #modalExclusao .btn-confirmar-exclusao {
+        background-color: #e05a65;
+    }
+
+    body.dark-mode #modalExclusao .modal-content p {
+        color: #ccc;
+    }
+
+    body.dark-mode #modalExclusao .btn-confirmar-exclusao:hover {
+        background-color: #c5303d;
+    }
+
+    body.dark-mode #modalExclusao .btn-cancelar-exclusao {
+        background-color: #777;
+    }
+
+    body.dark-mode #modalExclusao .btn-cancelar-exclusao:hover {
+        background-color: #999;
+    }
+
+    body.dark-mode .botao-darkmode {
+        color: #f5f5f5;
+    }
+
+    body.dark-mode .form-group label {
+        color: #ccc;
     }

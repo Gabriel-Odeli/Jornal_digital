@@ -96,8 +96,11 @@ foreach ($comentarios as $c) {
 
 <body>
     <div id="barra-progresso"></div>
-    <input type="hidden" id="nome_usuario" value="<?php echo $_SESSION['nome']; ?>">
-
+    <?php 
+    if(isset($_SESSION['id_usuario'])){
+        echo '<input type="hidden" id="nome_usuario" value="$_SESSION["nome"];"';
+    }
+    ?>
     <header>
         <nav class="parte_cima">
             <?php
@@ -134,8 +137,8 @@ foreach ($comentarios as $c) {
         <h2 class="titulo-reportagem"><?php echo $reportagem['titulo']; ?></h2>
 
         <div class="info-reportagem">
-            <span><i class="fas fa-calendar-alt"></i> Publicado em: <?php echo date("d/m/Y", strtotime($reportagem['data_publicacao'])); ?></span>
-            <span><i class="fas fa-user"></i> Por: <?php echo $autor['nome']; ?></span>
+            <span class="data_publicacao"><i class="fas fa-calendar-alt"></i> Publicado em: <?php echo date("d/m/Y", strtotime($reportagem['data_publicacao'])); ?></span>
+            <span class="autor"><i class="fas fa-user"></i> Por: <?php echo $autor['nome']; ?></span>
         </div>
 
         <img class="imagem-reportagem" src="data:image/jpeg;base64,<?php echo base64_encode($imagemBytes); ?>" alt="Pinguins causando confusão">
@@ -207,18 +210,17 @@ foreach ($comentarios as $c) {
         <div id="perfilModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="fecharModal()">&times;</span>
-                <h2>Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+                <h2 class="perfil">Perfil de <?= htmlspecialchars($_SESSION['nome']) ?></h2>
 
-                <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
-                <p><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
-                <p><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
+                <p class="perfil"><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']) ?></p>
+                <p class="perfil"><strong>Data de Nascimento:</strong> <?= date('d/m/Y', strtotime($_SESSION['data_nasc'])) ?></p>
+                <p class="perfil"><strong>Nome de Usuário:</strong> <?= htmlspecialchars($_SESSION['nome']) ?></p>
 
                 <div class="botoes-acoes">
                     <button type="button" class="editar-btn" onclick="abrirEditarModal()">Editar</button>
                     <button class="logout-btn" onclick="abrirModalExclusao()">Excluir</button>
                     <button class="sair-btn" onclick="window.location.href='../actions/logout.php'">Sair da conta</button>
                 </div>
-
             </div>
         </div>
 
