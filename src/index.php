@@ -50,6 +50,10 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Digite a senha atual para editar!</div>';
 }
 
+if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado'){
+    echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Editado com sucesso!</div>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -78,7 +82,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
             <h1 class="titulo">ConectaNews</h1>
 
             <ul class="nav_list">
-                <li> <a href="#"> <img src="imagens/instagram.png" alt="Instagram"> </a> </li>
+                <li> <a href="https://www.instagram.com/conectanews3/" target="_blank"> <img src="imagens/instagram.png" alt="Instagram"> </a> </li>
                 <li> <a href="#"><img src="imagens/facebook.png" alt="Facebook"> </a> </li>
                 <li>
                     <button id="toggleTema" class="botao-darkmode" aria-label="Alternar tema">

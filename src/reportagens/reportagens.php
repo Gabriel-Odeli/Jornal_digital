@@ -98,7 +98,7 @@ foreach ($comentarios as $c) {
     <div id="barra-progresso"></div>
     <?php 
     if(isset($_SESSION['id_usuario'])){
-        echo '<input type="hidden" id="nome_usuario" value="$_SESSION["nome"];"';
+        echo '<input type="hidden" id="nome_usuario" value="' . $_SESSION['nome'] . ' " ';
     }
     ?>
     <header>

@@ -24,10 +24,11 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
                 $stmt->bindParam(':id', $id_usuario);
 
 
-                $stmt->execute();
-                header("Location: ../index.php");
-                $_SESSION['email'] = $novo_email;
-                $_SESSION['nome'] = $novo_nome;
+                if($stmt->execute()){
+                    header("Location: ../index.php?sucesso='editado'");
+                    $_SESSION['email'] = $novo_email;
+                    $_SESSION['nome'] = $novo_nome;
+                }
             }
         }else{
             if(strlen($nova_senha) >= 8){
@@ -37,13 +38,18 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
                 }
                 if($id_usuario && password_verify($senha_atual, $_SESSION['senha'])){
                     $hash = password_hash($nova_senha, PASSWORD_BCRYPT, ['cost' => 12]);
-                    $sql = "UPDATE usuario SET email = '$novo_email', nome = '$novo_nome', senha = $nova_senha where id_usuario = " . $_SESSION['id_usuario'];
+                    $sql = "UPDATE usuario SET email = :email, nome = :nome, senha = :senha where id_usuario = :id";
                     $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(':email', $novo_email);
+                    $stmt->bindParam(':nome', $novo_nome);
+                    $stmt->bindParam(':senha', $hash);
+                    $stmt->bindParam(':id', $_SESSION['id_usuario']);
+
                     if ($stmt->execute()){
                         $_SESSION['email'] = $novo_email;
                         $_SESSION['senha'] = $hash;
                         $_SESSION['nome'] = $novo_nome;
-                        header("Location: ../index.php");
+                        header("Location: ../index.php?sucesso='editado'");
                     }
                     else{
                         echo "ERRO";
