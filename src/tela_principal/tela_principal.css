@@ -369,17 +369,6 @@
         color: #fff;
     }
 
-    /* Mensagens de erro */
-    body.dark-mode .mensagem-erro {
-        background-color: #ff3333;
-        color: white;
-    }
-
-    /* Mensagem de sucesso */
-    body.dark-mode .mensagem-sucesso {
-        color: #66ff99;
-    }
-
     body.dark-mode .perfil {
         color: #ccc;
     }

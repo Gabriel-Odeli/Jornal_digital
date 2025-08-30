@@ -2,6 +2,8 @@
 include __DIR__ . '/conect_pgsql/conn.php';
 session_start();
 
+unset($_SESSION['ultima_pag']);
+
 //Reportagem mais recente
 $sqlPrimeira = "SELECT id_reportagem, titulo, texto_reportagem, imagem, id_usuario, data_publicacao FROM reportagem ORDER BY data_publicacao DESC LIMIT 1";
 $stmtPrimeira = $conn->prepare($sqlPrimeira);
@@ -38,7 +40,7 @@ $stmtResto = $conn->prepare($sqlResto);
 $stmtResto->execute();
 $Resto = $stmtResto->fetchAll(PDO::FETCH_ASSOC);
 
-if(isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword'){
+if (isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword') {
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
 }
 
@@ -50,7 +52,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Digite a senha atual para editar!</div>';
 }
 
-if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado'){
+if (isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado') {
     echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Editado com sucesso!</div>';
 }
 
@@ -117,7 +119,7 @@ if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado'){
         </form>
         <br>
         <?php if ($primeira != null): ?>
-        <h2 class='text'>Últimas reportagens:</h2>
+            <h2 class='text'>Últimas reportagens:</h2>
         <?php endif; ?>
         <header class="Reportagens">
             <?php if ($primeira != null): ?>
@@ -157,13 +159,13 @@ if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado'){
         </header>
         <br>
         <br>
-        <?php if($Resto){
+        <?php if ($Resto) {
             echo "<h2 class='text'>Veja também:</h2>";
-        }?>
+        } ?>
         <div class="veja-tambem">
-            <?php foreach($Resto as $r): 
+            <?php foreach ($Resto as $r):
                 $streamR = $r['imagem'];
-                $imagemRestoBytes = stream_get_contents($streamR);?>
+                $imagemRestoBytes = stream_get_contents($streamR); ?>
                 <a href="actions/pegar_id-rep.php?id=<?php echo $r['id_reportagem'] ?>" class="card">
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($imagemRestoBytes); ?>" alt="Imagem da Reportagem">
                     <h3><?php echo $r['titulo'] ?></h3>

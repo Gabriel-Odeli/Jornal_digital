@@ -3,7 +3,7 @@ session_start();
 include __DIR__ . '/../conect_pgsql/conn.php';
 
 if (isset($_SESSION)) {
-    if ($_SERVER['REQUEST_METHOD'] = 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $arquivo = $_FILES['imagem']['tmp_name'];
             $imagemBinaria = file_get_contents($arquivo);

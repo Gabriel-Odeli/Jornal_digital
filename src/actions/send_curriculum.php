@@ -39,7 +39,7 @@ try {
     if ($curriculo && $curriculo['error'] === UPLOAD_ERR_OK) {
         $mail->addAttachment($curriculo['tmp_name'], $curriculo['name']);
     } else {
-        header("Location: /sua_pagina.php?erro=notsend");
+        header("Location: ../tela_empregos/tela_empregos.php?erro=notsend");
         exit;
     }
 

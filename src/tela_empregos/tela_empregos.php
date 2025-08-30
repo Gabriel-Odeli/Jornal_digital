@@ -4,6 +4,25 @@ session_start();
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../login/login.php?erro=nouser");
 }
+
+$_SESSION['ultima_pag'] = '../tela_empregos/tela_empregos.php';
+
+if (isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword') {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhapequena") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha deve ter mais de 8 caracteres</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Digite a senha atual para editar!</div>';
+}
+
+if (isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado') {
+    echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Editado com sucesso!</div>';
+}
+
 $sql = "SELECT * FROM emprego";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -156,7 +175,7 @@ $empregos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="close" onclick="fecharEditarModal()">&times;</span>
                 <h2>Editar Perfil</h2>
 
-                <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
+                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
                     <div class="form-group">
                         <label for="novo_nome">Nome de Usuário:</label>
                         <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>

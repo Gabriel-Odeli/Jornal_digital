@@ -2,10 +2,27 @@
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
+$_SESSION['ultima_pag'] = '../reportagens/reportagens.php';
 
 if (!isset($_SESSION['id_reportagem'])) {
     echo "Nenhuma reportagem selecionada.";
     exit;
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword') {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhapequena") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha deve ter mais de 8 caracteres</div>';
+}
+
+if (isset($_GET['erro']) && $_GET['erro'] == "senhanaodigitada") {
+    echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Digite a senha atual para editar!</div>';
+}
+
+if (isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado') {
+    echo '<div id="mensagem-sucesso" class="mensagem-sucesso" style="display:block;">Editado com sucesso!</div>';
 }
 
 if (isset($_GET['id'])) {
@@ -96,8 +113,8 @@ foreach ($comentarios as $c) {
 
 <body>
     <div id="barra-progresso"></div>
-    <?php 
-    if(isset($_SESSION['id_usuario'])){
+    <?php
+    if (isset($_SESSION['id_usuario'])) {
         echo '<input type="hidden" id="nome_usuario" value="' . $_SESSION['nome'] . ' " ';
     }
     ?>
@@ -170,35 +187,59 @@ foreach ($comentarios as $c) {
                 </form>
 
                 <?php foreach ($listaComentarios as $comentario): ?>
-                <div id="lista-mensagens" class="lista-mensagens">
+                    <div id="lista-mensagens" class="lista-mensagens">
                         <div class="comentario" data-id="<?php echo $comentario['id_comentario']; ?>">
                             <h4 class="usuario_comentario"><?php echo htmlspecialchars($comentario['nome']); ?></h4>
                             <p class="texto_comentario"><?php echo nl2br(htmlspecialchars($comentario['texto_comentario'])); ?></p>
                             <small class="time"><?php echo date("d/m/Y H:i", strtotime($comentario['data_comentario'])); ?></small>
                             <button type="button" class="btn-responder">Responder</button>
+
+                            <?php if ($_SESSION['id_usuario'] == $comentario['id_usuario'] || $_SESSION['tipo'] === 1): ?>
+                                <form method="post" action="../actions/delete_comentario.php"
+                                    onsubmit="return confirm('Deseja realmente excluir esta resposta?');">
+                                    <input type="hidden" name="id_comentario" value="<?php echo $comentario['id_comentario']; ?>">
+                                    <button type="submit" class="btn-excluir">Excluir</button>
+                                </form>
+                            <?php endif; ?>
+
                         </div>
-                        
-                        <?php 
+                        <?php
                         $sqlResposta = "SELECT c.*, u.nome FROM comentarios c JOIN usuario u ON c.id_usuario = u.id_usuario WHERE c.tipo = '1' and c.id_resposta = :id ORDER BY c.data_comentario DESC";
                         $stmtResposta = $conn->prepare($sqlResposta);
                         $stmtResposta->bindParam(':id', $comentario['id_comentario']);
                         $stmtResposta->execute();
                         $respostas = $stmtResposta->fetchAll(PDO::FETCH_ASSOC);
-                        if($respostas){
+                        if ($respostas) {
                             echo '<h5>Respostas:</h5>';
-                        }else{
+                        } else {
                             echo '<h5>Sem respostas.</h5>';
                         }
                         foreach ($respostas as $r):
                         ?>
-                        <div class="resposta">
-                            <h5 class="usuario_resposta"><?php echo htmlspecialchars($r['nome']); ?></h5>
-                            <p class="texto_resposta"><?php echo nl2br(htmlspecialchars($r['texto_comentario'])); ?></p>
-                            <small class="time_resposta"><?php echo date("d/m/Y H:i", strtotime($r['data_comentario'])); ?></small>
-                        </div>
+                            <div class="resposta">
+                                <h5 class="usuario_resposta">
+                                    <?php echo htmlspecialchars($r['nome']); ?>
+                                </h5>
+
+                                <p class="texto_resposta">
+                                    <?php echo nl2br(htmlspecialchars($r['texto_comentario'])); ?>
+                                </p>
+
+                                <small class="time_resposta">
+                                    <?php echo date("d/m/Y H:i", strtotime($r['data_comentario'])); ?>
+                                </small>
+
+                                <?php if ($_SESSION['id_usuario'] == $r['id_usuario'] || $_SESSION['tipo'] === 1): ?>
+                                    <form method="post" action="../actions/delete_comentario.php"
+                                        onsubmit="return confirm('Deseja realmente excluir esta resposta?');">
+                                        <input type="hidden" name="id_comentario" value="<?php echo $r['id_comentario']; ?>">
+                                        <button type="submit" class="btn-excluir">Excluir</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
                         <?php endforeach; ?>
-                </div>
-                <br>
+                    </div>
+                    <br>
                 <?php endforeach; ?>
             </section>
         <?php else: ?>
@@ -229,7 +270,7 @@ foreach ($comentarios as $c) {
                 <span class="close" onclick="fecharEditarModal()">&times;</span>
                 <h2>Editar Perfil</h2>
 
-                <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
+                <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
                     <div class="form-group">
                         <label for="novo_nome">Nome de Usuário:</label>
                         <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>

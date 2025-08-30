@@ -1,6 +1,8 @@
 <?php
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
+$_SESSION['ultima_pag'] = '../add_reportagem/add_reportagem.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +108,7 @@ date_default_timezone_set('America/Sao_Paulo');
           <span class="close" onclick="fecharEditarModal()">&times;</span>
           <h2>Editar Perfil</h2>
 
-          <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
+          <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
             <div class="form-group">
               <label for="novo_nome">Nome de Usuário:</label>
               <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>

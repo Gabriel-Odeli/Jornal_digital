@@ -10,7 +10,7 @@ if (!$_SESSION['tipo'] == 1) {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] = 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $arquivo = $_FILES['imagem']['tmp_name'];
     $imagemBinaria = file_get_contents($arquivo);
     $salario = $_POST['salario'];

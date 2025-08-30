@@ -580,9 +580,10 @@ body.dark-mode #modalExclusao .modal-content {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
 
-body.dark-mode .modal-content h2{
+body.dark-mode .modal-content h2 {
     color: #4da6ff;
 }
+
 body.dark-mode #modalExclusao .modal-content h3 {
     color: #dc3545;
 }
@@ -637,15 +638,15 @@ body.dark-mode .login-mensagem {
     color: #ff8888;
 }
 
-body.dark-mode .user-btn{
+body.dark-mode .user-btn {
     color: #4da6ff;
 }
 
-body.dark-mode .user-btn:hover{
+body.dark-mode .user-btn:hover {
     background-color: rgb(105, 105, 118);
 }
 
-body.dark-mode .perfil{
+body.dark-mode .perfil {
     color: #ccc;
 }
 
@@ -704,7 +705,7 @@ body.dark-mode .botoes-acoes button {
     color: #fff;
 }
 
-body.dark-mode .form-group label{
+body.dark-mode .form-group label {
     color: #ccc;
 }
 
@@ -927,17 +928,74 @@ body {
     transition: background-color 0.3s;
 }
 
+.btn-excluir {
+    margin-top: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-excluir:hover {
+    background-color: #cc0000;
+}
+
 .btn-cancelar:hover {
     background-color: #a71d2a;
 }
 
-/* 🟢 Mensagem de sucesso */
-.mensagem-sucesso {
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.mensagem-erro {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
     display: none;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    z-index: 1000;
+}
+
+.mensagem-sucesso {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    z-index: 1000;
 }
 
 #modalExclusao {

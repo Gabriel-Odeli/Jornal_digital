@@ -34,6 +34,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == "notfund") {
                 <i class="bx bxs-lock-alt"></i>
             </div>
             <button type="submit" class="login_button">Login</button>
+            <a href="../index.php" class="anonimo_button">Continuar como anônimo</a>
         </form>
         <div class="cadastro_conta">
             <p>Não tem uma conta? <a href="../cadastro/cadastro.php">Cadastre-se</a></p>

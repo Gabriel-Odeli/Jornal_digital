@@ -62,23 +62,6 @@ body {
     font-size: 18px;
 }
 
-/* Botão de login */
-.login_button {
-    width: 100%;
-    background-color: #4da6ff;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login_button:hover {
-    background-color: #1a75ff;
-}
-
 /* Link para cadastro */
 .cadastro_conta {
     text-align: center;
@@ -127,4 +110,55 @@ body {
     opacity: 0;
     animation: fadeInOut 4s forwards;
     z-index: 1000;
+}
+
+.anonimo_button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.anonimo_button:hover {
+    background-color: #5a6268;
+    transform: scale(1.02);
+}
+
+.anonimo_button:active {
+    background-color: #444;
+    transform: scale(0.98);
+}
+
+.login_button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4da6ff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login_button:hover {
+    background-color: #1a75ff;
+    transform: scale(1.02);
+}
+
+.login_button:active {
+    background-color: #0056b3;
+    transform: scale(0.98);
 }

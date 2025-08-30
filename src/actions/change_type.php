@@ -2,7 +2,7 @@
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] = 'post') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_SESSION)) {
         if ($_SESSION['tipo'] != 1) {
             die("Não é Administrador");

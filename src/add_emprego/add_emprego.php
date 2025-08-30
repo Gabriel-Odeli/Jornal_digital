@@ -5,6 +5,9 @@ session_start();
 if (!$_SESSION) {
     header("Location: ../login/login.php");
 }
+
+$_SESSION['ultima_pag'] = '../add_emprego/add_emprego.php';
+
 if (!$_SESSION['tipo'] == 1) {
     header("Location: ../tela_empregos/tela_empregos.php?erro=notadm");
 }
@@ -139,7 +142,7 @@ if (isset($_GET['erro']) && $_GET['erro'] = 'notnumeric') {
                     <span class="close" onclick="fecharEditarModal()">&times;</span>
                     <h2>Editar Perfil</h2>
 
-                    <form id="form-editar" class="form-editar" action="actions/edit_user.php" method="post">
+                    <form id="form-editar" class="form-editar" action="../actions/edit_user.php" method="post">
                         <div class="form-group">
                             <label for="novo_nome">Nome de Usuário:</label>
                             <input type="text" name="novo_nome" id="novo_nome" value="<?= htmlspecialchars($_SESSION['nome']) ?>" required>

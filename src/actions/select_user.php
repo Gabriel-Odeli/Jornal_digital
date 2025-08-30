@@ -1,9 +1,9 @@
-<?php 
+<?php
 include __DIR__ . '/../conect_pgsql/conn.php';
 session_start();
 
-if($_SERVER['REQUEST_METHOD'] = 'POST'){
-    try{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    try {
         $email = $_POST['email'] ?? null;
         $senha = $_POST['senha'] ?? null;
 
@@ -26,19 +26,21 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['data_nasc'] = $usuario['data_nascimento'];
             $_SESSION['tipo'] = $usuario['tipo'];
-            header("Location: ../index.php");
+            if (isset($_SESSION['ultima_pag'])) {
+                header("Location: " . $_SESSION['ultima_pag']);
+            } else {
+                header("Location: ../index.php");
+            }
             exit;
         } else {
             header("Location: ../login/login.php?erro=notfund");
-        }        
-
-    }catch(PDOException $e){
+        }
+    } catch (PDOException $e) {
         die("Erro no banco de dados: " . $e->getMessage());
-    }catch (Exception $e) {
+    } catch (Exception $e) {
         die("Erro: " . $e->getMessage());
     }
-}else{
+} else {
     header("Location: ../../login/login.php?error=invalid_request");
     exit();
 }
-?>
