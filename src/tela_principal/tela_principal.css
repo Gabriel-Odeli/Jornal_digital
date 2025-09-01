@@ -770,3 +770,33 @@
         /* Espaço entre os ícones */
         list-style: none;
     }
+
+    .paginacao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 30px 0;
+    }
+
+    .paginacao a {
+        background: #1e1e1e;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.3s ease;
+    }
+
+    .paginacao a:hover {
+        background: #333;
+    }
+
+    .paginacao span {
+        color: #aaa;
+        font-size: 14px;
+    }

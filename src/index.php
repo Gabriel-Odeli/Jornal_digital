@@ -35,10 +35,23 @@ if ($Menores != null) {
 }
 
 //Outras Reportagens
-$sqlResto = "SELECT * FROM reportagem ORDER BY data_publicacao DESC LIMIT 10 OFFSET 3";
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$limite = 10;
+$offset = 3 + ($pagina - 1) * $limite;
+
+// Consulta paginada
+$sqlResto = "SELECT * FROM reportagem ORDER BY data_publicacao DESC LIMIT :limite OFFSET :offset";
 $stmtResto = $conn->prepare($sqlResto);
+$stmtResto->bindValue(':limite', $limite, PDO::PARAM_INT);
+$stmtResto->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmtResto->execute();
 $Resto = $stmtResto->fetchAll(PDO::FETCH_ASSOC);
+
+// Total de reportagens (para saber quantas páginas tem)
+$totalSql = "SELECT COUNT(*) as total FROM reportagem";
+$totalStmt = $conn->query($totalSql);
+$total = $totalStmt->fetch(PDO::FETCH_ASSOC)['total'];
+$totalPaginas = ceil($total / $limite);
 
 if (isset($_GET['erro']) && $_GET['erro'] == 'incorrectpassword') {
     echo '<div id="mensagem-erro" class="mensagem-erro" style="display:block;">Senha atual incorreta!</div>';
@@ -171,6 +184,22 @@ if (isset($_GET['sucesso']) && $_GET['sucesso'] == 'editado') {
                     <h3><?php echo $r['titulo'] ?></h3>
                 </a>
             <?php endforeach; ?>
+        </div>
+
+        <div class="paginacao">
+            <?php if ($pagina > 1): ?>
+                <a class="btn-anterior" href="index.php?pagina=<?= $pagina - 1 ?>">
+                    <i class="fas fa-arrow-left"></i> Anterior
+                </a>
+            <?php endif; ?>
+
+            <span>Página <?= $pagina ?> de <?= $totalPaginas ?></span>
+
+            <?php if ($pagina < $totalPaginas): ?>
+                <a class="btn-proxima" href="?pagina=<?= $pagina + 1 ?>">
+                    Próxima <i class="fas fa-arrow-right"></i>
+                </a>
+            <?php endif; ?>
         </div>
 
     </header>
