@@ -63,6 +63,15 @@ A metodologia adotada contempla as etapas de:
 
 ---
 
+## Instruções
+
+1. Faça o banco de dados postgres na sua maquina e configure o conn.php.
+2. Inicie o servidor com "php -S localhost:80" no terminal.
+3. Crie sua conta ou continue sem, caso você continue sem conta suas ações seram limitadas (não pode entrar na tela de empregos nem comentar em reportagens).
+4. Veja as reportagens que te interresam, comente ou mande currículos para empregos que você tem interesse 
+
+---
+
 ## Autor  
 
 Projeto desenvolvido por **Gabriel Odeli** e **Matheus Hideyuki Silva Kawano**, sob orientação de **Rodrigo Nogueira**, como requisito parcial para obtenção do título de **Técnico de Informática** no **Instituto Federal Catarinense Campus Ibirama**.  
