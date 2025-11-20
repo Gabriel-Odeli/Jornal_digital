@@ -74,4 +74,4 @@ A metodologia adotada contempla as etapas de:
 
 ## Autor  
 
-Projeto desenvolvido por **Gabriel Odeli** e **Matheus Hideyuki Silva Kawano**, sob orientação de **Rodrigo Nogueira**, como requisito parcial para obtenção do título de **Técnico de Informática** no **Instituto Federal Catarinense Campus Ibirama**.  
+Projeto desenvolvido por **Gabriel Odeli** e **Matheus Hideyuki Silva Kawano**, sob orientação de **Rodrigo Ramos Nogueira**, como requisito parcial para obtenção do título de **Técnico de Informática** no **Instituto Federal Catarinense Campus Ibirama**.  
